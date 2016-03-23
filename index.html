@@ -14,14 +14,18 @@
 
 <body>
 
+    <h1>My Subscriptions</h1>
+    <ol id="allSubscriptions">
+    </ol>
+    
     <div id="subscriptions"></div>
     <div id="results"></div>
     <div id="status"></div>
     
     <script id="subscriptionTemplate" type="text/x-handlebars-template">
-        <h1>My Subscriptions</h1>
+        <h1>{{year}}</h1>
         {{#subscriptions}}
-            <a href="{{removeLink}}"><img src="{{thumb}}" class="thumb"></a>
+            <img src="{{thumb}}" class="thumb">
         {{/subscriptions}}
     </script>
     

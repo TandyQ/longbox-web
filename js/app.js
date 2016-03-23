@@ -6,183 +6,11 @@ var IMAGE_NOT_AVAIL = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_ava
 //my key
 var comicSubs = new Firebase('https://longbox.firebaseio.com/marvel');
 
-// Marvel Storage
+// Marvel Data
 var marvelComics = [];
 
-// Raw Subscription Data Storage
+// Raw Subscription Data
 var comicList = [];
-
-//credit: http://stackoverflow.com/a/1527820/52160
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function saveToFB(comicName) {
-    var contains = false;
-    for(var i = 0; i < comicList.length; i++) {
-        if (comicList[i].name == comicName) {
-            contains = true;
-            break;
-        }
-    }
-    if (!contains) {
-        comicSubs.push({name: comicName});
-    }
-}
-
-function genLink(key, comicName) {
-    return 'javascript:del(\'' + key + '\',\'' + comicName + '\')';
-}
-
-function del(key, comicName) {
-    var response = confirm("Are you certain about removing \"" + comicName + "\" from the list?");
-    if (response == true) {
-        // build the Firebase endpoint to the item in the movies collection
-        var deleteMovieRef = buildEndPoint(key);
-        deleteMovieRef.remove();
-    }
-}
-
-function buildEndPoint (key) {
-    return new Firebase('https://longbox.firebaseio.com/marvel/' + key);
-}
-
-// this will get fired on inital load as well as when ever there is a change in the data
-comicSubs.on("value", function(snapshot) {
-    var data = snapshot.val();
-    comicList = [];
-    for (var key in data) {
-        if (data.hasOwnProperty(key)) {
-            name = data[key].name ? data[key].name : '';
-            if (name.trim().length > 0) {
-                comicList.push({
-                    name: name,
-                    key: key
-                })
-            }
-        }
-    }
-    // refresh the UI
-    refreshUI();
-});
-
-function getComicData(data) {
-    var curr = new Date; // get current date
-    var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
-    var last = first + 6; // last day is the first day + 6
-    var firstDate = new Date(curr.setDate(first));
-    var lastDate = new Date(curr.setDate(last));
-    console.log("First: " + firstDate + "  " + "Last: " + lastDate);
-
-    // var testURL = "http://gateway.marvel.com/v1/public/comics?limit=100&format=comic&formatType=comic&dateRange=2016-03-03%2C2016-03-09&apikey=" + KEY;
-    var url = "http://gateway.marvel.com/v1/public/comics?limit=100&format=comic&formatType=comic&dateRange=" + firstDate.getFullYear() + "-" + (firstDate.getUTCMonth() + 1) + "-" + firstDate.getUTCDate() + "%2C" + lastDate.getFullYear() + "-" + (lastDate.getUTCMonth() + 1) + "-" + lastDate.getUTCDate() + "&apikey=" + data.API_KEY;
-        
-    console.log(url);
-    return $.get(url); 
-}
-
-function refreshUI() {
-    var $subscriptions = $("#subscriptions");
-    var templateSource = $("#subscriptionTemplate").html();
-    var template = Handlebars.compile(templateSource);
-    
-    var subscriptionData = {};
-    var comicSubscriptions = [];
-    
-    subscriptionData.removeLinks = [];
-    subscriptionData.thumbs = [];
-    
-    comicList.sort(compareSubscriptions);
-    marvelComics.sort(compareSeries);
-    
-// TODO: Get this working so it only displays subscriptions
-    for (var i = 0; i < marvelComics.length; i++) {
-        var comic = marvelComics[i];
-        
-        for(var j = 0; j < comicList.length; j++) {
-                
-            if (comicList[j].name == comic.series.name) {
-                comicSubscriptions.push(comic);
-                
-                if (comic.thumbnail && comic.thumbnail.path != IMAGE_NOT_AVAIL) {
-                    subscriptionData.thumbs.push(comic.thumbnail.path + "." + comic.thumbnail.extension);
-                }
-        
-                if (comic.series && comic.series.name != '') {
-                    subscriptionData.removeLinks.push(genLink(comicList[j].key, comicList[j].name));
-                }
-                
-                break;
-            }
-        }
-    }
-    
-    subscriptionData.subscriptions = [];
-    for(var i = 0; i < subscriptionData.thumbs.length; ++i) {
-        subscriptionData.subscriptions.push({thumb: subscriptionData.thumbs[i],
-                                           removeLink: subscriptionData.removeLinks[i]});
-    }
-    
-    console.dir(subscriptionData);
-    var html = template(subscriptionData);
-    $subscriptions.replaceWith(html);
-    console.log("Firebase finished");
-}
-
-// Utility
-
-Array.prototype.contains = function(obj) {
-    var i = this.length;
-    while (i--) {
-        if (this[i] === obj) {
-            return true;
-        }
-    }
-    return false;
-}
-
-Date.prototype.monthNames = [
-    "January", "February", "March",
-    "April", "May", "June",
-    "July", "August", "September",
-    "October", "November", "December"
-    ];
-
-Date.prototype.getMonthName = function() {
-    return this.monthNames[this.getMonth()];
-};
-
-Date.prototype.getShortMonthName = function () {
-    return this.getMonthName().substr(0, 3);
-};
-
-function compareSeries(a,b) {
-  if (a.series.name < b.series.name) {
-      return -1;
-  }
-    
-  else if (a.series.name > b.series.name) {
-      return 1;
-  }
-    
-  else {
-      return 0;
-  }
-}
-
-function compareSubscriptions(a,b) {
-    if (a.name < b.name) {
-      return -1;
-  }
-    
-  else if (a.name > b.name) {
-      return 1;
-  }
-    
-  else {
-      return 0;
-  }
-}
 
 // Init
 
@@ -211,10 +39,7 @@ $(document).ready(function () {
 
         $status.html("");
 
-        var curr = new Date; // get current date
-        var sunday = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
-        var wednesday = sunday + 3; // last day is the first day + 6
-        var weekDate = new Date(curr.setDate(wednesday));
+        var weekDate = getWednesdayDate();
         
         var marvelData = {};
         marvelData.year = "All New Comics - Week of " + (weekDate.getMonthName()) + " " + weekDate.getUTCDate() + ", " + weekDate.getFullYear();
@@ -292,9 +117,194 @@ $(document).ready(function () {
             console.dir(marvelData);
             var html = template(marvelData);
             $results.append(html);
-            console.log("Marvel API finished");
         }
     });
         
     });
 });
+
+// Firebase API
+
+function saveToFB(comicName) {
+    var contains = false;
+    for(var i = 0; i < comicList.length; i++) {
+        if (comicList[i].name == comicName) {
+            contains = true;
+            break;
+        }
+    }
+    if (!contains) {
+        comicSubs.push({name: comicName});
+    }
+}
+
+function del(key, comicName) {
+    var response = confirm("Are you certain about removing \"" + comicName + "\" from the list?");
+    if (response == true) {
+        // build the Firebase endpoint to the item in the movies collection
+        var deleteMovieRef = buildEndPoint(key);
+        deleteMovieRef.remove();
+    }
+}
+
+// this will get fired on inital load as well as when ever there is a change in the data
+comicSubs.on("value", function(snapshot) {
+    var data = snapshot.val();
+    comicList = [];
+    for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+            name = data[key].name ? data[key].name : '';
+            if (name.trim().length > 0) {
+                comicList.push({
+                    name: name,
+                    key: key
+                })
+            }
+        }
+    }
+
+    refreshUI();
+});
+
+function refreshUI() {
+    var lis = '';
+    for (var i = 0; i < comicList.length; i++) {
+        lis += '<li data-key="' + comicList[i].key + '">' + comicList[i].name + ' [' + genSubManagementLink(comicList[i].key, comicList[i].name) + ']</li>';
+    };
+    document.getElementById('allSubscriptions').innerHTML = lis;
+    
+    var $subscriptions = $("#subscriptions");
+    var templateSource = $("#subscriptionTemplate").html();
+    var template = Handlebars.compile(templateSource);
+    
+    var subscriptionData = {};
+    var comicSubscriptions = [];
+    
+    var weekDate = getWednesdayDate();
+    subscriptionData.year = "Pull List - Week of " + (weekDate.getMonthName()) + " " + weekDate.getUTCDate() + ", " + weekDate.getFullYear();
+    
+    subscriptionData.removeLinks = [];
+    subscriptionData.thumbs = [];
+    
+    comicList.sort(compareSubscriptions);
+    marvelComics.sort(compareSeries);
+    
+    for (var i = 0; i < marvelComics.length; i++) {
+        var comic = marvelComics[i];
+        
+        for(var j = 0; j < comicList.length; j++) {
+                
+            if (comicList[j].name == comic.series.name) {
+                comicSubscriptions.push(comic);
+                
+                if (comic.thumbnail && comic.thumbnail.path != IMAGE_NOT_AVAIL) {
+                    subscriptionData.thumbs.push(comic.thumbnail.path + "." + comic.thumbnail.extension);
+                }
+                
+                break;
+            }
+        }
+    }
+    
+    subscriptionData.subscriptions = [];
+    for(var i = 0; i < subscriptionData.thumbs.length; ++i) {
+        subscriptionData.subscriptions.push({thumb: subscriptionData.thumbs[i],
+                                           removeLink: subscriptionData.removeLinks[i]});
+    }
+    
+    console.dir(subscriptionData);
+    var html = template(subscriptionData);
+    $subscriptions.replaceWith(html);
+}
+
+// Firebase Utility
+
+function buildEndPoint (key) {
+    return new Firebase('https://longbox.firebaseio.com/marvel/' + key);
+}
+
+function genSubManagementLink(key, mvName) {
+    var link = '';
+    link += '<a href="javascript:del(\'' + key + '\',\'' + mvName + '\')">Delete</a>';
+    return link;
+};
+
+// Marvel API
+
+function getComicData(data) {
+    var curr = new Date; // get current date
+    var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+    var last = first + 6; // last day is the first day + 6
+    var firstDate = new Date(curr.setDate(first));
+    var lastDate = new Date(curr.setDate(last));
+    console.log("First: " + firstDate + "  " + "Last: " + lastDate);
+
+    // var testURL = "http://gateway.marvel.com/v1/public/comics?limit=100&format=comic&formatType=comic&dateRange=2016-03-03%2C2016-03-09&apikey=" + KEY;
+    var url = "http://gateway.marvel.com/v1/public/comics?limit=100&format=comic&formatType=comic&dateRange=" + firstDate.getFullYear() + "-" + (firstDate.getUTCMonth() + 1) + "-" + firstDate.getUTCDate() + "%2C" + lastDate.getFullYear() + "-" + (lastDate.getUTCMonth() + 1) + "-" + lastDate.getUTCDate() + "&apikey=" + data.API_KEY;
+        
+    console.log(url);
+    return $.get(url); 
+}
+
+function getWednesdayDate() {
+    var curr = new Date; // get current date
+    var sunday = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+    var wednesday = sunday + 3; // last day is the first day + 6
+    var weekDate = new Date(curr.setDate(wednesday));
+    return weekDate;
+}
+
+// General Utility
+
+Array.prototype.contains = function(obj) {
+    var i = this.length;
+    while (i--) {
+        if (this[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
+Date.prototype.monthNames = [
+    "January", "February", "March",
+    "April", "May", "June",
+    "July", "August", "September",
+    "October", "November", "December"
+    ];
+
+Date.prototype.getMonthName = function() {
+    return this.monthNames[this.getMonth()];
+};
+
+Date.prototype.getShortMonthName = function () {
+    return this.getMonthName().substr(0, 3);
+};
+
+function compareSeries(a,b) {
+  if (a.series.name < b.series.name) {
+      return -1;
+  }
+    
+  else if (a.series.name > b.series.name) {
+      return 1;
+  }
+    
+  else {
+      return 0;
+  }
+}
+
+function compareSubscriptions(a,b) {
+    if (a.name < b.name) {
+      return -1;
+  }
+    
+  else if (a.name > b.name) {
+      return 1;
+  }
+    
+  else {
+      return 0;
+  }
+}
