@@ -167,6 +167,8 @@ comicSubs.on("value", function(snapshot) {
 });
 
 function refreshUI() {
+    comicList.sort(compareSubscriptions);
+    
     var lis = '';
     for (var i = 0; i < comicList.length; i++) {
         lis += '<li data-key="' + comicList[i].key + '">' + comicList[i].name + ' [' + genSubManagementLink(comicList[i].key, comicList[i].name) + ']</li>';
@@ -183,11 +185,7 @@ function refreshUI() {
     var weekDate = getWednesdayDate();
     subscriptionData.year = "Pull List - Week of " + (weekDate.getMonthName()) + " " + weekDate.getUTCDate() + ", " + weekDate.getFullYear();
     
-    subscriptionData.removeLinks = [];
     subscriptionData.thumbs = [];
-    
-    comicList.sort(compareSubscriptions);
-    marvelComics.sort(compareSeries);
     
     for (var i = 0; i < marvelComics.length; i++) {
         var comic = marvelComics[i];
@@ -208,13 +206,12 @@ function refreshUI() {
     
     subscriptionData.subscriptions = [];
     for(var i = 0; i < subscriptionData.thumbs.length; ++i) {
-        subscriptionData.subscriptions.push({thumb: subscriptionData.thumbs[i],
-                                           removeLink: subscriptionData.removeLinks[i]});
+        subscriptionData.subscriptions.push({thumb: subscriptionData.thumbs[i]});
     }
     
     console.dir(subscriptionData);
     var html = template(subscriptionData);
-    $subscriptions.replaceWith(html);
+    $subscriptions.html(html);
 }
 
 // Firebase Utility
