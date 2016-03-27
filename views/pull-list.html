@@ -5,8 +5,8 @@
     <h1>{{ message }}</h1>
 </div>
 <div class="row small-up-2 medium-up-3 large-up-4">
-    <div class="column" ng-repeat="series in seriesData | filter:isInPullList">
-        <img ng-src="{{series.thumbnail.path}}.{{series.thumbnail.extension}}" alt="Cover of {{series.title}}">
+    <div class="column" ng-repeat="series in seriesData | filter:isInPullList | orderBy:'title'">
+        <img ng-src="{{series.latestComicCoverPath}}.{{series.latestComicCoverExtension}}" alt="Cover of {{series.title}}">
         <p>{{series.title | limitFromToChar:0:" ("}}</p>
         <button ng-click="removeFromPullList(series)"><span>Remove this series</span></button>
     </div>

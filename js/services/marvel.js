@@ -84,6 +84,13 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q',
                     return response.data.results[0];
                 });
                 return promise;
+            },
+            getComicDataForResourceURI: function(resourceURI) {
+                var promise = constructURL("comic", { "resourceURI": resourceURI }).then(queryComics).then(function(response) {
+                    console.log(response.data);
+                    return response.data.results[0];
+                });
+                return promise;
             }
         };
 

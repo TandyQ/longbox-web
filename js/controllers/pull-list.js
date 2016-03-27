@@ -38,7 +38,21 @@ myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullLi
                 Marvel.getSeriesDataForResourceURI(series.resourceURI).then(function(comicData) {
                     if ($scope.seriesData.indexOf(comicData) == -1) {
                         $scope.seriesData.push(comicData);
+                        $scope.getLatestComicForSeries(comicData.comics.items[0], $scope.seriesData.indexOf(comicData));
                     }
+                });
+            }
+        };
+
+        $scope.getLatestComicForSeries = function(comic, index) {
+            if(comic.resourceURI) {
+                Marvel.getComicDataForResourceURI(comic.resourceURI).then(function(comicData) {
+                    if($scope.seriesData[index]) {
+                        $scope.seriesData[index].latestComicCoverPath = comicData.thumbnail.path;
+                        $scope.seriesData[index].latestComicCoverExtension = comicData.thumbnail.extension;
+                    }
+                    console.log($scope.seriesData[index].latestComicCoverPath);
+                    console.log($scope.seriesData[index].latestComicCoverExtension);
                     console.log($scope.seriesData);
                 });
             }
