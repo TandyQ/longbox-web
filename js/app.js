@@ -23,9 +23,18 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'views/register.html',
         controller: 'RegistrationController'
     }).
-    when('/thisweek', {
-        templateUrl: 'views/thisweek.html',
-        controller: 'ThisWeekController'
+    when('/all-new-issues', {
+        templateUrl: 'views/all-new-issues.html',
+        controller: 'AllNewIssuesController'
+    }).
+    when('/this-week', {
+        templateUrl: 'views/this-week.html',
+        controller: 'ThisWeekController',
+        resolve: {
+            currentAuth: function(Authentication) {
+                    return Authentication.requireAuth();
+                } // current authentication
+        } // resolve
     }).
     when('/pull-list', {
         templateUrl: 'views/pull-list.html',
@@ -37,7 +46,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         } // resolve
     }).
     otherwise({
-        redirectTo: '/thisweek'
+        redirectTo: '/all-new-issues'
     });
 }]);
 

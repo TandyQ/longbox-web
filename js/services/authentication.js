@@ -19,7 +19,7 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseAuth', '$firebaseObject
                     email: user.email,
                     password: user.password
                 }).then(function(regUser) {
-                    $location.path('/thisweek');
+                    $location.path('/this-week');
                 }).catch(function(error) {
                     $rootScope.message = error.message;
                 });

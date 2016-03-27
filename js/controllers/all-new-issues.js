@@ -1,4 +1,4 @@
-myApp.controller('ThisWeekController', ['$scope', 'Marvel', 'DateUtils', 'FirebaseUtils',
+myApp.controller('AllNewIssuesController', ['$scope', 'Marvel', 'DateUtils', 'FirebaseUtils',
     function($scope, Marvel, DateUtils, FirebaseUtils) {
         var wedDate = DateUtils.getWednesdayDate(new Date());
         $scope.message = "Week of " +

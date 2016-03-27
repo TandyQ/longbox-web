@@ -1,0 +1,13 @@
+<div class="card meetings cf">
+    <div class="textintro">
+        <h1>All New Comics</h1>
+    </div>
+    <h2>{{ message }}</h2>
+</div>
+<div class="row small-up-2 medium-up-3 large-up-4">
+    <div class="column" ng-repeat="comic in comicData">
+        <img ng-click="addComic(comic.series.name)" ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="Cover of {{comic.title}}">
+        <p>{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
+    </div>
+</div>
+<!-- meetings cf -->
