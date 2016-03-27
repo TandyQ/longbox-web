@@ -4,7 +4,7 @@ myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullLi
         $scope.message = "Week of " +
             (DateUtils.getMonthName(wedDate)) + " " + wedDate.getUTCDate() + ", " + wedDate.getFullYear();
 
-        $scope.subscriptions = PullList;
+        PullList.getPullList();
         console.log(PullList);
 
         var dateRange = DateUtils.getDateRange(new Date()); // Get first and last day of week
@@ -14,7 +14,7 @@ myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullLi
         });
 
         $scope.isInPullList = function(comic) {
-            return PullListUtils.isInPullList(comic.series.name, $scope.subscriptions);
+            return PullListUtils.isInPullList(comic.series.name, $scope.pullList);
         };
     }
 ]);

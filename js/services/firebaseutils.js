@@ -3,22 +3,31 @@ myApp.factory('FirebaseUtils', ['$rootScope', "PullListUtils", '$firebaseArray',
 
         var myObject = {
             addToPullList: function(title) {
-
                 var ref = new Firebase(FIREBASE_URL);
                 var auth = $firebaseAuth(ref);
 
                 auth.$onAuth(function(authUser) {
                     if (authUser) {
                         var pullListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
-                        var pullListInfo = $firebaseArray(ref);
+                        var pullListInfo = $firebaseArray(pullListRef);
 
-                        if (!PullListUtils.isInPullList(title, pullListInfo)) {
-                            pullListInfo.$add({
-                                name: title
-                            }).then(function() {
-                                // do something
-                            });
-                        }
+                        pullListInfo.$loaded().then(function(data) {
+                            if (!PullListUtils.isInPullList(title, pullListInfo)) {
+                                pullListInfo.$add({
+                                    name: title
+                                }).then(function() {
+                                    // do something
+                                });
+                            } else {
+                                // Already in pull list
+                            }
+                        }).catch(function(error) {
+                            // handle error
+                        });
+
+
+                    } else {
+                        // No authorized user
                     }
                 });
             }

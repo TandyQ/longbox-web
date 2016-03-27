@@ -44,18 +44,30 @@ myApp.config(['$routeProvider', function($routeProvider) {
 myApp.factory('PullList', ['$rootScope', '$firebaseArray', '$firebaseAuth', 'FIREBASE_URL',
     function($rootScope, $firebaseArray, $firebaseAuth, FIREBASE_URL) {
 
-        var ref = new Firebase(FIREBASE_URL);
-        var auth = $firebaseAuth(ref);
+        var myObject = {
+            getPullList: function() {
+                var ref = new Firebase(FIREBASE_URL);
+                var auth = $firebaseAuth(ref);
 
-        auth.$onAuth(function(authUser) {
-            if (authUser) {
-                var pullRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
-                console.log(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
-                return $firebaseArray(pullRef);
+                auth.$onAuth(function(authUser) {
+                    if (authUser) {
+                        var pullRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
+                        console.log(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
+                        var pullListInfo = $firebaseArray(pullRef);
+
+                        pullListInfo.$loaded().then(function(data) {
+                            $rootScope.pullList = data;
+                        }).catch(function(error) {
+                            // handle error
+                        });
+                    } else {
+                        $rootScope.pullList = {};
+                    }
+                });
             }
-        });
+        };
 
-        return nil;
+        return myObject;
     }
 ]);
 
