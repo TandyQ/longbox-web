@@ -1,58 +1,48 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" ng-app="myApp">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Longbox - Subscriptions</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="js/handlebars-v4.0.5.js"></script>
+    <meta charset="UTF-8">
+    <title>Longbox</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,100,700,900" rel="stylesheet" type="text/css">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/foundation.css">
+    <!-- Angular -->
+    <script src="js/lib/angular/angular.min.js"></script>
+    <script src="js/lib/angular/angular-route.min.js"></script>
+    <script src="js/lib/angular/angular-animate.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.1.4/angularfire.min.js"></script>
+    <!-- Foundation -->
+    <script src="js/lib/angular-foundation/mm-foundation-tpls-0.8.0.min.js"></script>
+    <!-- App -->
+    <script src="js/app.js"></script>
+    <script src="js/services/dateutils.js"></script>
+    <script src="js/services/authentication.js"></script>
+    <script src="js/services/marvel.js"></script>
+    <script src="js/services/firebaseutils.js"></script>
+    <script src="js/services/pulllistutils.js"></script>
+    <script src="js/controllers/registration.js"></script>
+    <script src="js/controllers/thisweek.js"></script>
+    <script src="js/controllers/pulllist.js"></script>
 </head>
 
 <body>
-
-    <h1>My Subscriptions</h1>
-    <ol id="allSubscriptions">
-    </ol>
-    
-    <div id="subscriptions"></div>
-    <div id="results"></div>
-    <div id="status"></div>
-    
-    <script id="subscriptionTemplate" type="text/x-handlebars-template">
-        <h1>{{year}}</h1>
-        {{#subscriptions}}
-            <img src="{{thumb}}" class="thumb">
-        {{/subscriptions}}
-    </script>
-    
-    <script id="reportTemplate" type="text/x-handlebars-template">
-        <div id="firstIssues">
-        <h1>New First Issues</h1>
-        {{#firstIssues}}
-            <a href="{{addLink}}"><img src="{{thumb}}" class="thumb"></a>
-        {{/firstIssues}}
-        <br clear="left">
+    <header>
+        <nav class="cf" ng-include="'views/nav.html'"></nav>
+    </header>
+    <div class="page">
+        <div class="userinfo" ng-show="currentUser" ng-controller="RegistrationController">
+            <span class="userinfo">Hi {{ currentUser.firstname }}</span>
+            <a ng-href="#/login" ng-click="logout()">logout</a>
         </div>
-        <h1>{{year}}</h1>
-        <p>
-            Average Price: ${{avgPrice}}
-            <br/> Low/High Price: ${{minPrice}} / ${{maxPrice}}
-            <br/> Average Page Count: {{avgPageCount}}
-            <br/>
-        </p>
-        {{#marvelComics}}
-            <a href="{{addLink}}"><img src="{{thumb}}" class="thumb"></a>
-        {{/marvelComics}}
-        <br clear="left">
-        <p/>
-    </script>
-    <script type="text/javascript" src="https://cdn.firebase.com/js/client/1.0.15/firebase.js"></script>
-    <script src="js/app.js"></script>
-
+        <main class="cf" ng-view>
+        </main>
+    </div>
 </body>
 
 </html>
