@@ -8,6 +8,8 @@
     <div class="column" ng-repeat="comic in comicData">
         <img ng-click="addComic(comic.series)" ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="Cover of {{comic.title}}">
         <p>{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
+        <button ng-click="addComic(comic.series)" ng-hide="isInPullList(comic.series)"><span>Add this series</span></button>
+        <button ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic.series)"><span>Remove this series</span></button>
     </div>
 </div>
 <!-- meetings cf -->

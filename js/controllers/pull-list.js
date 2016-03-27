@@ -1,5 +1,5 @@
-myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullListUtils", "FirebaseUtils", '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function($scope, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+myApp.controller('PullListController', ['$scope', '$filter', 'Marvel', 'DateUtils', "PullListUtils", "FirebaseUtils", '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
+    function($scope, $filter, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var wedDate = DateUtils.getWednesdayDate(new Date());
         $scope.message = "Week of " +
             (DateUtils.getMonthName(wedDate)) + " " + wedDate.getUTCDate() + ", " + wedDate.getFullYear();
@@ -12,9 +12,13 @@ myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullLi
                 var pullRef = new Firebase(FIREBASE_URL + 'users/' + $scope.currentUser.$id + '/pulllist/');
                 var pullListInfo = $firebaseArray(pullRef);
 
+                $scope.seriesData = [];
+                $scope.pullList = {};
+
                 pullListInfo.$loaded().then(function(data) {
                     $scope.pullList = data;
-                    $scope.seriesData = [];
+                    console.log("Pull List");
+                    console.log($scope.pullList);
                     for (var i = 0; i < data.length; i++) {
                         var series = data[i];
                         $scope.getSeries(series);
@@ -24,7 +28,25 @@ myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullLi
                 });
 
                 pullListInfo.$watch(function(data) {
-                    // update series list
+                    for (var i = 0; i < $scope.pullList.length; i++) {
+                        console.log($scope.pullList[i]);
+                        var seriesResults = $filter('filter')($scope.seriesData, {title : $scope.pullList[i].name}, true);
+                        console.log("Series Results");
+                        console.log(seriesResults.length);
+                        if (seriesResults.length === 0) {
+                            var series = $scope.pullList[i];
+                            $scope.getSeries(series);
+                        }
+                    }
+                    for (var j = 0; j < $scope.seriesData.length; j++) {
+                        console.log($scope.seriesData[j]);
+                        var dataResults = $filter('filter')($scope.pullList, {name : $scope.seriesData[j].title}, true);
+                        console.log("Data Results");
+                        console.log(dataResults.length);
+                        if (dataResults.length === 0) {
+                            $scope.seriesData.splice(j, 1);
+                        }
+                    }
                 });
             } else {
                 $rootScope.pullList = {};
@@ -39,6 +61,7 @@ myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullLi
                         $scope.getLatestComicCoverForSeries(comicData, $scope.seriesData.indexOf(comicData));
                         // get first comic in series: $scope.getComicForSeries(comicData.comics.items[0], $scope.seriesData.indexOf(comicData));
                     }
+                    console.log($scope.seriesData);
                 });
             }
         };
