@@ -1,32 +1,64 @@
-myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullList", "PullListUtils", "FirebaseUtils",
-    function($scope, Marvel, DateUtils, PullList, PullListUtils, FirebaseUtils) {
+myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullListUtils", "FirebaseUtils", '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
+    function($scope, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var wedDate = DateUtils.getWednesdayDate(new Date());
         $scope.message = "Week of " +
             (DateUtils.getMonthName(wedDate)) + " " + wedDate.getUTCDate() + ", " + wedDate.getFullYear();
 
-        PullList.getPullList();
-        console.log(PullList);
+        console.log(FIREBASE_URL);
+        var ref = new Firebase(FIREBASE_URL);
+        var auth = $firebaseAuth(ref);
 
-        var dateRange = DateUtils.getDateRange(new Date()); // Get first and last day of week
-        Marvel.getComicDataForWeek(dateRange).then(function(data) {
-            $scope.comicData = data;
-            console.log(data);
+        auth.$onAuth(function(authUser) {
+            if (authUser) {
+                var pullRef = new Firebase(FIREBASE_URL + 'users/' + $scope.currentUser.$id + '/pulllist/');
+                console.log(FIREBASE_URL + 'users/' + $scope.currentUser.$id + '/pulllist/');
+                var pullListInfo = $firebaseArray(pullRef);
+
+                pullListInfo.$loaded().then(function(data) {
+                    $scope.pullList = data;
+                    $scope.seriesData = [];
+                    for (var i = 0; i < data.length; i++) {
+                        var series = data[i];
+                        $scope.getSeries(series);
+                    }
+                }).catch(function(error) {
+                    console.log(error);
+                });
+
+                pullListInfo.$watch(function(data) {
+                    // update series list
+                });
+            } else {
+                $rootScope.pullList = {};
+            }
         });
 
-        $scope.isInPullList = function(comic) {
-            return PullListUtils.isInPullList(comic.series.name, $scope.pullList);
+        $scope.getSeries = function(series) {
+            if (series.resourceURI) {
+                Marvel.getSeriesDataForResourceURI(series.resourceURI).then(function(comicData) {
+                    if ($scope.seriesData.indexOf(comicData) == -1) {
+                        $scope.seriesData.push(comicData);
+                    }
+                    console.log($scope.seriesData);
+                });
+            }
         };
 
-        $scope.removeFromPullList = function(comic) {
+        $scope.isInPullList = function(series) {
+            return PullListUtils.isInPullList(series.title, $scope.pullList);
+        };
+
+        $scope.removeFromPullList = function(series) {
             if ($scope.pullList) {
                 for (var i = 0; i < $scope.pullList.length; i++) {
                     var sub = $scope.pullList[i];
-                    if (sub.name === comic.series.name) {
+                    if (sub.name === series.title) {
                         FirebaseUtils.removeFromPullList(sub);
                         break;
                     }
                 }
             }
         };
+
     }
 ]);

@@ -21,7 +21,7 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q',
             } else if (options.query) {
                 queryUrl += options.query + "&";
             } else if (options.resourceURI) {
-                queryUrl = options.resourceURL + "?";
+                queryUrl = options.resourceURI + "?";
             } else {
                 // shouldn't ever get here
             }
@@ -81,15 +81,7 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q',
             getSeriesDataForResourceURI: function(resourceURI) {
                 var promise = constructURL("series", { "resourceURI": resourceURI }).then(queryComics).then(function(response) {
                     console.log(response.data);
-                    relevantComics = [];
-                    for (var i = 0; i < response.data.results.length; i++) {
-                        var comic = response.data.results[i];
-
-                        if (comic.variantDescription === "") {
-                            relevantComics.push(comic);
-                        }
-                    }
-                    return relevantComics;
+                    return response.data.results[0];
                 });
                 return promise;
             }
