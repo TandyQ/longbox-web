@@ -1,6 +1,7 @@
 myApp.factory('Marvel', ['$rootScope', '$http', '$q',
     function($rootScope, $http, $q) {
 
+        var IMAGE_NOT_AVAILABLE = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
         var baseMarvelUrl = "http://gateway.marvel.com/v1/public/";
         var comicDateQuery = "limit=100&format=comic&formatType=comic&orderBy=title&dateRange=";
 
@@ -50,7 +51,6 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q',
         var myObject = {
             getComicDataForQuery: function(queryUrl) {
                 var promise = constructURL("comic", { "query": queryUrl }).then(queryComics).then(function(response) {
-                    console.log(response.data);
                     relevantComics = [];
                     for (var i = 0; i < response.data.results.length; i++) {
                         var comic = response.data.results[i];
@@ -65,7 +65,6 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q',
             },
             getComicDataForWeek: function(dateRange) {
                 var promise = constructURL("comic", { "dateRange": dateRange }).then(queryComics).then(function(response) {
-                    console.log(response.data);
                     relevantComics = [];
                     for (var i = 0; i < response.data.results.length; i++) {
                         var comic = response.data.results[i];
@@ -80,14 +79,29 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q',
             },
             getSeriesDataForResourceURI: function(resourceURI) {
                 var promise = constructURL("series", { "resourceURI": resourceURI }).then(queryComics).then(function(response) {
-                    console.log(response.data);
                     return response.data.results[0];
+                });
+                return promise;
+            },
+            getLatestComicCoverForSeriesId: function(seriesId) {
+                var promise = constructURL("", { "query": "series/" + seriesId + "/comics?format=comic&formatType=comic&noVariants=true&orderBy=issueNumber" }).then(queryComics).then(function(response) {
+                    var thumbnail = {};
+                    for (var i = 0; i < response.data.results.length; i++) {
+                        var comic = response.data.results[i];
+
+                        if (comic.thumbnail.path !== IMAGE_NOT_AVAILABLE) {
+                            thumbnail = {
+                                extension: comic.thumbnail.extension,
+                                path: comic.thumbnail.path
+                            };
+                        }
+                    }
+                    return thumbnail;
                 });
                 return promise;
             },
             getComicDataForResourceURI: function(resourceURI) {
                 var promise = constructURL("comic", { "resourceURI": resourceURI }).then(queryComics).then(function(response) {
-                    console.log(response.data);
                     return response.data.results[0];
                 });
                 return promise;

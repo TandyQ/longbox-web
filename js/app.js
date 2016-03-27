@@ -61,7 +61,6 @@ myApp.factory('PullList', ['$rootScope', '$firebaseArray', '$firebaseAuth', 'FIR
                 auth.$onAuth(function(authUser) {
                     if (authUser) {
                         var pullRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
-                        console.log(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
                         var pullListInfo = $firebaseArray(pullRef);
 
                         pullListInfo.$loaded().then(function(data) {

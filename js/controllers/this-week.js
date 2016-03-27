@@ -5,12 +5,10 @@ myApp.controller('ThisWeekController', ['$scope', 'Marvel', 'DateUtils', "PullLi
             (DateUtils.getMonthName(wedDate)) + " " + wedDate.getUTCDate() + ", " + wedDate.getFullYear();
 
         PullList.getPullList();
-        console.log(PullList);
 
         var dateRange = DateUtils.getDateRange(new Date()); // Get first and last day of week
         Marvel.getComicDataForWeek(dateRange).then(function(data) {
             $scope.comicData = data;
-            console.log(data);
         });
 
         $scope.isInPullList = function(comic) {
