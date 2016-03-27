@@ -1,19 +1,26 @@
-myApp.factory('FirebaseUtils', ['$rootScope', "PullListUtils", '$firebaseArray', 'FIREBASE_URL',
-    function($rootScope, PullListUtils, $firebaseArray, FIREBASE_URL) {
-
-        var ref = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
-        console.log(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
-        var pullListInfo = $firebaseArray(ref);
+myApp.factory('FirebaseUtils', ['$rootScope', "PullListUtils", '$firebaseArray', '$firebaseAuth', 'FIREBASE_URL',
+    function($rootScope, PullListUtils, $firebaseArray, $firebaseAuth, FIREBASE_URL) {
 
         var myObject = {
             addToPullList: function(title) {
-                if (!PullListUtils.isInPullList(title, pullListInfo)) {
-                    pullListInfo.$add({
-                        name: title
-                    }).then(function() {
-                        // do something
-                    });
-                }
+
+                var ref = new Firebase(FIREBASE_URL);
+                var auth = $firebaseAuth(ref);
+
+                auth.$onAuth(function(authUser) {
+                    if (authUser) {
+                        var pullListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
+                        var pullListInfo = $firebaseArray(ref);
+
+                        if (!PullListUtils.isInPullList(title, pullListInfo)) {
+                            pullListInfo.$add({
+                                name: title
+                            }).then(function() {
+                                // do something
+                            });
+                        }
+                    }
+                });
             }
         };
 

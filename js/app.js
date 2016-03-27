@@ -15,7 +15,7 @@ myApp.run(['$rootScope', '$location',
 
 myApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
-        when('/login', {
+    when('/login', {
         templateUrl: 'views/login.html',
         controller: 'RegistrationController'
     }).
@@ -41,17 +41,25 @@ myApp.config(['$routeProvider', function($routeProvider) {
     });
 }]);
 
-myApp.factory('PullList', ['$rootScope', '$firebaseArray', 'FIREBASE_URL',
-    function($rootScope, $firebaseArray, FIREBASE_URL) {
+myApp.factory('PullList', ['$rootScope', '$firebaseArray', '$firebaseAuth', 'FIREBASE_URL',
+    function($rootScope, $firebaseArray, $firebaseAuth, FIREBASE_URL) {
 
-        var ref = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
-        console.log(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
+        var ref = new Firebase(FIREBASE_URL);
+        var auth = $firebaseAuth(ref);
 
-        return $firebaseArray(ref);
+        auth.$onAuth(function(authUser) {
+            if (authUser) {
+                var pullRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
+                console.log(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
+                return $firebaseArray(pullRef);
+            }
+        });
+
+        return nil;
     }
 ]);
 
-myApp.filter('limitFromToChar', function(){
+myApp.filter('limitFromToChar', function() {
     return function(input, from, toString) {
         return (input !== undefined) ? input.slice(from, input.indexOf(toString)) : '';
     };
