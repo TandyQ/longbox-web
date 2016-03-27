@@ -1,5 +1,5 @@
-myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullList", "PullListUtils",
-    function($scope, Marvel, DateUtils, PullList, PullListUtils) {
+myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullList", "PullListUtils", "FirebaseUtils",
+    function($scope, Marvel, DateUtils, PullList, PullListUtils, FirebaseUtils) {
         var wedDate = DateUtils.getWednesdayDate(new Date());
         $scope.message = "Week of " +
             (DateUtils.getMonthName(wedDate)) + " " + wedDate.getUTCDate() + ", " + wedDate.getFullYear();
@@ -15,6 +15,18 @@ myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullLi
 
         $scope.isInPullList = function(comic) {
             return PullListUtils.isInPullList(comic.series.name, $scope.pullList);
+        };
+
+        $scope.removeFromPullList = function(comic) {
+            if ($scope.pullList) {
+                for (var i = 0; i < $scope.pullList.length; i++) {
+                    var sub = $scope.pullList[i];
+                    if (sub.name === comic.series.name) {
+                        FirebaseUtils.removeFromPullList(sub);
+                        break;
+                    }
+                }
+            }
         };
     }
 ]);
