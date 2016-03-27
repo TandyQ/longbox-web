@@ -3,8 +3,11 @@
         <h1>PULL LIST</h1>
     </div>
     <h1>{{ message }}</h1>
-    <div ng-repeat="comic in comicData" ng-show="isInPullList(comic.series.name)">
-         <img ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="Cover of {{comic.title}}">
+</div>
+<div class="row small-up-2 medium-up-3 large-up-4">
+    <div class="column" ng-repeat="comic in comicData | filter:isInPullList">
+        <img ng-click="addComic(comic.series.name)" ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="Cover of {{comic.title}}">
+        <p>{{comic.series.name}}</p>
     </div>
 </div>
 <!-- meetings cf -->

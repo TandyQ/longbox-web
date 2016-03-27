@@ -13,8 +13,9 @@ myApp.controller('PullListController', ['$scope', 'Marvel', 'DateUtils', "PullLi
             console.log(data);
         });
 
-        $scope.isInPullList = function(seriesTitle) {
-            return PullListUtils.isInPullList(seriesTitle, $scope.subscriptions);
+        $scope.isInPullList = function(comic) {
+            console.log(PullListUtils.isInPullList(comic.series.name, $scope.subscriptions));
+            return PullListUtils.isInPullList(comic.series.name, $scope.subscriptions);
         };
     }
 ]);

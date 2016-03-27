@@ -9,7 +9,7 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/foundation.css">
+    <link rel="stylesheet" type="text/css" href="css/foundation.min.css">
     <!-- Angular -->
     <script src="js/lib/angular/angular.min.js"></script>
     <script src="js/lib/angular/angular-route.min.js"></script>
@@ -18,7 +18,7 @@
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.1.4/angularfire.min.js"></script>
     <!-- Foundation -->
-    <script src="js/lib/angular-foundation/mm-foundation-tpls-0.8.0.min.js"></script>
+    <script src="js/lib/angular-foundation/mm-foundation-tpls-0.9.4.min.js"></script>
     <!-- App -->
     <script src="js/app.js"></script>
     <script src="js/services/dateutils.js"></script>
@@ -35,13 +35,13 @@
     <header>
         <nav class="cf" ng-include="'views/nav.html'"></nav>
     </header>
-    <div class="page">
-        <div class="userinfo" ng-show="currentUser" ng-controller="RegistrationController">
+    <div class="row">
+        <div class="userinfo small-12.columns" ng-show="currentUser" ng-controller="RegistrationController">
             <span class="userinfo">Hi {{ currentUser.firstname }}</span>
             <a ng-href="#/login" ng-click="logout()">logout</a>
         </div>
-        <main class="cf" ng-view>
-        </main>
+        <div class="small-12" ng-view>
+        </div>
     </div>
 </body>
 

@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'firebase'])
+var myApp = angular.module('myApp', ['ngRoute', 'firebase', 'mm.foundation'])
     .constant('FIREBASE_URL', 'https://longbox.firebaseio.com/');
 
 myApp.run(['$rootScope', '$location',
