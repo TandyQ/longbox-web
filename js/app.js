@@ -50,3 +50,9 @@ myApp.factory('PullList', ['$rootScope', '$firebaseArray', 'FIREBASE_URL',
         return $firebaseArray(ref);
     }
 ]);
+
+myApp.filter('limitFromToChar', function(){
+    return function(input, from, toString) {
+        return (input !== undefined) ? input.slice(from, input.indexOf(toString)) : '';
+    };
+});
