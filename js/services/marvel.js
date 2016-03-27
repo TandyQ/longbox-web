@@ -1,5 +1,5 @@
-myApp.factory('Marvel', ['$rootScope', '$http', '$q',
-    function($rootScope, $http, $q) {
+myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
+    function($rootScope, $http, $q, DateUtils, $filter) {
 
         var IMAGE_NOT_AVAILABLE = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
         var baseMarvelUrl = "http://gateway.marvel.com/v1/public/";
@@ -84,16 +84,27 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q',
                 return promise;
             },
             getLatestComicCoverForSeriesId: function(seriesId) {
-                var promise = constructURL("", { "query": "series/" + seriesId + "/comics?format=comic&formatType=comic&noVariants=true&orderBy=issueNumber" }).then(queryComics).then(function(response) {
-                    var thumbnail = {};
+                var promise = constructURL("", { "query": "series/" + seriesId + "/comics?format=comic&formatType=comic&noVariants=true&orderBy=-onsaleDate" }).then(queryComics).then(function(response) {
+                    var thumbnail = {
+                        extension: response.data.results[response.data.results.length-1].thumbnail.extension,
+                        path: response.data.results[response.data.results.length-1].thumbnail.path,
+                    };
+                    var haveThumbnail = false;
                     for (var i = 0; i < response.data.results.length; i++) {
                         var comic = response.data.results[i];
+                        var releaseDate = $filter('filter')(comic.dates, { type: "onsaleDate" }, true);
+                        if (releaseDate.length !== 0) {
+                            formattedReleaseDate = new Date(releaseDate[0].date);
 
-                        if (comic.thumbnail.path !== IMAGE_NOT_AVAILABLE) {
-                            thumbnail = {
-                                extension: comic.thumbnail.extension,
-                                path: comic.thumbnail.path
-                            };
+                            var wedDate = DateUtils.getWednesdayDate(new Date());
+
+                            if ((formattedReleaseDate <= wedDate) && (comic.thumbnail.path !== IMAGE_NOT_AVAILABLE)) {
+                                thumbnail = {
+                                    extension: comic.thumbnail.extension,
+                                    path: comic.thumbnail.path
+                                };
+                                break;
+                            }
                         }
                     }
                     return thumbnail;
