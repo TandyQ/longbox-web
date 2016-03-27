@@ -17,16 +17,18 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q',
                 var dateRange = options.dateRange;
                 queryUrl += comicDateQuery + dateRange.firstDate.getFullYear() + "-" + (dateRange.firstDate.getUTCMonth() + 1) + "-" +
                     dateRange.firstDate.getUTCDate() + "%2C" + dateRange.lastDate.getFullYear() + "-" + (dateRange.lastDate.getUTCMonth() + 1) +
-                    "-" + dateRange.lastDate.getUTCDate();
+                    "-" + dateRange.lastDate.getUTCDate() + "&";
             } else if (options.query) {
-                queryUrl += query;
+                queryUrl += options.query + "&";
+            } else if (options.resourceURI) {
+                queryUrl = options.resourceURL + "?";
             } else {
                 // shouldn't ever get here
             }
 
             var deferred = $q.defer();
             $http.get("config/config.json").then(function successCallback(response) {
-                queryUrl += "&apikey=" + response.data.API_KEY;
+                queryUrl += "apikey=" + response.data.API_KEY;
                 deferred.resolve(queryUrl);
             }, function errorCallback(response) {
                 // $rootScope.errorMessage = response.statusText;
@@ -62,8 +64,22 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q',
                 return promise;
             },
             getComicDataForWeek: function(dateRange) {
-
                 var promise = constructURL("comic", { "dateRange": dateRange }).then(queryComics).then(function(response) {
+                    console.log(response.data);
+                    relevantComics = [];
+                    for (var i = 0; i < response.data.results.length; i++) {
+                        var comic = response.data.results[i];
+
+                        if (comic.variantDescription === "") {
+                            relevantComics.push(comic);
+                        }
+                    }
+                    return relevantComics;
+                });
+                return promise;
+            },
+            getSeriesDataForResourceURI: function(resourceURI) {
+                var promise = constructURL("series", { "resourceURI": resourceURI }).then(queryComics).then(function(response) {
                     console.log(response.data);
                     relevantComics = [];
                     for (var i = 0; i < response.data.results.length; i++) {

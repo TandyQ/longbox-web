@@ -10,8 +10,8 @@ myApp.controller('AllNewIssuesController', ['$scope', 'Marvel', 'DateUtils', 'Fi
             console.log(data);
         });
 
-        $scope.addComic = function(seriesTitle) {
-            FirebaseUtils.addToPullList(seriesTitle);
+        $scope.addComic = function(series) {
+            FirebaseUtils.addToPullList(series);
         };
     }
 ]);
