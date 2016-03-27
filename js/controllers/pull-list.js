@@ -17,8 +17,6 @@ myApp.controller('PullListController', ['$scope', '$filter', 'Marvel', 'DateUtil
 
                 pullListInfo.$loaded().then(function(data) {
                     $scope.pullList = data;
-                    console.log("Pull List");
-                    console.log($scope.pullList);
                     for (var i = 0; i < data.length; i++) {
                         var series = data[i];
                         $scope.getSeries(series);
@@ -29,20 +27,14 @@ myApp.controller('PullListController', ['$scope', '$filter', 'Marvel', 'DateUtil
 
                 pullListInfo.$watch(function(data) {
                     for (var i = 0; i < $scope.pullList.length; i++) {
-                        console.log($scope.pullList[i]);
                         var seriesResults = $filter('filter')($scope.seriesData, {title : $scope.pullList[i].name}, true);
-                        console.log("Series Results");
-                        console.log(seriesResults.length);
                         if (seriesResults.length === 0) {
                             var series = $scope.pullList[i];
                             $scope.getSeries(series);
                         }
                     }
                     for (var j = 0; j < $scope.seriesData.length; j++) {
-                        console.log($scope.seriesData[j]);
                         var dataResults = $filter('filter')($scope.pullList, {name : $scope.seriesData[j].title}, true);
-                        console.log("Data Results");
-                        console.log(dataResults.length);
                         if (dataResults.length === 0) {
                             $scope.seriesData.splice(j, 1);
                         }
