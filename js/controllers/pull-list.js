@@ -1,9 +1,5 @@
 myApp.controller('PullListController', ['$scope', '$filter', 'Marvel', 'DateUtils', "PullListUtils", "FirebaseUtils", '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
     function($scope, $filter, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
-        var wedDate = DateUtils.getWednesdayDate(new Date());
-        $scope.message = "Week of " +
-            (DateUtils.getMonthName(wedDate)) + " " + wedDate.getUTCDate() + ", " + wedDate.getFullYear();
-
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
