@@ -94,10 +94,10 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                         var comic = response.data.results[i];
                         var releaseDate = $filter('filter')(comic.dates, { type: "onsaleDate" }, true);
                         if (releaseDate.length !== 0) {
-                            formattedReleaseDate = new Date(releaseDate[0].date);
+                            formattedReleaseDateString = releaseDate[0].date.slice(0,19);
+                            formattedReleaseDate = Date.parse(formattedReleaseDateString);
 
                             var wedDate = DateUtils.getWednesdayDate(new Date());
-
                             if ((formattedReleaseDate <= wedDate) && (comic.thumbnail.path !== IMAGE_NOT_AVAILABLE)) {
                                 thumbnail = {
                                     extension: comic.thumbnail.extension,
