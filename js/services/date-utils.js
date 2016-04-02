@@ -22,9 +22,10 @@ myApp.factory('DateUtils', ['$rootScope', function($rootScope) {
         },
         getDateRange: function(inputDate) {
             var first = inputDate.getDate() - inputDate.getDay(); // First day is the day of the month - the day of the week
-            var last = first + 6; // last day is the first day + 6
             var firstDate = new Date(inputDate.setDate(first));
-            var lastDate = new Date(inputDate.setDate(last));
+            console.log(firstDate);
+            var lastDate = new Date(inputDate.setDate(firstDate.getDate()+6));
+            console.log(lastDate);
             return {
                 firstDate: firstDate,
                 lastDate: lastDate

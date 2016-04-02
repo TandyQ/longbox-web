@@ -84,7 +84,8 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                 return promise;
             },
             getLatestComicCoverForSeriesId: function(seriesId) {
-                var promise = constructURL("", { "query": "series/" + seriesId + "/comics?format=comic&formatType=comic&noVariants=true&orderBy=-onsaleDate" }).then(queryComics).then(function(response) {
+                var promise = constructURL("", { "query": "series/" + seriesId + "/comics?format=comic&formatType=comic&noVariants=true&orderBy=-onsaleDate" }).
+                then(queryComics).then(function(response) {
                     var thumbnail = {
                         extension: response.data.results[response.data.results.length-1].thumbnail.extension,
                         path: response.data.results[response.data.results.length-1].thumbnail.path,

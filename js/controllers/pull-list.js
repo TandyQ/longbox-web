@@ -1,5 +1,7 @@
-myApp.controller('PullListController', ['$scope', '$filter', 'Marvel', 'DateUtils', "PullListUtils", "FirebaseUtils", '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function($scope, $filter, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+myApp.controller('PullListController', ['$scope', '$filter', 'Marvel', 'DateUtils', "PullListUtils",
+    "FirebaseUtils", '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
+    function($scope, $filter, Marvel, DateUtils, PullListUtils,
+        FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
@@ -23,14 +25,14 @@ myApp.controller('PullListController', ['$scope', '$filter', 'Marvel', 'DateUtil
 
                 pullListInfo.$watch(function(data) {
                     for (var i = 0; i < $scope.pullList.length; i++) {
-                        var seriesResults = $filter('filter')($scope.seriesData, {title : $scope.pullList[i].name}, true);
+                        var seriesResults = $filter('filter')($scope.seriesData, { title: $scope.pullList[i].name }, true);
                         if (seriesResults.length === 0) {
                             var series = $scope.pullList[i];
                             $scope.getSeries(series);
                         }
                     }
                     for (var j = 0; j < $scope.seriesData.length; j++) {
-                        var dataResults = $filter('filter')($scope.pullList, {name : $scope.seriesData[j].title}, true);
+                        var dataResults = $filter('filter')($scope.pullList, { name: $scope.seriesData[j].title }, true);
                         if (dataResults.length === 0) {
                             $scope.seriesData.splice(j, 1);
                         }
@@ -47,9 +49,7 @@ myApp.controller('PullListController', ['$scope', '$filter', 'Marvel', 'DateUtil
                     if ($scope.seriesData.indexOf(comicData) == -1) {
                         $scope.seriesData.push(comicData);
                         $scope.getLatestComicCoverForSeries(comicData, $scope.seriesData.indexOf(comicData));
-                        // get first comic in series: $scope.getComicForSeries(comicData.comics.items[0], $scope.seriesData.indexOf(comicData));
                     }
-                    console.log($scope.seriesData);
                 });
             }
         };
