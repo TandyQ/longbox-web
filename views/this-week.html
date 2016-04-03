@@ -4,7 +4,7 @@
     </div>
     <h1>{{ message }}</h1>
 </div>
-<div class="md-padding" layout="row" layout-wrap ng-cloak>
+<div class="md-padding" layout="row" layout-wrap layout-margin layout-align="center" ng-cloak>
     <md-card class="comic-card" ng-repeat="comic in comicData | filter:isInPullList">
         <img ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" class="md-card-image" alt="Cover of {{comic.title}}">
         <md-card-title-text>

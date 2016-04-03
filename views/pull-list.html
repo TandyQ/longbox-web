@@ -3,7 +3,7 @@
         <h1>PULL LIST</h1>
     </div>
 </div>
-<div class="md-padding" layout="row" layout-wrap ng-cloak>
+<div class="md-padding" layout="row" layout-wrap layout-margin layout-align="center center" ng-cloak>
     <md-card class="comic-card" ng-repeat="series in seriesData | orderBy:'title'">
         <img ng-src="{{series.latestComicCoverPath}}.{{series.latestComicCoverExtension}}" class="md-card-image" alt="Cover of {{series.title}}">
         <md-card-title-text>
