@@ -22,11 +22,18 @@ myApp.controller('AllNewIssuesController', ['$scope', 'Marvel', 'DateUtils', 'Pu
             }
         });
 
-
         var dateRange = DateUtils.getDateRange(new Date()); // Get first and last day of week
         Marvel.getComicDataForWeek(dateRange).then(function(data) {
             $scope.comicData = data;
         });
+
+        $scope.onPullListChange = function(series) {
+            if ($scope.isInPullList(series)) {
+                $scope.removeFromPullList(series);
+            } else {
+                $scope.addComic(series);
+            }
+        };
 
         $scope.addComic = function(series) {
             FirebaseUtils.addToPullList(series);
@@ -45,7 +52,7 @@ myApp.controller('AllNewIssuesController', ['$scope', 'Marvel', 'DateUtils', 'Pu
         };
 
         $scope.isInPullList = function(series) {
-            return PullListUtils.isInPullList(series.name, $scope.pullList);
+            return PullListUtils.isInPullList(series.resourceURI, $scope.pullList);
         };
     }
 ]);

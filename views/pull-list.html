@@ -3,11 +3,16 @@
         <h1>PULL LIST</h1>
     </div>
 </div>
-<div class="row small-up-2 medium-up-3 large-up-4">
-    <div class="column" ng-repeat="series in seriesData | orderBy:'title'">
-        <img ng-src="{{series.latestComicCoverPath}}.{{series.latestComicCoverExtension}}" alt="Cover of {{series.title}}">
-        <p>{{series.title | limitFromToChar:0:" ("}}</p>
-        <button ng-click="removeFromPullList(series)"><span>Remove this series</span></button>
-    </div>
+<div class="md-padding" layout="row" layout-wrap ng-cloak>
+    <md-card class="comic-card" ng-repeat="series in seriesData | orderBy:'title'">
+        <img ng-src="{{series.latestComicCoverPath}}.{{series.latestComicCoverExtension}}" class="md-card-image" alt="Cover of {{series.title}}">
+        <md-card-title-text>
+            <span class="md-headline card-title">{{series.title | limitFromToChar:0:" ("}}</span>
+        </md-card-title-text>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-icon-button pull-list-toggle" ng-click="removeFromPullList(series)">
+                <md-icon>favorite</md-icon>
+            </md-button>
+        </md-card-actions>
+    </md-card>
 </div>
-<!-- meetings cf -->

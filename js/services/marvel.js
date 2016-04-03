@@ -73,6 +73,7 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                             relevantComics.push(comic);
                         }
                     }
+                    console.log(relevantComics);
                     return relevantComics;
                 });
                 return promise;

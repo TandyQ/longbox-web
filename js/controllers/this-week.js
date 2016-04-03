@@ -12,7 +12,7 @@ myApp.controller('ThisWeekController', ['$scope', 'Marvel', 'DateUtils', "PullLi
         });
 
         $scope.isInPullList = function(comic) {
-            return PullListUtils.isInPullList(comic.series.name, $scope.pullList);
+            return PullListUtils.isInPullList(comic.series.resourceURI, $scope.pullList);
         };
 
         $scope.removeFromPullList = function(comic) {

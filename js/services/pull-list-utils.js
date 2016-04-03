@@ -6,7 +6,7 @@ myApp.factory('PullListUtils', ['$rootScope', function($rootScope) {
                 isInList = false;
                 for (var i = 0; i < pullList.length; i++) {
                     var sub = pullList[i];
-                    if (sub.name === seriesTitle) {
+                    if (sub.resourceURI === seriesTitle) {
                         isInList = true;
                         break;
                     }

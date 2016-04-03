@@ -77,7 +77,7 @@ myApp.controller('PullListController', ['$scope', '$filter', 'Marvel', 'DateUtil
         };
 
         $scope.isInPullList = function(series) {
-            return PullListUtils.isInPullList(series.title, $scope.pullList);
+            return PullListUtils.isInPullList(series.resourceURI, $scope.pullList);
         };
 
         $scope.removeFromPullList = function(series) {
