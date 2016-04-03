@@ -1,32 +1,66 @@
-md-card>:not(md-card-content) img,
-md-card>img {
-    box-sizing: border-box;
+.comic-card {
+    width: 250px;
 }
 
 md-card .md-card-image {
     display: block;
     width: 100%;
-    height: 461px;
+    height: 384px;
     object-fit: cover;
     object-position: left;
 }
 
-.comic-card {
-    width: 300px;
-}
-
 .card-title {
-   overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   padding: 5px 0 0 7px;
-   font-size: 1.2em;
-   line-height: 1.2em;     /* fallback */
-   max-height: 32px;      /* fallback */
-   -webkit-line-clamp: 1; /* number of lines to show */
-   -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    padding: 5px 0 0 7px;
+    font-size: 1.2em;
+    line-height: 1.2em;
+    /* fallback */
+    max-height: 32px;
+    /* fallback */
+    -webkit-line-clamp: 1;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
 
 .pull-list-toggle {
     align-self: flex-end;
+}
+
+.pull-list-fill {
+    color: #ff5252;
+}
+
+@media (max-width:768px) {
+    .comic-card {
+        width: 200px;
+    }
+    md-card .md-card-image {
+        height: 307px;
+    }
+    .card-title {
+        font-size: 1.1em;
+        line-height: 1.1em;
+        /* fallback */
+        max-height: 32px;
+        /* fallback */
+    }
+}
+
+@media (max-width:425px) {
+    .comic-card {
+        width: 150px;
+    }
+    md-card .md-card-image {
+        height: 231px;
+    }
+    .card-title {
+        font-size: 1em;
+        line-height: 1em;
+        /* fallback */
+        max-height: 32px;
+        /* fallback */
+    }
 }

@@ -11,8 +11,8 @@
             <span class="md-headline card-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</span>
         </md-card-title-text>
         <md-card-actions layout="row" layout-align="end center">
-            <md-button  class="md-icon-button pull-list-toggle" ng-click="removeFromPullList(comic)">
-                <md-icon>favorite</md-icon>
+            <md-button class="md-icon-button pull-list-toggle" ng-click="removeFromPullList(comic)">
+                <md-icon md-font-icon="fa-bookmark" class="fa fa-2x pull-list-fill"></md-icon>
             </md-button>
         </md-card-actions>
     </md-card>

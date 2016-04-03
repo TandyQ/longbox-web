@@ -4,7 +4,7 @@
     </div>
     <h2>{{ message }}</h2>
 </div>
-<div class="md-padding" layout="row" layout-wrap ng-cloak>
+<div class="md-padding" layout="row" layout-wrap layout-margin layout-align="center center" ng-cloak>
     <md-card class="comic-card" ng-repeat="comic in comicData">
         <img ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" class="md-card-image" alt="Cover of {{comic.title}}">
         <md-card-title-text>
@@ -12,7 +12,8 @@
         </md-card-title-text>
         <md-card-actions layout="row" layout-align="end center">
             <md-button class="md-icon-button pull-list-toggle" ng-click="onPullListChange(comic.series)">
-                <md-icon ng-hide="isInPullList(comic.series)">favorite_border</md-icon><md-icon ng-show="isInPullList(comic.series)">favorite</md-icon>
+                <md-icon ng-hide="isInPullList(comic.series)" md-font-icon="fa-bookmark-o" class="fa fa-2x"></md-icon>
+                <md-icon ng-show="isInPullList(comic.series)" md-font-icon="fa-bookmark" class="fa fa-2x pull-list-fill"></md-icon>
             </md-button>
         </md-card-actions>
     </md-card>
