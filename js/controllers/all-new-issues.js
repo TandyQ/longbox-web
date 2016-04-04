@@ -18,7 +18,7 @@ myApp.controller('AllNewIssuesController', ['$scope', 'Marvel', 'DateUtils', 'Pu
                     console.log(error);
                 });
             } else {
-                $rootScope.pullList = {};
+                $scope.pullList = {};
             }
         });
 

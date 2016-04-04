@@ -3,16 +3,10 @@
         <h1>PULL LIST</h1>
     </div>
 </div>
-<div class="md-padding" layout="row" layout-wrap layout-margin layout-align="center center" ng-cloak>
-    <md-card class="comic-card" ng-repeat="series in seriesData | orderBy:'title'">
-        <img ng-src="{{series.latestComicCoverPath}}.{{series.latestComicCoverExtension}}" class="md-card-image" alt="Cover of {{series.title}}">
-        <md-card-title-text>
-            <span class="md-headline card-title">{{series.title | limitFromToChar:0:" ("}}</span>
-        </md-card-title-text>
-        <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-icon-button pull-list-toggle" ng-click="removeFromPullList(series)">
-                <md-icon md-font-icon="fa-bookmark" class="fa fa-2x pull-list-fill"></md-icon>
-            </md-button>
-        </md-card-actions>
-    </md-card>
+<div class="row small-up-3 medium-up-4 large-up-5 comic-grid">
+    <div class="column tight" ng-repeat="series in seriesData | orderBy:'title'">
+        <img class="comic-cover" ng-src="{{series.latestComicCoverPath}}.{{series.latestComicCoverExtension}}" alt="Cover of {{series.title}}">
+        <p>{{series.title | limitFromToChar:0:" ("}}</p>
+        <button ng-click="removeFromPullList(series)"><span>Remove this series</span></button>
+    </div>
 </div>

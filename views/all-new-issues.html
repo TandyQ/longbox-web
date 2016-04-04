@@ -4,17 +4,11 @@
     </div>
     <h2>{{ message }}</h2>
 </div>
-<div class="md-padding" layout="row" layout-wrap layout-margin layout-align="center center" ng-cloak>
-    <md-card class="comic-card" ng-repeat="comic in comicData">
-        <img ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" class="md-card-image" alt="Cover of {{comic.title}}">
-        <md-card-title-text>
-            <span class="card-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</span>
-        </md-card-title-text>
-        <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-icon-button pull-list-toggle" ng-click="onPullListChange(comic.series)">
-                <md-icon ng-hide="isInPullList(comic.series)" md-font-icon="fa-bookmark-o" class="fa fa-2x"></md-icon>
-                <md-icon ng-show="isInPullList(comic.series)" md-font-icon="fa-bookmark" class="fa fa-2x pull-list-fill"></md-icon>
-            </md-button>
-        </md-card-actions>
-    </md-card>
+<div class="row small-up-3 medium-up-4 large-up-5 comic-grid">
+    <div class="column tight" ng-repeat="comic in comicData">
+        <img class="comic-cover" ng-click="addComic(comic.series)" ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="Cover of {{comic.title}}">
+        <p>{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
+        <button ng-click="addComic(comic.series)" ng-hide="isInPullList(comic.series)"><span>Add this series</span></button>
+        <button ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic.series)"><span>Remove this series</span></button>
+    </div>
 </div>

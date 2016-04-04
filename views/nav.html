@@ -1,4 +1,4 @@
-<div class="branding"><a ng-href="#/">angularJS</a></div>
+<div><a ng-href="#/">angularJS</a></div>
 <ul>
     <li><a ng-href="#/all-new-issues">All Comics</a></li>
     <li><a ng-hide="currentUser" ng-href="#/login">Login</a></li>
@@ -6,3 +6,34 @@
     <li><a ng-show="currentUser" ng-href="#/pull-list">Your Pull List</a></li>
     <li><a ng-show="currentUser" ng-href="#/this-week">This Week</a></li>
 </ul>
+
+<!-- <div class="row">
+    <div class="small-12.columns">
+        <div ng-controller="RegistrationController">
+            <top-bar>
+                <ul class="title-area">
+                    <li class="name">
+                        <h1><a href="#/">Longbox</a></h1>
+                    </li>
+                    <li toggle-top-bar class="menu-icon"><a href="#">Menu</a></li>
+                </ul>
+                <top-bar-section>
+                    <ul class="right">
+                        <li><a href="#">Active</a></li>
+                        <li><a ng-href="#/all-new-issues">All Comics</a></li>
+                        <li><a ng-hide="currentUser" ng-href="#/login">Login</a></li>
+                        <li><a ng-hide="currentUser" ng-href="#/register">Register</a></li>
+                        <li><a ng-show="currentUser" ng-href="#/pull-list">Your Pull List</a></li>
+                        <li><a ng-show="currentUser" ng-href="#/this-week">This Week</a></li>
+                        <li ng-show="currentUser" has-dropdown>
+                            <a href="#">{{ currentUser.firstname }}</a>
+                            <ul top-bar-dropdown>
+                                <li><a ng-href="#/login" ng-click="logout()">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </top-bar-section>
+            </top-bar>
+        </div>
+    </div>
+</div> -->
