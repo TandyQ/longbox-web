@@ -11,6 +11,6 @@
         </div>
         <p class="ellipsis">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
         <button ng-click="addComic(comic.series)" ng-hide="isInPullList(comic.series)"><span>+</span></button>
-        <button ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic.series)"><span>+</span></button>
+        <button ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic.series)"><span>-</span></button>
     </div>
 </div>

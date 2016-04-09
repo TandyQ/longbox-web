@@ -6516,6 +6516,9 @@ th.hide-for-touch {
   padding-top: 7px;
   width: 210px; }
 
+.top-bar .toggle-topbar.menu-icon a {
+  padding: 0 0.9375rem 0 0.9375rem; }
+
 .columns.tight {
   padding-left: .4rem;
   padding-right: .4rem; }
