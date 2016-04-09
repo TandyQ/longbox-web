@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="row comic-grid">
-    <div class="small-4 medium-3 large-2 columns end" ng-repeat="series in seriesData | orderBy:'title'">
+    <div class="tiny-6 small-4 medium-3 large-2 columns tight end" ng-repeat="series in seriesData | orderBy:'title'">
         <img class="comic-cover" ng-src="{{series.latestComicCoverPath}}.{{series.latestComicCoverExtension}}" alt="Cover of {{series.title}}">
         <p class="ellipsis">{{series.title | limitFromToChar:0:" ("}}</p>
         <button ng-click="removeFromPullList(series)"><span>-</span></button>

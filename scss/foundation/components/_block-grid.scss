@@ -107,6 +107,10 @@ $block-grid-media-queries: true !default;
     [class*="block-grid-"] { @include block-grid; }
 
     @if $block-grid-media-queries {
+      @media #{$tiny-up} {
+        @include block-grid-html-classes($size:tiny, $include-spacing:false);
+      }
+
       @media #{$small-up} {
         @include block-grid-html-classes($size:small, $include-spacing:false);
       }

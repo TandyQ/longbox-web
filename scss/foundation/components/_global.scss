@@ -362,12 +362,14 @@ $include-html-global-classes: $include-html-classes !default;
 $column-gutter: rem-calc(30) !default;
 
 // Media Query Ranges
+$tiny-breakpoint: em-calc(420) !default;
 $small-breakpoint:  em-calc(640)  !default;
 $medium-breakpoint: em-calc(1024) !default;
 $large-breakpoint:  em-calc(1440) !default;
 $xlarge-breakpoint: em-calc(1920) !default;
 
-$small-range:   (0, $small-breakpoint) !default;
+$tiny-range:    (0, $tiny-breakpoint) !default;
+$small-range:   ($tiny-breakpoint + em-calc(1), $small-breakpoint) !default;
 $medium-range:  ($small-breakpoint  + em-calc(1), $medium-breakpoint) !default;
 $large-range:   ($medium-breakpoint + em-calc(1), $large-breakpoint)  !default;
 $xlarge-range:  ($large-breakpoint  + em-calc(1), $xlarge-breakpoint) !default;
@@ -378,8 +380,11 @@ $screen: "only screen" !default;
 $landscape: "#{$screen} and (orientation: landscape)" !default;
 $portrait: "#{$screen} and (orientation: portrait)" !default;
 
-$small-up: $screen !default;
-$small-only: "#{$screen} and (max-width: #{upper-bound($small-range)})" !default;
+$tiny-up: $screen !default;
+$tiny-only: "#{$screen} and (max-width: #{upper-bound($tiny-range)})" !default;
+
+$small-up: "#{$screen} and (min-width:#{lower-bound($small-range)})" !default;
+$small-only: "#{$screen} and (min-width:#{lower-bound($small-range)}) and (max-width:#{upper-bound($small-range)})" !default;
 
 $medium-up: "#{$screen} and (min-width:#{lower-bound($medium-range)})" !default;
 $medium-only: "#{$screen} and (min-width:#{lower-bound($medium-range)}) and (max-width:#{upper-bound($medium-range)})" !default;
@@ -428,6 +433,16 @@ $cursor-text-value: text !default;
 
     meta.foundation-version {
       font-family: "/{{VERSION}}/";
+    }
+
+    meta.foundation-mq-tiny {
+      font-family: "/" + unquote($tiny-up) + "/";
+      width: lower-bound($tiny-range);
+    }
+
+    meta.foundation-mq-tiny-only {
+      font-family: "/" + unquote($tiny-only) + "/";
+      width: lower-bound($tiny-range);
     }
 
     meta.foundation-mq-small {

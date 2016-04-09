@@ -1,8 +1,7 @@
 @import "settings";
 @import "foundation";
-
 .comic-grid {
-    /*padding: 0 25px 0 25px;*/
+    padding: 0 20px 0 20px;
 }
 
 .logo {
@@ -12,12 +11,34 @@
 }
 
 .columns.tight {
-    padding-left: .5rem;
-    padding-right: .5rem;
+    padding-left: .4rem;
+    padding-right: .4rem;
 }
 
 .ellipsis {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+div.stretchy-wrapper {
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 152.49%; /* comic cover ratio */
+    position: relative;
+    background: black;
+}
+
+div.stretchy-wrapper > img {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+@media #{$large-up} {
+    .comic-grid {
+        padding: 0;
+    }
 }

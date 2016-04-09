@@ -5,7 +5,7 @@
     <h1>{{ message }}</h1>
 </div>
 <div class="row comic-grid">
-    <div class="small-4 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList">
+    <div class="tiny-6 small-4 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList">
         <img class="comic-cover" ng-click="addComic(comic.series.name)" ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="Cover of {{comic.title}}">
         <p class="ellipsis">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
         <button ng-click="removeFromPullList(comic)"><span>-</span></button>
