@@ -2,6 +2,11 @@
     padding: 0 25px 0 25px;
 }
 
+.logo {
+    fill: #ffffff;
+    width: 70%;
+}
+
 .column.tight {
     padding-left: .5rem;
     padding-right: .5rem;
