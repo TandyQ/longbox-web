@@ -1,7 +1,8 @@
 @import "settings";
 @import "foundation";
+
 .comic-grid {
-    padding: 0 20px 0 20px;
+    padding: 0 10px 0 10px;
 }
 
 .logo {
@@ -24,17 +25,33 @@
 div.stretchy-wrapper {
     overflow: hidden;
     width: 100%;
-    padding-bottom: 152.49%; /* comic cover ratio */
+    padding-bottom: 152.49%;
+    /* comic cover ratio */
     position: relative;
     background: black;
 }
 
 div.stretchy-wrapper > img {
     position: absolute;
-    top: 0; bottom: 0; left: 0; right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     color: white;
     font-size: 24px;
     text-align: center;
+}
+
+@media #{$small-only} {
+    .comic-grid {
+        padding: 0 5px 0 5px;
+    }
+}
+
+@media #{$medium-only} {
+    .comic-grid {
+        padding: 0 10px 0 10px;
+    }
 }
 
 @media #{$large-up} {
