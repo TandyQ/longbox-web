@@ -6508,6 +6508,9 @@ th.hide-for-touch {
   th.show-for-print {
     display: table-cell !important; } }
 
+body {
+  font-family: Helvetica Neue, sans-serif; }
+
 .row {
   max-width: 1280px; }
 
@@ -6534,8 +6537,8 @@ th.hide-for-touch {
 div.stretchy-wrapper {
   overflow: hidden;
   width: 100%;
-  padding-bottom: 152.49%;
   /* comic cover ratio */
+  padding-bottom: 152.49%;
   position: relative;
   background: black; }
   div.stretchy-wrapper img {

@@ -1,5 +1,11 @@
 @import "settings";
 @import "foundation";
+$font-stack: Helvetica Neue,
+sans-serif;
+body {
+    font-family: $font-stack;
+}
+
 .row {
     max-width: 1280px;
 }
@@ -32,8 +38,8 @@
 div.stretchy-wrapper {
     overflow: hidden;
     width: 100%;
-    padding-bottom: 152.49%;
     /* comic cover ratio */
+    padding-bottom: 152.49%;
     position: relative;
     background: black;
     img {

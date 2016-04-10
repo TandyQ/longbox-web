@@ -5,7 +5,10 @@
 </div>
 <div class="row comic-grid">
     <div class="tiny-6 small-4 medium-3 large-2 columns tight end" ng-repeat="series in seriesData | orderBy:'title'">
-        <img class="comic-cover" ng-src="{{series.latestComicCoverPath}}.{{series.latestComicCoverExtension}}" alt="Cover of {{series.title}}">
+        <!-- Fix for different cover sizes -->
+        <div class="stretchy-wrapper">
+            <img class="comic-cover" ng-src="{{series.latestComicCoverPath}}.{{series.latestComicCoverExtension}}" alt="Cover of {{series.title}}">
+        </div>
         <p class="ellipsis">{{series.title | limitFromToChar:0:" ("}}</p>
         <button ng-click="removeFromPullList(series)"><span>-</span></button>
     </div>
