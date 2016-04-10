@@ -6523,7 +6523,7 @@ body {
 
 .logo {
   fill: #ffffff;
-  padding-top: 7px;
+  margin-top: 0.5rem;
   width: 210px; }
 
 .top-bar .toggle-topbar.menu-icon a {
@@ -6557,7 +6557,9 @@ div.stretchy-wrapper {
 
 @media only screen and (min-width: 25.0625em) and (max-width: 40em) {
   .comic-grid {
-    padding: 0 5px 0 5px; } }
+    padding: 0 5px 0 5px; }
+  .top-bar .name h1 a, .top-bar .name h2 a, .top-bar .name h3 a, .top-bar .name h4 a, .top-bar .name p a, .top-bar .name span a {
+    padding: 0 0.5rem; } }
 
 @media only screen and (min-width: 40.0625em) {
   .comic-grid {

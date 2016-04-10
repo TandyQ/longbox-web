@@ -1,13 +1,16 @@
 @import "settings";
 @import "foundation";
+
 @mixin truncateText($overflow: ellipsis) {
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: $overflow; // values are: clip, ellipsis, or a string
+    text-overflow: $overflow;
+
+    // values are: clip, ellipsis, or a string
 }
 
-$font-stack: Helvetica Neue,
-sans-serif;
+$font-stack: Helvetica Neue, sans-serif;
+
 body {
     font-family: $font-stack;
 }
@@ -18,6 +21,7 @@ body {
 
 .comic-grid {
     padding: 0 10px 0 10px;
+
     p {
         @include truncateText;
     }
@@ -25,7 +29,7 @@ body {
 
 .logo {
     fill: #ffffff;
-    padding-top: 7px;
+    margin-top: 0.5rem;
     width: 210px;
 }
 
@@ -47,10 +51,12 @@ body {
 div.stretchy-wrapper {
     overflow: hidden;
     width: 100%;
+
     /* comic cover ratio */
     padding-bottom: 152.49%;
     position: relative;
     background: black;
+
     img {
         position: absolute;
         top: 0;
@@ -66,6 +72,10 @@ div.stretchy-wrapper {
 @media #{$small-only} {
     .comic-grid {
         padding: 0 5px 0 5px;
+    }
+
+    .top-bar .name h1 a, .top-bar .name h2 a, .top-bar .name h3 a, .top-bar .name h4 a, .top-bar .name p a, .top-bar .name span a {
+        padding: 0 0.5rem;
     }
 }
 
