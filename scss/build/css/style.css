@@ -6516,6 +6516,10 @@ body {
 
 .comic-grid {
   padding: 0 10px 0 10px; }
+  .comic-grid p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
 
 .logo {
   fill: #ffffff;

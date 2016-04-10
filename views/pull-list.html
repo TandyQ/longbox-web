@@ -9,7 +9,7 @@
         <div class="stretchy-wrapper">
             <img class="comic-cover" ng-src="{{series.latestComicCoverPath}}.{{series.latestComicCoverExtension}}" alt="Cover of {{series.title}}">
         </div>
-        <p class="ellipsis">{{series.title | limitFromToChar:0:" ("}}</p>
+        <p>{{series.title | limitFromToChar:0:" ("}}</p>
         <button ng-click="removeFromPullList(series)"><span>-</span></button>
     </div>
 </div>

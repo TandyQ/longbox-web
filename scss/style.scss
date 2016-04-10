@@ -1,5 +1,11 @@
 @import "settings";
 @import "foundation";
+@mixin truncateText($overflow: ellipsis) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: $overflow; // values are: clip, ellipsis, or a string
+}
+
 $font-stack: Helvetica Neue,
 sans-serif;
 body {
@@ -12,6 +18,9 @@ body {
 
 .comic-grid {
     padding: 0 10px 0 10px;
+    p {
+        @include truncateText;
+    }
 }
 
 .logo {
