@@ -55,7 +55,7 @@
 // $rem-base: 16px;
 
 // Allows the use of rem-calc() or lower-bound() in your settings
-@import 'foundation/functions';
+@import "foundation/functions";
 
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with browser-based text zoom or user-set defaults.
@@ -70,6 +70,7 @@
 
 // We use this to control whether or not CSS classes come through in the gem files.
 $include-html-classes: true;
+
 // $include-print-styles: true;
 $include-html-global-classes: $include-html-classes;
 
@@ -88,6 +89,8 @@ $include-tiny-html-grid-classes: true;
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // We use these to define default font stacks
+$font-stack: Helvetica Neue, sans-serif;
+
 // $font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 // $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 // $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
@@ -124,10 +127,17 @@ $include-tiny-html-grid-classes: true;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
 
+$bg-color: #0E1111;
+$header-bg-color: #1A1F1E;
+$font-color: #E3DFBA;
+
 // We use these to control various global styles
-// $body-bg: $white;
-// $body-font-color: $jet;
-// $body-font-family: $font-family-sans-serif;
+$body-bg: $bg-color;
+
+$body-font-color: $font-color;
+
+$body-font-family: $font-stack;
+
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
 
@@ -214,7 +224,8 @@ $include-tiny-html-grid-classes: true;
 // $header-font-family: $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
-// $header-font-color: $jet;
+$header-font-color: $font-color;
+
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
@@ -578,7 +589,6 @@ $include-tiny-html-grid-classes: true;
 // Default radius for dropdown.
 // $f-dropdown-radius: $global-radius;
 
-
 // 09. Dropdown Buttons
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -708,7 +718,6 @@ $include-tiny-html-grid-classes: true;
 // Select variables
 // $select-bg-color: $ghost;
 // $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%);
-
 
 // 12. Icon Bar
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -849,7 +858,6 @@ $include-tiny-html-grid-classes: true;
 // Off Canvas Divider Styles
 // $tabbar-left-section-border: solid 1px scale-color($tabbar-bg, $lightness: -50%);
 // $tabbar-right-section-border: $tabbar-left-section-border;
-
 
 // Off Canvas Tab Bar Headers
 // $tabbar-header-color: $white;
@@ -1038,7 +1046,6 @@ $include-tiny-html-grid-classes: true;
 // $price-money-weight: $font-weight-normal;
 // $price-money-size: rem-calc(32);
 // $price-money-font-family: $body-font-family;
-
 
 // We use these to control the description styles
 // $price-bg: $white;
@@ -1256,7 +1263,6 @@ $include-tiny-html-grid-classes: true;
 // $sub-nav-border-radius: 3px;
 // $sub-nav-font-color-hover: scale-color($sub-nav-font-color, $lightness: -25%);
 
-
 // We use these to control the active item styles
 
 // $sub-nav-active-font-weight: $font-weight-normal;
@@ -1335,7 +1341,6 @@ $include-tiny-html-grid-classes: true;
 // $table-display: table-cell;
 // $table-margin-bottom: rem-calc(20);
 
-
 // 31. Tabs
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -1404,7 +1409,8 @@ $include-tiny-html-grid-classes: true;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-// $topbar-bg-color: $oil;
+$topbar-bg-color: $header-bg-color;
+
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -1437,14 +1443,17 @@ $include-tiny-html-grid-classes: true;
 // $topbar-button-top: 7px;
 
 // Style the top bar dropdown elements
-// $topbar-dropdown-bg: $oil;
-// $topbar-dropdown-link-color: $white;
+$topbar-dropdown-bg: $header-bg-color;
+$topbar-dropdown-link-color: $font-color;
+
 // $topbar-dropdown-link-color-hover: $topbar-link-color-hover;
-// $topbar-dropdown-link-bg: $oil;
+$topbar-dropdown-link-bg: $header-bg-color;
+
 // $topbar-dropdown-link-bg-hover: $jet;
 // $topbar-dropdown-link-weight: $font-weight-normal;
 // $topbar-dropdown-toggle-size: 5px;
-// $topbar-dropdown-toggle-color: $white;
+$topbar-dropdown-toggle-color: $font-color;
+
 // $topbar-dropdown-toggle-alpha: .4;
 
 // $topbar-dropdown-label-color: $monsoon;
@@ -1457,7 +1466,8 @@ $include-tiny-html-grid-classes: true;
 // $topbar-menu-link-transform: uppercase;
 // $topbar-menu-link-font-size: rem-calc(13);
 // $topbar-menu-link-weight: $font-weight-bold;
-// $topbar-menu-link-color: $white;
+$topbar-menu-link-color: $font-color;
+
 // $topbar-menu-icon-color: $white;
 // $topbar-menu-link-color-toggled: $jumbo;
 // $topbar-menu-icon-color-toggled: $jumbo;

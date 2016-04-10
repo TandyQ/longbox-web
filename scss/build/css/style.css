@@ -63,10 +63,10 @@ body {
   font-size: 100%; }
 
 body {
-  background: #fff;
-  color: #222;
+  background: #0E1111;
+  color: #E3DFBA;
   cursor: auto;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: Helvetica Neue, sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: 1.5;
@@ -962,7 +962,7 @@ select {
       background: #EFEFEF;
       color: #222222;
       display: block;
-      font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      font-family: Helvetica Neue, sans-serif;
       font-size: 1rem;
       padding: 1rem; }
       .accordion .accordion-navigation > a:hover, .accordion dd > a:hover {
@@ -1447,7 +1447,7 @@ button, .button {
   border-style: solid;
   border-width: 0;
   cursor: pointer;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: Helvetica Neue, sans-serif;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 1.25rem;
@@ -3395,7 +3395,7 @@ kbd {
 
 .label {
   display: inline-block;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: Helvetica Neue, sans-serif;
   font-weight: normal;
   line-height: 1;
   margin-bottom: auto;
@@ -3783,7 +3783,7 @@ ul.pagination {
   .pricing-table .title {
     background-color: #333333;
     color: #EEEEEE;
-    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-family: Helvetica Neue, sans-serif;
     font-size: 1rem;
     font-weight: normal;
     padding: 0.9375rem 1.25rem;
@@ -3791,7 +3791,7 @@ ul.pagination {
   .pricing-table .price {
     background-color: #F6F6F6;
     color: #333333;
-    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-family: Helvetica Neue, sans-serif;
     font-size: 2rem;
     font-weight: normal;
     padding: 0.9375rem 1.25rem;
@@ -4075,7 +4075,7 @@ ul.pagination {
 
 .side-nav {
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: Helvetica Neue, sans-serif;
   list-style-position: outside;
   list-style-type: none;
   margin: 0;
@@ -4096,7 +4096,7 @@ ul.pagination {
         color: #1cc7ff; }
     .side-nav li.active > a:first-child:not(.button) {
       color: #1cc7ff;
-      font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      font-family: Helvetica Neue, sans-serif;
       font-weight: normal; }
     .side-nav li.divider {
       border-top: 1px solid;
@@ -4216,7 +4216,7 @@ ul.pagination {
   .sub-nav li {
     color: #999999;
     float: left;
-    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-family: Helvetica Neue, sans-serif;
     font-size: 0.875rem;
     font-weight: normal;
     margin-left: 1rem;
@@ -4409,7 +4409,7 @@ table {
       display: block;
       background-color: #EFEFEF;
       color: #222222;
-      font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      font-family: Helvetica Neue, sans-serif;
       font-size: 1rem;
       padding: 1rem 2rem; }
       .tabs dd > a:hover,
@@ -4581,7 +4581,7 @@ meta.foundation-mq-topbar {
 /* Wrapped around .top-bar to contain to grid width */
 .contain-to-grid {
   width: 100%;
-  background: #333333; }
+  background: #1A1F1E; }
   .contain-to-grid .top-bar {
     margin-bottom: 0; }
 
@@ -4605,7 +4605,7 @@ meta.foundation-mq-topbar {
       z-index: 98; }
 
 .top-bar {
-  background: #333333;
+  background: #1A1F1E;
   height: 2.8125rem;
   line-height: 2.8125rem;
   margin-bottom: 0;
@@ -4670,7 +4670,7 @@ meta.foundation-mq-topbar {
       margin-top: -16px;
       top: 50%; }
       .top-bar .toggle-topbar.menu-icon a {
-        color: #FFFFFF;
+        color: #E3DFBA;
         height: 34px;
         line-height: 33px;
         padding: 0 2.5rem 0 0.9375rem;
@@ -4693,7 +4693,7 @@ meta.foundation-mq-topbar {
     background: transparent;
     height: auto; }
     .top-bar.expanded .title-area {
-      background: #333333; }
+      background: #1A1F1E; }
     .top-bar.expanded .toggle-topbar a {
       color: #888888; }
       .top-bar.expanded .toggle-topbar a span::after {
@@ -4719,16 +4719,16 @@ meta.foundation-mq-topbar {
     width: 100%; }
   .top-bar-section .divider,
   .top-bar-section [role="separator"] {
-    border-top: solid 1px #1a1a1a;
+    border-top: solid 1px #0d100f;
     clear: both;
     height: 1px;
     width: 100%; }
   .top-bar-section ul li {
-    background: #333333; }
+    background: #1A1F1E; }
     .top-bar-section ul li > a {
       color: #FFFFFF;
       display: block;
-      font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      font-family: Helvetica Neue, sans-serif;
       font-size: 0.8125rem;
       font-weight: normal;
       padding-left: 0.9375rem;
@@ -4857,7 +4857,7 @@ meta.foundation-mq-topbar {
       display: block;
       height: 0;
       width: 0;
-      border-color: transparent transparent transparent rgba(255, 255, 255, 0.4);
+      border-color: transparent transparent transparent rgba(227, 223, 186, 0.4);
       border-left-style: solid;
       margin-right: 0.9375rem;
       margin-top: -4.5px;
@@ -4924,7 +4924,7 @@ meta.foundation-mq-topbar {
 
 @media only screen and (min-width: 40.0625em) {
   .top-bar {
-    background: #333333;
+    background: #1A1F1E;
     overflow: visible; }
     .top-bar:before, .top-bar:after {
       content: " ";
@@ -4957,7 +4957,7 @@ meta.foundation-mq-topbar {
       position: relative;
       top: 0.53125rem; }
     .top-bar.expanded {
-      background: #333333; }
+      background: #1A1F1E; }
   .contain-to-grid .top-bar {
     margin: 0 auto;
     margin-bottom: 0;
@@ -4978,7 +4978,7 @@ meta.foundation-mq-topbar {
       background: #222222;
       color: #FFFFFF; }
     .top-bar-section li:not(.has-form) a:not(.button) {
-      background: #333333;
+      background: #1A1F1E;
       line-height: 2.8125rem;
       padding: 0 0.9375rem; }
       .top-bar-section li:not(.has-form) a:not(.button):hover {
@@ -5000,7 +5000,7 @@ meta.foundation-mq-topbar {
         display: block;
         height: 0;
         width: 0;
-        border-color: rgba(255, 255, 255, 0.4) transparent transparent transparent;
+        border-color: rgba(227, 223, 186, 0.4) transparent transparent transparent;
         border-top-style: solid;
         margin-top: -2.5px;
         top: 1.40625rem; }
@@ -5040,14 +5040,14 @@ meta.foundation-mq-topbar {
       min-width: 100%;
       top: auto; }
       .top-bar-section .dropdown li a {
-        background: #333333;
-        color: #FFFFFF;
+        background: #1A1F1E;
+        color: #E3DFBA;
         line-height: 2.8125rem;
         padding: 12px 0.9375rem;
         white-space: nowrap; }
       .top-bar-section .dropdown li:not(.has-form):not(.active) > a:not(.button) {
-        background: #333333;
-        color: #FFFFFF; }
+        background: #1A1F1E;
+        color: #E3DFBA; }
       .top-bar-section .dropdown li:not(.has-form):not(.active):hover > a:not(.button) {
         background-color: #555555;
         color: #FFFFFF;
@@ -5060,14 +5060,14 @@ meta.foundation-mq-topbar {
         top: 0; }
     .top-bar-section > ul > .divider,
     .top-bar-section > ul > [role="separator"] {
-      border-right: solid 1px #4e4e4e;
+      border-right: solid 1px #353f3d;
       border-bottom: none;
       border-top: none;
       clear: none;
       height: 2.8125rem;
       width: 0; }
     .top-bar-section .has-form {
-      background: #333333;
+      background: #1A1F1E;
       height: 2.8125rem;
       padding: 0 0.9375rem; }
     .top-bar-section .right li .dropdown {
@@ -5267,8 +5267,8 @@ p {
 
 /* Default header styles */
 h1, h2, h3, h4, h5, h6 {
-  color: #222222;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  color: #E3DFBA;
+  font-family: Helvetica Neue, sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: 1.4;
@@ -5276,7 +5276,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.2rem;
   text-rendering: optimizeLegibility; }
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
-    color: #6f6f6f;
+    color: #edead2;
     font-size: 60%;
     line-height: 0; }
 
@@ -5300,7 +5300,7 @@ h6 {
 
 .subheader {
   line-height: 1.4;
-  color: #6f6f6f;
+  color: #edead2;
   font-weight: normal;
   margin-top: 0.2rem;
   margin-bottom: 0.5rem; }
@@ -5401,7 +5401,7 @@ abbr,
 acronym {
   text-transform: uppercase;
   font-size: 90%;
-  color: #222;
+  color: #E3DFBA;
   cursor: help; }
 
 abbr {
@@ -5417,17 +5417,17 @@ blockquote {
   blockquote cite {
     display: block;
     font-size: 0.8125rem;
-    color: #555555; }
+    color: #e9e6ca; }
     blockquote cite:before {
       content: "\2014 \0020"; }
     blockquote cite a,
     blockquote cite a:visited {
-      color: #555555; }
+      color: #e9e6ca; }
 
 blockquote,
 blockquote p {
   line-height: 1.6;
-  color: #6f6f6f; }
+  color: #edead2; }
 
 /* Microformats */
 .vcard {
@@ -6508,9 +6508,6 @@ th.hide-for-touch {
   th.show-for-print {
     display: table-cell !important; } }
 
-body {
-  font-family: Helvetica Neue, sans-serif; }
-
 .row {
   max-width: 1280px; }
 
@@ -6522,7 +6519,7 @@ body {
     text-overflow: ellipsis; }
 
 .logo {
-  fill: #ffffff;
+  fill: #E3DFBA;
   margin-top: 0.5rem;
   width: 210px; }
 
@@ -6558,7 +6555,12 @@ div.stretchy-wrapper {
 @media only screen and (min-width: 25.0625em) and (max-width: 40em) {
   .comic-grid {
     padding: 0 5px 0 5px; }
-  .top-bar .name h1 a, .top-bar .name h2 a, .top-bar .name h3 a, .top-bar .name h4 a, .top-bar .name p a, .top-bar .name span a {
+  .top-bar .name h1 a,
+  .top-bar .name h2 a,
+  .top-bar .name h3 a,
+  .top-bar .name h4 a,
+  .top-bar .name p a,
+  .top-bar .name span a {
     padding: 0 0.5rem; } }
 
 @media only screen and (min-width: 40.0625em) {

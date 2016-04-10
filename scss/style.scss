@@ -1,18 +1,14 @@
 @import "settings";
 @import "foundation";
 
+$font-color: #E3DFBA;
+
 @mixin truncateText($overflow: ellipsis) {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: $overflow;
 
     // values are: clip, ellipsis, or a string
-}
-
-$font-stack: Helvetica Neue, sans-serif;
-
-body {
-    font-family: $font-stack;
 }
 
 .row {
@@ -28,7 +24,7 @@ body {
 }
 
 .logo {
-    fill: #ffffff;
+    fill: $font-color;
     margin-top: 0.5rem;
     width: 210px;
 }
@@ -74,7 +70,12 @@ div.stretchy-wrapper {
         padding: 0 5px 0 5px;
     }
 
-    .top-bar .name h1 a, .top-bar .name h2 a, .top-bar .name h3 a, .top-bar .name h4 a, .top-bar .name p a, .top-bar .name span a {
+    .top-bar .name h1 a,
+    .top-bar .name h2 a,
+    .top-bar .name h3 a,
+    .top-bar .name h4 a,
+    .top-bar .name p a,
+    .top-bar .name span a {
         padding: 0 0.5rem;
     }
 }
