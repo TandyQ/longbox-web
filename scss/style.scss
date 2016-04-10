@@ -1,5 +1,8 @@
 @import "settings";
 @import "foundation";
+.row {
+    max-width: 1280px;
+}
 
 .comic-grid {
     padding: 0 10px 0 10px;
@@ -33,17 +36,16 @@ div.stretchy-wrapper {
     /* comic cover ratio */
     position: relative;
     background: black;
-}
-
-div.stretchy-wrapper > img {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    color: white;
-    font-size: 24px;
-    text-align: center;
+    img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: white;
+        font-size: 24px;
+        text-align: center;
+    }
 }
 
 @media #{$small-only} {
@@ -52,14 +54,8 @@ div.stretchy-wrapper > img {
     }
 }
 
-@media #{$medium-only} {
+@media #{$medium-up} {
     .comic-grid {
         padding: 0 10px 0 10px;
-    }
-}
-
-@media #{$large-up} {
-    .comic-grid {
-        padding: 0;
     }
 }

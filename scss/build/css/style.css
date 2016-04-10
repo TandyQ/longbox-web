@@ -6508,6 +6508,9 @@ th.hide-for-touch {
   th.show-for-print {
     display: table-cell !important; } }
 
+.row {
+  max-width: 1280px; }
+
 .comic-grid {
   padding: 0 10px 0 10px; }
 
@@ -6535,25 +6538,20 @@ div.stretchy-wrapper {
   /* comic cover ratio */
   position: relative;
   background: black; }
-
-div.stretchy-wrapper > img {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  color: white;
-  font-size: 24px;
-  text-align: center; }
+  div.stretchy-wrapper img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    font-size: 24px;
+    text-align: center; }
 
 @media only screen and (min-width: 25.0625em) and (max-width: 40em) {
   .comic-grid {
     padding: 0 5px 0 5px; } }
 
-@media only screen and (min-width: 40.0625em) and (max-width: 64em) {
+@media only screen and (min-width: 40.0625em) {
   .comic-grid {
     padding: 0 10px 0 10px; } }
-
-@media only screen and (min-width: 64.0625em) {
-  .comic-grid {
-    padding: 0; } }
