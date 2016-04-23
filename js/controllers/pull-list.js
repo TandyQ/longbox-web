@@ -7,7 +7,7 @@ myApp.controller('PullListController', ['$scope', '$filter', 'Marvel', 'DateUtil
 
         auth.$onAuth(function(authUser) {
             if (authUser) {
-                var pullRef = new Firebase(FIREBASE_URL + 'users/' + $scope.currentUser.$id + '/pulllist/');
+                var pullRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid + '/pulllist/');
                 var pullListInfo = $firebaseArray(pullRef);
 
                 $scope.seriesData = [];

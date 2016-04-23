@@ -9,7 +9,7 @@ myApp.controller('AllNewIssuesController', ['$scope', 'Marvel', 'DateUtils', 'Pu
 
         auth.$onAuth(function(authUser) {
             if (authUser) {
-                var pullRef = new Firebase(FIREBASE_URL + 'users/' + $scope.currentUser.$id + '/pulllist/');
+                var pullRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid + '/pulllist/');
                 var pullListInfo = $firebaseArray(pullRef);
 
                 pullListInfo.$loaded().then(function(data) {
