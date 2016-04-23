@@ -12,7 +12,7 @@
                 <button ng-click="addComic(comic.series)" ng-hide="isInPullList(comic.series)"><span>+</span></button>
                 <button ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic.series)"><span>-</span></button>
             </div>
-            <img class="comic-cover" ng-click="addComic(comic.series)" ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="Cover of {{comic.title}}">
+            <img class="comic-cover" ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="Cover of {{comic.title}}">
             <div class="pull-list-badge" ng-show="isInPullList(comic.series)">
                 <i class="fa fa-check fa-inverse"></i>
             </div>

@@ -6525,6 +6525,7 @@ th.hide-for-touch {
   position: absolute;
   z-index: 3;
   transition: all 0.25s ease-in-out;
+  visibility: hidden;
   opacity: 0; }
 
 .pull-list-badge {
@@ -6574,6 +6575,7 @@ div.stretchy-wrapper {
     text-align: center;
     z-index: 1; }
   div.stretchy-wrapper:hover .cover-overlay {
+    visibility: visible;
     opacity: 1; }
 
 @media only screen and (min-width: 25.0625em) and (max-width: 40em) {

@@ -30,6 +30,7 @@ $font-color: #E3DFBA;
     position: absolute;
     z-index: 3;
     transition: all 0.25s ease-in-out;
+    visibility: hidden;
     opacity: 0;
 }
 
@@ -91,6 +92,7 @@ div.stretchy-wrapper {
     }
 
     &:hover .cover-overlay {
+        visibility: visible;
         opacity: 1;
     }
 }

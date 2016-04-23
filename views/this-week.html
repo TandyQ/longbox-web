@@ -11,7 +11,7 @@
             <div class="cover-overlay" id="cover-index-{{$index}}">
                 <button ng-click="removeFromPullList(comic)"><span>-</span></button>
             </div>
-            <img class="comic-cover" ng-click="addComic(comic.series.name)" ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="Cover of {{comic.title}}">
+            <img class="comic-cover" ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="Cover of {{comic.title}}">
         </div>
         <p>{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
     </div>
