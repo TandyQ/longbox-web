@@ -11,6 +11,13 @@ $font-color: #E3DFBA;
     // values are: clip, ellipsis, or a string
 }
 
+@mixin centerer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .row {
     max-width: 1280px;
 }
@@ -32,6 +39,45 @@ $font-color: #E3DFBA;
     transition: all 0.25s ease-in-out;
     visibility: hidden;
     opacity: 0;
+
+    .buttons {
+        width: 70px;
+        height: auto;
+
+        @include centerer;
+    }
+
+    button {
+        width: 70px;
+        height: 70px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        padding: 0;
+        margin-bottom: 10px;
+
+        .fa-plus {
+            padding: 4px 0 0 0;
+        }
+
+        .fa-trash {
+            padding: 1px 0 0 0;
+        }
+
+        .fa-info {
+            padding: 2px 0 0 1px;
+        }
+    }
+
+    .remove-button {
+        background-color: red;
+    }
+
+    .add-button {
+        background-color: green;
+    }
+
+    .info-button {}
 }
 
 .pull-list-badge {
