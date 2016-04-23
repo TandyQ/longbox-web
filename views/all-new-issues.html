@@ -8,16 +8,14 @@
     <div class="tiny-6 small-4 medium-3 large-2 columns tight end" ng-repeat="comic in comicData" data-equalizer-watch>
         <!-- Fix for different cover sizes -->
         <div class="stretchy-wrapper">
-            <div class="cover-overlay" id="cover-index-{{$index}}">
+            <div class="cover-overlay">
                 <div class="buttons">
                     <button class="add-button" ng-click="addComic(comic.series)" ng-hide="isInPullList(comic.series)"><i class="fa fa-plus fa-2x"></i></button>
                     <button class="remove-button" ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic.series)"><i class="fa fa-trash fa-2x"></i></button>
-                    <button class="info-button" ng-click=""><i class="fa fa-info fa-2x"></i></button>
+                    <button class="info-button" ng-click="openModalForComicAtIndex($index)"><i class="fa fa-info fa-2x"></i></button>
                 </div>
             </div>
             <img class="comic-cover" ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="Cover of {{comic.title}}">
-            <div class="pull-list-badge-border" ng-show="isInPullList(comic.series)">
-            </div>
             <div class="pull-list-badge" ng-show="isInPullList(comic.series)">
                 <i class="fa fa-check fa-inverse"></i>
             </div>

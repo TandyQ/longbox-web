@@ -81,27 +81,18 @@ $font-color: #E3DFBA;
     .info-button {}
 }
 
-.pull-list-badge-border {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-top: 48px solid white;
-    border-right: 48px solid transparent;
-    z-index: 2;
-}
-
 .pull-list-badge {
     position: absolute;
     width: 0;
     height: 0;
-    border-top: 45px solid green;
-    border-right: 45px solid transparent;
+    border-top: 40px solid green;
+    border-right: 40px solid transparent;
     z-index: 2;
 
     .fa-check {
         position: absolute;
-        top: -39px;
-        left: 5px;
+        top: -36px;
+        left: 4px;
     }
 }
 

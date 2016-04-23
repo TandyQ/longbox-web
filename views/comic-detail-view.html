@@ -1,0 +1,4 @@
+<h3>{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</h3>
+<button class="add-button" ng-click="addComic(comic.series)" ng-hide="isInPullList(comic.series)"><i class="fa fa-plus fa-2x"></i></button>
+<button class="remove-button" ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic.series)"><i class="fa fa-trash fa-2x"></i></button>
+<a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
