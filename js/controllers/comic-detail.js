@@ -3,6 +3,21 @@ myApp.controller('ComicDetailController', ['$scope', 'FirebaseUtils', 'PullListU
         $scope.comic = comic;
         $scope.pullList = pullList;
 
+        var pencillers = [];
+        var writers = [];
+        for (var i = 0; i < comic.creators.items.length; i++) {
+            var creator = comic.creators.items[i];
+            if (creator.role.toLowerCase().indexOf("penciller (cover)") !== -1) {
+                pencillers.push(creator.name);
+            } else if (creator.role.toLowerCase().indexOf("writer") !== -1) {
+                writers.push(creator.name);
+            }
+        }
+        $scope.creators = {
+            pencillers:pencillers,
+            writers:writers
+        };
+
         $scope.addComic = function(series) {
             FirebaseUtils.addToPullList(series);
         };

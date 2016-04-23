@@ -84,3 +84,9 @@ myApp.filter('limitFromToChar', function() {
         return (input !== undefined) ? input.slice(from, input.indexOf(toString)) : '';
     };
 });
+
+myApp.filter('joinBy', function() {
+    return function(input, delimiter) {
+        return (input || []).join(delimiter || ',');
+    };
+});

@@ -6560,7 +6560,7 @@ th.hide-for-touch {
   height: 0;
   border-top: 40px solid green;
   border-right: 40px solid transparent;
-  z-index: 2; }
+  z-index: 3; }
   .pull-list-badge .fa-check {
     position: absolute;
     top: -36px;
