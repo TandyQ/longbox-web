@@ -43,6 +43,7 @@ $font-color: #E3DFBA;
     .buttons {
         width: 70px;
         height: auto;
+        margin-top: 5px;
 
         @include centerer;
     }
@@ -78,6 +79,15 @@ $font-color: #E3DFBA;
     }
 
     .info-button {}
+}
+
+.pull-list-badge-border {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 48px solid white;
+    border-right: 48px solid transparent;
+    z-index: 2;
 }
 
 .pull-list-badge {

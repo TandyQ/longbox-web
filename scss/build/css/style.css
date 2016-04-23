@@ -6530,6 +6530,7 @@ th.hide-for-touch {
   .cover-overlay .buttons {
     width: 70px;
     height: auto;
+    margin-top: 5px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -6552,6 +6553,14 @@ th.hide-for-touch {
     background-color: red; }
   .cover-overlay .add-button {
     background-color: green; }
+
+.pull-list-badge-border {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 48px solid white;
+  border-right: 48px solid transparent;
+  z-index: 2; }
 
 .pull-list-badge {
   position: absolute;
