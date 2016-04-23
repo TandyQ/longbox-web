@@ -6518,6 +6518,27 @@ th.hide-for-touch {
     white-space: nowrap;
     text-overflow: ellipsis; }
 
+.cover-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 3;
+  transition: all 0.25s ease-in-out;
+  opacity: 0; }
+
+.pull-list-badge {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 45px solid green;
+  border-right: 45px solid transparent;
+  z-index: 2; }
+  .pull-list-badge .fa-check {
+    position: absolute;
+    top: -39px;
+    left: 5px; }
+
 .logo {
   fill: #E3DFBA;
   margin-top: 0.5rem;
@@ -6550,7 +6571,10 @@ div.stretchy-wrapper {
     right: 0;
     color: white;
     font-size: 24px;
-    text-align: center; }
+    text-align: center;
+    z-index: 1; }
+  div.stretchy-wrapper:hover .cover-overlay {
+    opacity: 1; }
 
 @media only screen and (min-width: 25.0625em) and (max-width: 40em) {
   .comic-grid {
