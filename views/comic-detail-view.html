@@ -1,4 +1,5 @@
-<h2>{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</h2>
+<h2>{{comic.series.name | limitFromToChar:0:" ("}}</h2>
+<h3>Issue #{{comic.issueNumber}}</h3>
 <h4><ng-pluralize count="creators.writers.length" when="{'0': '', '1': 'Writer', 'other': 'Writers'}"></ng-pluralize>:
 {{ creators.writers | joinBy:", " }}</h4>
 <h4><ng-pluralize count="creators.pencillers.length" when="{'0': '', '1': 'Penciller', 'other': 'Pencillers'}"></ng-pluralize>:

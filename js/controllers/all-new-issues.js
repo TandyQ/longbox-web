@@ -22,14 +22,13 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'DateU
             }
         });
 
-        $scope.openModalForComicAtIndex = function(index) {
-            var comicAtIndex = $scope.comicData[index];
+        $scope.openModalForComic = function(selectedComic) {
             var modalInstance = $modal.open({
                 templateUrl: 'views/comic-detail-view.html',
                 controller: 'ComicDetailController',
                 resolve: {
                     comic: function() {
-                        return comicAtIndex;
+                        return selectedComic;
                     },
                     pullList: function() {
                         return $scope.pullList;

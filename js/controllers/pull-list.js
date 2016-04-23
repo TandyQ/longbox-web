@@ -1,6 +1,6 @@
-myApp.controller('PullListController', ['$scope', '$filter', 'Marvel', 'DateUtils', "PullListUtils",
+myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Marvel', 'DateUtils', "PullListUtils",
     "FirebaseUtils", '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function($scope, $filter, Marvel, DateUtils, PullListUtils,
+    function($scope, $modal, $filter, Marvel, DateUtils, PullListUtils,
         FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
@@ -42,6 +42,22 @@ myApp.controller('PullListController', ['$scope', '$filter', 'Marvel', 'DateUtil
                 $rootScope.pullList = {};
             }
         });
+
+        $scope.openModalForSeries = function(selectedSeries) {
+            console.log(selectedSeries);
+            // var modalInstance = $modal.open({
+            //     templateUrl: 'views/comic-detail-view.html',
+            //     controller: 'ComicDetailController',
+            //     resolve: {
+            //         comic: function() {
+            //             return comicAtIndex;
+            //         },
+            //         pullList: function() {
+            //             return $scope.pullList;
+            //         }
+            //     }
+            // });
+        };
 
         $scope.getSeries = function(series) {
             if (series.resourceURI) {

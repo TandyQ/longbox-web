@@ -11,7 +11,7 @@
             <div class="cover-overlay">
                 <div class="buttons">
                     <button class="remove-button" ng-click="removeFromPullList(comic)"><i class="fa fa-trash fa-2x"></i></button>
-                    <button class="info-button" ng-click=""><i class="fa fa-info fa-2x"></i></button>
+                    <button class="info-button"  ng-click="openModalForComic(comic)"><i class="fa fa-info fa-2x"></i></button>
                 </div>
             </div>
             <img class="comic-cover" ng-src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="Cover of {{comic.title}}">

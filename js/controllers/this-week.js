@@ -1,5 +1,5 @@
-myApp.controller('ThisWeekController', ['$scope', 'Marvel', 'DateUtils', "PullList", "PullListUtils", "FirebaseUtils",
-    function($scope, Marvel, DateUtils, PullList, PullListUtils, FirebaseUtils) {
+myApp.controller('ThisWeekController', ['$scope', '$modal', 'Marvel', 'DateUtils', "PullList", "PullListUtils", "FirebaseUtils",
+    function($scope, $modal, Marvel, DateUtils, PullList, PullListUtils, FirebaseUtils) {
         var wedDate = DateUtils.getWednesdayDate(new Date());
         $scope.message = "Week of " +
             (DateUtils.getMonthName(wedDate)) + " " + wedDate.getUTCDate() + ", " + wedDate.getFullYear();
@@ -10,6 +10,21 @@ myApp.controller('ThisWeekController', ['$scope', 'Marvel', 'DateUtils', "PullLi
         Marvel.getComicDataForWeek(dateRange).then(function(data) {
             $scope.comicData = data;
         });
+
+        $scope.openModalForComic = function(selectedComic) {
+            var modalInstance = $modal.open({
+                templateUrl: 'views/comic-detail-view.html',
+                controller: 'ComicDetailController',
+                resolve: {
+                    comic: function() {
+                        return selectedComic;
+                    },
+                    pullList: function() {
+                        return $scope.pullList;
+                    }
+                }
+            });
+        };
 
         $scope.isInPullList = function(comic) {
             return PullListUtils.isInPullList(comic.series.resourceURI, $scope.pullList);
