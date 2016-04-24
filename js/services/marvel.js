@@ -38,7 +38,7 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
         };
 
         var queryComics = function(marvelQueryUrl) {
-            console.log(marvelQueryUrl);
+            // console.log(marvelQueryUrl); //logging query URL
             var deferred = $q.defer();
             $http.get(marvelQueryUrl).then(function successCallback(response) {
                 deferred.resolve(response.data);
