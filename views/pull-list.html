@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="row comic-grid">
-    <div class="tiny-6 small-4 medium-3 large-2 columns tight end" ng-repeat="series in seriesData | orderBy:'title'">
+    <div class="tiny-6 small-4 medium-3 large-2 columns tight end" ng-repeat="series in seriesData | orderBy:['title',isOngoing(series.endYear)]">
         <!-- Fix for different cover sizes -->
         <div class="stretchy-wrapper">
             <div class="cover-overlay">
@@ -14,6 +14,9 @@
                 </div>
             </div>
             <img class="comic-cover" ng-src="{{series.latestComicCoverPath}}.{{series.latestComicCoverExtension}}" alt="Cover of {{series.title}}">
+            <div class="warning-badge" ng-hide="isOngoing(series.endYear)">
+                <i class="fa fa-exclamation-triangle fa-inverse"></i>
+            </div>
         </div>
         <p>{{series.title | limitFromToChar:0:" ("}}</p>
     </div>

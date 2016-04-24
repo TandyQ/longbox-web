@@ -6566,6 +6566,18 @@ th.hide-for-touch {
     top: -36px;
     left: 4px; }
 
+.warning-badge {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 40px solid red;
+  border-right: 40px solid transparent;
+  z-index: 3; }
+  .warning-badge .fa-exclamation-triangle {
+    position: absolute;
+    top: -37px;
+    left: 3px; }
+
 .logo {
   fill: #E3DFBA;
   margin-top: 0.5rem;
