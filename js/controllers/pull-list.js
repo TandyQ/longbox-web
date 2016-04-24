@@ -45,18 +45,18 @@ myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Marvel',
 
         $scope.openModalForSeries = function(selectedSeries) {
             console.log(selectedSeries);
-            // var modalInstance = $modal.open({
-            //     templateUrl: 'views/comic-detail-view.html',
-            //     controller: 'ComicDetailController',
-            //     resolve: {
-            //         comic: function() {
-            //             return comicAtIndex;
-            //         },
-            //         pullList: function() {
-            //             return $scope.pullList;
-            //         }
-            //     }
-            // });
+            var modalInstance = $modal.open({
+                templateUrl: 'views/series-detail-view.html',
+                controller: 'SeriesDetailController',
+                resolve: {
+                    series: function() {
+                        return selectedSeries;
+                    },
+                    pullList: function() {
+                        return $scope.pullList;
+                    }
+                }
+            });
         };
 
         $scope.getSeries = function(series) {

@@ -1,0 +1,4 @@
+<h2><a ng-href="{{series.urls[0].url}}" target="_blank">{{series.title | limitFromToChar:0:" ("}}</a></h2>
+<h4>Status: <ng-pluralize count="series.endYear" when="{'2099': 'Ongoing', 'other': 'Ended ({{series.endYear}})'}"></ng-pluralize></h4>
+<button class="remove-button" ng-click="removeFromPullList(comic.series)"><i class="fa fa-trash fa-2x"></i></button>
+<a class="close-reveal-modal" ng-click="cancel()">&#215;</a>

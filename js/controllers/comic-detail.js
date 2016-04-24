@@ -7,7 +7,7 @@ myApp.controller('ComicDetailController', ['$scope', 'FirebaseUtils', 'PullListU
         var writers = [];
         for (var i = 0; i < comic.creators.items.length; i++) {
             var creator = comic.creators.items[i];
-            if (creator.role.toLowerCase().indexOf("penciller (cover)") !== -1) {
+            if (creator.role.toLowerCase().indexOf("penciller") !== -1) {
                 pencillers.push(creator.name);
             } else if (creator.role.toLowerCase().indexOf("writer") !== -1) {
                 writers.push(creator.name);
