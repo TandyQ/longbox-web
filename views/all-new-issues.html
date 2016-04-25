@@ -10,8 +10,10 @@
         <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}">
             <div class="cover-overlay">
                 <div class="buttons">
+                    <div class="management-buttons" ng-show="currentUser">
                     <button class="add-button" ng-click="addComic(comic.series)" ng-hide="isInPullList(comic.series)"><i class="fa fa-plus fa-2x"></i></button>
                     <button class="remove-button" ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic.series)"><i class="fa fa-trash fa-2x"></i></button>
+                    </div>
                     <button class="info-button" ng-click="openModalForComic(comic)"><i class="fa fa-info fa-2x"></i></button>
                 </div>
             </div>
