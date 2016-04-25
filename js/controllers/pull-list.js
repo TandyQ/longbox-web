@@ -108,11 +108,11 @@ myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Marvel',
             }
         };
 
-        $scope.isOngoing = function(endYear) {
-            if (endYear == 2099) {
-                return true;
+        $scope.isEnded = function(series) {
+            if (series.endYear == 2099) {
+                return false;
             }
-            return false;
+            return true;
         };
     }
 ]);
