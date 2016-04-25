@@ -6,16 +6,15 @@
 <div class="row comic-grid">
     <div class="tiny-6 small-4 medium-3 large-2 columns tight end" ng-repeat="series in seriesData | orderBy:['title',isOngoing(series.endYear)]">
         <!-- Fix for different cover sizes -->
-        <div class="stretchy-wrapper">
+        <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + series.latestComicCoverPath + '.' + series.latestComicCoverExtension + ')', 'background-size':'cover'}">
             <div class="cover-overlay">
                 <div class="buttons">
                     <button class="remove-button" ng-click="removeFromPullList(series)"><i class="fa fa-trash fa-2x"></i></button>
-                    <button class="info-button"  ng-click="openModalForSeries(series)"><i class="fa fa-info fa-2x"></i></button>
+                    <button class="info-button" ng-click="openModalForSeries(series)"><i class="fa fa-info fa-2x"></i></button>
                 </div>
             </div>
-            <img class="comic-cover" ng-src="{{series.latestComicCoverPath}}.{{series.latestComicCoverExtension}}" alt="Cover of {{series.title}}">
             <div class="warning-badge" ng-hide="isOngoing(series.endYear)">
-                <i class="fa fa-exclamation-triangle fa-inverse"></i>
+                <i class="fa fa-ban fa-inverse"></i>
             </div>
         </div>
         <p>{{series.title | limitFromToChar:0:" ("}}</p>

@@ -6573,10 +6573,10 @@ th.hide-for-touch {
   border-top: 40px solid red;
   border-right: 40px solid transparent;
   z-index: 3; }
-  .warning-badge .fa-exclamation-triangle {
+  .warning-badge .fa-ban {
     position: absolute;
-    top: -37px;
-    left: 3px; }
+    top: -36px;
+    left: 4px; }
 
 .logo {
   fill: #E3DFBA;
