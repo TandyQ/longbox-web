@@ -5,7 +5,7 @@
     <h1>{{ message }}</h1>
 </div>
 <div class="row comic-grid">
-    <div class="tiny-6 small-4 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList">
+    <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList">
         <!-- Fix for different cover sizes -->
         <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}">
             <div class="cover-overlay">
@@ -15,6 +15,6 @@
                 </div>
             </div>
         </div>
-        <p>{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
+        <p class="comic-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
     </div>
 </div>

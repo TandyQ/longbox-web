@@ -1,0 +1,345 @@
+@import "settings";
+@import "foundation";
+@import "style";
+
+@media #{$medium-up} {
+    .top-bar {
+        padding-top: 0;
+        height: rem-calc(45);
+    }
+}
+
+@media only screen and (min-width: 0) {
+    .top-bar {
+        @include clearfix;
+
+        background: $topbar-bg;
+        overflow: visible;
+
+        .toggle-topbar {
+            display: none;
+        }
+
+        .title-area {
+            float: $default-float;
+        }
+
+        .name h1 a,
+        .name h2 a,
+        .name h3 a,
+        .name h4 a,
+        .name h5 a,
+        .name h6 a {
+            width: auto;
+        }
+
+        input,
+        select,
+        .button,
+        button {
+            font-size: rem-calc(14);
+            height: $topbar-input-height;
+            position: relative;
+            top: ($topbar-height - $topbar-input-height) / 2;
+        }
+
+        .has-form > .button,
+        .has-form > button {
+            font-size: rem-calc(14);
+            height: $topbar-input-height;
+            position: relative;
+            top: ($topbar-height - $topbar-input-height) / 2;
+        }
+
+        &.expanded {
+            background: $topbar-bg;
+        }
+    }
+
+    .contain-to-grid .top-bar {
+        margin: 0 auto;
+        margin-bottom: $topbar-margin-bottom;
+        max-width: $row-width;
+    }
+
+    .top-bar-section {
+        @include single-transition(none, 0, 0);
+
+        #{$default-float}: 0 !important;
+
+        ul {
+            display: inline;
+            height: auto !important;
+            width: auto;
+
+            li {
+                float: $default-float;
+
+                .js-generated {
+                    display: none;
+                }
+            }
+        }
+
+        li {
+            &.hover {
+                > a:not(.button) {
+                    background-color: $topbar-link-bg-color-hover;
+
+                    @if $topbar-link-bg-hover {
+                        background: $topbar-link-bg-hover;
+                    }
+
+                    color: $topbar-link-color-hover;
+                }
+            }
+
+            &:not(.has-form) {
+                a:not(.button) {
+                    background: $topbar-link-bg;
+                    line-height: $topbar-height;
+                    padding: 0 $topbar-link-padding;
+
+                    &:hover {
+                        background-color: $topbar-link-bg-color-hover;
+
+                        @if $topbar-link-bg-hover {
+                            background: $topbar-link-bg-hover;
+                        }
+                    }
+                }
+            }
+
+            &.active:not(.has-form) {
+                a:not(.button) {
+                    background: $topbar-link-bg-active;
+                    color: $topbar-link-color-active;
+                    line-height: $topbar-height;
+                    padding: 0 $topbar-link-padding;
+
+                    &:hover {
+                        background: $topbar-link-bg-active-hover;
+                        color: $topbar-link-color-active-hover;
+                    }
+                }
+            }
+        }
+
+        .has-dropdown {
+            @if $topbar-arrows {
+                > a {
+                    padding-#{$opposite-direction}: ($topbar-link-padding + $topbar-link-dropdown-padding) !important;
+
+                    &:after {
+                        @include css-triangle($topbar-dropdown-toggle-size, rgba($topbar-dropdown-toggle-color, $topbar-dropdown-toggle-alpha), top);
+
+                        margin-top: -($topbar-dropdown-toggle-size / 2);
+                        top: $topbar-height / 2;
+                    }
+                }
+            }
+
+            &.moved {
+                position: relative;
+
+                > .dropdown {
+                    @include topbar-hide-dropdown;
+                }
+            }
+
+            &.hover,
+            &.not-click:hover {
+                > .dropdown {
+                    @include topbar-show-dropdown;
+                }
+            }
+
+            > a:focus + .dropdown {
+                @include topbar-show-dropdown;
+            }
+
+            .dropdown li.has-dropdown {
+                > a {
+                    @if $topbar-dropdown-arrows {
+                        &:after {
+                            border: none;
+                            content: "\00bb";
+                            top: rem-calc(3);
+                            #{$opposite-direction}: 5px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .dropdown {
+            #{$default-float}: 0;
+            background: transparent;
+            min-width: 100%;
+            top: auto;
+
+            li {
+                a {
+                    background: $topbar-dropdown-link-bg;
+                    color: $topbar-dropdown-link-color;
+                    line-height: $topbar-height;
+                    padding: 12px $topbar-link-padding;
+                    white-space: nowrap;
+                }
+
+                &:not(.has-form):not(.active) {
+                    > a:not(.button) {
+                        background: $topbar-dropdown-link-bg;
+                        color: $topbar-dropdown-link-color;
+                    }
+
+                    &:hover > a:not(.button) {
+                        background-color: $topbar-link-bg-color-hover;
+                        color: $topbar-dropdown-link-color-hover;
+
+                        @if $topbar-dropdown-link-bg-hover {
+                            background: $topbar-dropdown-link-bg-hover;
+                        }
+                    }
+                }
+
+                label {
+                    background: $topbar-dropdown-label-bg;
+                    white-space: nowrap;
+                }
+
+                // Second Level Dropdowns
+                .dropdown {
+                    #{$default-float}: 100%;
+                    top: 0;
+                }
+            }
+        }
+
+        > ul > .divider,
+        > ul > [role="separator"] {
+            border-#{$opposite-direction}: $topbar-divider-border-bottom;
+            border-bottom: none;
+            border-top: none;
+            clear: none;
+            height: $topbar-height;
+            width: 0;
+        }
+
+        .has-form {
+            background: $topbar-link-bg;
+            height: $topbar-height;
+            padding: 0 $topbar-link-padding;
+        }
+
+        // Position overrides for ul.right and ul.left
+        .#{$opposite-direction} {
+            li .dropdown {
+                #{$default-float}: auto;
+                #{$opposite-direction}: 0;
+
+                li .dropdown {
+                    #{$opposite-direction}: 100%;
+                }
+            }
+        }
+
+        .#{$default-float} {
+            li .dropdown {
+                #{$opposite-direction}: auto;
+                #{$default-float}: 0;
+
+                li .dropdown {
+                    #{$default-float}: 100%;
+                }
+            }
+        }
+    }
+
+    // Degrade gracefully when Javascript is disabled. Displays dropdown and changes
+    // background & text color on hover.
+    .no-js .top-bar-section {
+        ul li {
+            // Apply the hover link color when it has that class
+            &:hover > a {
+                background-color: $topbar-link-bg-color-hover;
+
+                @if $topbar-link-bg-hover {
+                    background: $topbar-link-bg-hover;
+                }
+
+                color: $topbar-link-color-hover;
+            }
+
+            // Apply the active link color when it has that class
+            &:active > a {
+                background: $topbar-link-bg-active;
+                color: $topbar-link-color-active;
+            }
+        }
+
+        .has-dropdown {
+            &:hover {
+                > .dropdown {
+                    @include topbar-show-dropdown;
+                }
+            }
+
+            > a:focus + .dropdown {
+                @include topbar-show-dropdown;
+            }
+        }
+    }
+}
+
+.top-bar {
+    padding-top: rem-calc(17);
+    height: rem-calc(62);
+
+    .title-area {
+        width: 100%;
+    }
+
+    .logo {
+        text-align: center;
+        display: inline;
+    }
+
+    .name h1 a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.bottom-bar {
+    padding-top: 0;
+    height: rem-calc(45);
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    z-index: 4;
+}
+
+.fixed-bottom {
+    ul {
+        width: 100%;
+    }
+
+    li {
+        width: 25%;
+        text-align: center;
+    }
+
+    i {
+        padding-top: 10px;
+        color: $font-color;
+    }
+}
+
+.dynamic-content {
+    padding-bottom: 40px;
+}

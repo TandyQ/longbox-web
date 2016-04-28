@@ -5,9 +5,9 @@
     <h2>{{ message }}</h2>
 </div>
 <div class="row comic-grid" data-equalizer>
-    <div class="tiny-6 small-4 medium-3 large-2 columns tight end" ng-repeat="comic in comicData" data-equalizer-watch>
+    <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData" data-equalizer-watch>
         <!-- Fix for different cover sizes -->
-        <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}">
+        <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="">
             <div class="cover-overlay">
                 <div class="buttons">
                     <div class="management-buttons" ng-show="currentUser">
@@ -21,6 +21,6 @@
                 <i class="fa fa-check fa-inverse"></i>
             </div>
         </div>
-        <p>{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
+        <p class="comic-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
     </div>
 </div>

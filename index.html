@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="myApp" ng-controller="MainController">
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!-- Mobile Web -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="images/icon/icon-iphone@2x.png">
     <link rel="apple-touch-icon" sizes="120x120" href="images/icon/icon-iphone@2x.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/icon/icon-iphone@3x.png">
@@ -16,7 +17,8 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,100,700,900" rel="stylesheet" type="text/css">
     <!-- CSS -->
-    <link rel="stylesheet" href="scss/build/css/style.css">
+    <link rel="stylesheet" ng-href="scss/build/css/{{ layout }}.css">
+    <!-- <link rel="stylesheet" href="scss/build/css/style.css"> -->
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Angular -->
@@ -26,6 +28,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-aria.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-animate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-touch.min.js"></script>
+    <!-- Angular Hammer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/RyanMullins-angular-hammer/2.1.10/angular.hammer.min.js"></script>
     <!-- Angular Foundation JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-foundation/0.8.0/mm-foundation-tpls.min.js"></script>
     <!-- JQuery -->
@@ -48,16 +53,20 @@
     <script src="js/controllers/all-new-issues.js"></script>
     <script src="js/controllers/comic-detail.js"></script>
     <script src="js/controllers/series-detail.js"></script>
+    <script src="js/controllers/mobile-standalone.js"></script>
 </head>
 
 <body>
     <header>
         <nav ng-include="'views/nav.html'"></nav>
     </header>
-    <div class="row">
+    <div class="dynamic-content row">
         <div class="small-12 columns" ng-view>
         </div>
     </div>
+    <footer ng-controller="MobileStandaloneController" ng-show="shouldShowStandaloneUI()">
+        <nav ng-include="'views/bottom-nav.html'"></nav>
+    </footer>
 </body>
 
 </html>

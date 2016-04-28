@@ -18,6 +18,16 @@ $font-color: #E3DFBA;
     transform: translate(-50%, -50%);
 }
 
+.logo {
+    fill: $font-color;
+    margin-top: 0.5rem;
+    width: 210px;
+}
+
+.top-bar .toggle-topbar.menu-icon a {
+    padding: 0 0.9375rem 0 0.9375rem;
+}
+
 .row {
     max-width: 1280px;
 }
@@ -27,6 +37,38 @@ $font-color: #E3DFBA;
 
     p {
         @include truncateText;
+    }
+}
+
+.columns.tight {
+    padding-left: .4rem;
+    padding-right: .4rem;
+}
+
+div.stretchy-wrapper {
+    overflow: hidden;
+    width: 100%;
+
+    /* comic cover ratio */
+    padding-bottom: 152.49%;
+    position: relative;
+    background: black;
+
+    img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: white;
+        font-size: 24px;
+        text-align: center;
+        z-index: 1;
+    }
+
+    &:hover .cover-overlay {
+        visibility: visible;
+        opacity: 1;
     }
 }
 
@@ -111,52 +153,15 @@ $font-color: #E3DFBA;
     }
 }
 
-.logo {
-    fill: $font-color;
-    margin-top: 0.5rem;
-    width: 210px;
-}
-
-.top-bar .toggle-topbar.menu-icon a {
-    padding: 0 0.9375rem 0 0.9375rem;
-}
-
-.columns.tight {
-    padding-left: .4rem;
-    padding-right: .4rem;
+.comic-title {
+    text-align: center;
+    padding-top: 5px;
 }
 
 .ellipsis {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-}
-
-div.stretchy-wrapper {
-    overflow: hidden;
-    width: 100%;
-
-    /* comic cover ratio */
-    padding-bottom: 152.49%;
-    position: relative;
-    background: black;
-
-    img {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        color: white;
-        font-size: 24px;
-        text-align: center;
-        z-index: 1;
-    }
-
-    &:hover .cover-overlay {
-        visibility: visible;
-        opacity: 1;
-    }
 }
 
 @media #{$small-only} {
@@ -171,6 +176,10 @@ div.stretchy-wrapper {
     .top-bar .name p a,
     .top-bar .name span a {
         padding: 0 0.5rem;
+    }
+
+    .comic-title {
+        font-size: .9em;
     }
 }
 

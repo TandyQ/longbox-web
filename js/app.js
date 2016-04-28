@@ -1,5 +1,13 @@
-var myApp = angular.module('myApp', ['ngRoute', 'firebase', 'mm.foundation'])
+var myApp = angular.module('myApp', ['ngRoute', 'firebase', 'mm.foundation', 'hmTouchEvents'])
     .constant('FIREBASE_URL', 'https://longbox.firebaseio.com/');
+
+myApp.controller('MainController', ['$scope', function($scope) {
+    if (("standalone" in window.navigator) && window.navigator.standalone) {
+        $scope.layout = "standalone";
+    } else {
+        $scope.layout = "style";
+    }
+}]);
 
 myApp.run(['$rootScope', '$location',
     function($rootScope, $location) {
