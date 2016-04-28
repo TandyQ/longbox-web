@@ -65,7 +65,9 @@ div.stretchy-wrapper {
         text-align: center;
         z-index: 1;
     }
+}
 
+.no-touch div.stretchy-wrapper {
     &:hover .cover-overlay {
         visibility: visible;
         opacity: 1;

@@ -6645,9 +6645,10 @@ div.stretchy-wrapper {
     font-size: 24px;
     text-align: center;
     z-index: 1; }
-  div.stretchy-wrapper:hover .cover-overlay {
-    visibility: visible;
-    opacity: 1; }
+
+.no-touch div.stretchy-wrapper:hover .cover-overlay {
+  visibility: visible;
+  opacity: 1; }
 
 .cover-overlay {
   background-color: rgba(0, 0, 0, 0.7);
@@ -6923,8 +6924,8 @@ div.stretchy-wrapper {
     position: absolute !important; } }
 
 .top-bar {
-  padding-top: 1.0625rem;
-  height: 3.875rem; }
+  padding-top: 1.0625rem !important;
+  height: 3.875rem !important; }
   .top-bar .title-area {
     width: 100%; }
   .top-bar .logo {
@@ -6935,7 +6936,7 @@ div.stretchy-wrapper {
     text-align: center; }
 
 .bottom-bar {
-  padding-top: 0;
+  padding-top: 0 !important;
   height: 2.8125rem; }
 
 footer {
@@ -6958,3 +6959,6 @@ footer {
 
 .dynamic-content {
   padding-bottom: 40px; }
+
+body {
+  padding-top: 3.875rem !important; }

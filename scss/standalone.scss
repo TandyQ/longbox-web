@@ -293,8 +293,8 @@
 }
 
 .top-bar {
-    padding-top: rem-calc(17);
-    height: rem-calc(62);
+    padding-top: rem-calc(17) !important;
+    height: rem-calc(62) !important;
 
     .title-area {
         width: 100%;
@@ -312,7 +312,7 @@
 }
 
 .bottom-bar {
-    padding-top: 0;
+    padding-top: 0 !important;
     height: rem-calc(45);
 }
 
@@ -342,4 +342,8 @@ footer {
 
 .dynamic-content {
     padding-bottom: 40px;
+}
+
+body {
+    padding-top: rem-calc(62) !important;
 }

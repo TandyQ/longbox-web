@@ -7,8 +7,8 @@
 <div class="row comic-grid">
     <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList">
         <!-- Fix for different cover sizes -->
-        <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}">
-            <div class="cover-overlay">
+        <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
+            <div class="cover-overlay" ng-style="tapOverlayCSS">
                 <div class="buttons">
                     <button class="remove-button" ng-click="removeFromPullList(comic)"><i class="fa fa-trash fa-2x"></i></button>
                     <button class="info-button"  ng-click="openModalForComic(comic)"><i class="fa fa-info fa-2x"></i></button>

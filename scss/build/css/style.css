@@ -6547,9 +6547,10 @@ div.stretchy-wrapper {
     font-size: 24px;
     text-align: center;
     z-index: 1; }
-  div.stretchy-wrapper:hover .cover-overlay {
-    visibility: visible;
-    opacity: 1; }
+
+.no-touch div.stretchy-wrapper:hover .cover-overlay {
+  visibility: visible;
+  opacity: 1; }
 
 .cover-overlay {
   background-color: rgba(0, 0, 0, 0.7);
