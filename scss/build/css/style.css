@@ -6538,11 +6538,10 @@ th.hide-for-touch {
 .pika-single.dark-theme {
   color: #E3DFBA;
   font-size: 1.2em;
-  background: #333;
-  border: 1px solid #666;
-  border-bottom-color: #999; }
+  background: #1A1F1E;
+  border: 0; }
   .pika-single.dark-theme .pika-label {
-    background-color: #333;
+    background-color: #1A1F1E;
     font-size: 20px; }
   .pika-single.dark-theme .pika-prev,
   .pika-single.dark-theme .is-rtl .pika-next {
@@ -6554,13 +6553,14 @@ th.hide-for-touch {
     color: #999; }
   .pika-single.dark-theme .pika-table tr th,
   .pika-single.dark-theme .pika-table tr td {
-    background-color: #333;
+    background-color: #1A1F1E;
     font-size: 16px; }
   .pika-single.dark-theme .pika-button {
     color: #fff;
-    background: #222;
+    background: #0E1111;
     font-size: 18px;
-    height: 35px; }
+    height: 35px;
+    text-align: center; }
   .pika-single.dark-theme .pika-week {
     color: #999; }
   .pika-single.dark-theme .is-today .pika-button {
@@ -6568,13 +6568,15 @@ th.hide-for-touch {
   .pika-single.dark-theme .is-selected .pika-button {
     color: #fff;
     background: #33aaff;
-    box-shadow: inset 0 1px 3px #178fe5; }
+    box-shadow: inset 0 1px 3px #178fe5;
+    border-radius: 0; }
   .pika-single.dark-theme .is-disabled .pika-button {
     color: #999;
     opacity: .3; }
   .pika-single.dark-theme .pika-button:hover {
     color: #fff !important;
-    background: #ff8000 !important; }
+    background: #ff8000 !important;
+    border-radius: 0; }
 
 /* Comic Grid */
 .comic-grid {
@@ -6583,6 +6585,15 @@ th.hide-for-touch {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis; }
+
+.page-title-content {
+  padding: 0 10px 0 10px; }
+
+.page-title {
+  text-align: left; }
+
+.date-title {
+  text-align: right; }
 
 .columns.tight {
   padding-left: .4rem;
@@ -6681,8 +6692,6 @@ div.stretchy-wrapper {
 
 /* Media Queries */
 @media only screen and (min-width: 25.0625em) and (max-width: 40em) {
-  .comic-grid {
-    padding: 0 5px 0 5px; }
   .top-bar .name h1 a,
   .top-bar .name h2 a,
   .top-bar .name h3 a,
@@ -6690,9 +6699,15 @@ div.stretchy-wrapper {
   .top-bar .name p a,
   .top-bar .name span a {
     padding: 0 0.5rem; }
+  .comic-grid,
+  .page-title-content {
+    padding: 0 5px 0 5px; }
+  .date-title, .page-title {
+    text-align: center; }
   .comic-title {
     font-size: .9em; } }
 
 @media only screen and (min-width: 40.0625em) {
-  .comic-grid {
+  .comic-grid,
+  .page-title-content {
     padding: 0 10px 0 10px; } }

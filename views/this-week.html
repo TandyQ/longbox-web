@@ -1,8 +1,8 @@
 <div class="card meetings cf">
-    <div class="textintro">
-        <h1>THIS WEEK</h1>
+    <div class="row page-title-content">
+        <div class="small-12 medium-6 large-6 columns tight page-title"><h2>THIS WEEK</h2></div>
+        <div class="small-12 medium-6 large-6 columns tight date-title"><p><i ng-show="isLoading" class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>Week of <input class="date-picker" type="text" ng-model="weekToShow" picka-day /></p></div>
     </div>
-    <p><i ng-show="isLoading" class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>Week of <input class="date-picker" type="text" ng-model="weekToShow" picka-day /></p>
 </div>
 <div class="row comic-grid">
     <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList">

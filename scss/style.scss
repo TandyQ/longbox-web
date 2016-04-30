@@ -3,7 +3,7 @@
 
 $font-color: #E3DFBA;
 $bg-color: #0E1111;
-$date-picker-background-color: #333;
+$header-bg-color: #1A1F1E;
 
 @mixin truncateText($overflow: ellipsis) {
     overflow: hidden;
@@ -56,12 +56,11 @@ $date-picker-background-color: #333;
 .pika-single.dark-theme {
     color: $font-color;
     font-size: 1.2em;
-    background: $date-picker-background-color;
-    border: 1px solid #666;
-    border-bottom-color: #999;
+    background: $header-bg-color;
+    border: 0;
 
     .pika-label {
-        background-color: $date-picker-background-color;
+        background-color: $header-bg-color;
         font-size: 20px;
     }
 
@@ -81,15 +80,16 @@ $date-picker-background-color: #333;
 
     .pika-table tr th,
     .pika-table tr td {
-        background-color: $date-picker-background-color;
+        background-color: $header-bg-color;
         font-size: 16px;
     }
 
     .pika-button {
         color: #fff;
-        background: #222;
+        background: $bg-color;
         font-size: 18px;
         height: 35px;
+        text-align: center;
     }
 
     .pika-week {
@@ -104,6 +104,7 @@ $date-picker-background-color: #333;
         color: #fff;
         background: #33aaff;
         box-shadow: inset 0 1px 3px #178fe5;
+        border-radius: 0;
     }
 
     .is-disabled .pika-button {
@@ -114,6 +115,7 @@ $date-picker-background-color: #333;
     .pika-button:hover {
         color: #fff !important;
         background: #ff8000 !important;
+        border-radius: 0;
     }
 }
 
@@ -125,6 +127,18 @@ $date-picker-background-color: #333;
     p {
         @include truncateText;
     }
+}
+
+.page-title-content {
+    padding: 0 10px 0 10px;
+}
+
+.page-title {
+    text-align: left;
+}
+
+.date-title {
+    text-align: right;
 }
 
 .columns.tight {
@@ -256,10 +270,6 @@ div.stretchy-wrapper {
 /* Media Queries */
 
 @media #{$small-only} {
-    .comic-grid {
-        padding: 0 5px 0 5px;
-    }
-
     .top-bar .name h1 a,
     .top-bar .name h2 a,
     .top-bar .name h3 a,
@@ -269,13 +279,23 @@ div.stretchy-wrapper {
         padding: 0 0.5rem;
     }
 
+    .comic-grid,
+    .page-title-content {
+        padding: 0 5px 0 5px;
+    }
+
+    .date-title, .page-title {
+        text-align: center;
+    }
+
     .comic-title {
         font-size: .9em;
     }
 }
 
 @media #{$medium-up} {
-    .comic-grid {
+    .comic-grid,
+    .page-title-content {
         padding: 0 10px 0 10px;
     }
 }
