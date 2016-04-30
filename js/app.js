@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'firebase', 'mm.foundation', 'hmTouchEvents'])
+var myApp = angular.module('myApp', ['ngRoute', 'firebase', 'mm.foundation', 'hmTouchEvents', 'angular.datepicker'])
     .constant('FIREBASE_URL', 'https://longbox.firebaseio.com/');
 
 myApp.controller('MainController', ['$scope', function($scope) {
