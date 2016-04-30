@@ -6630,48 +6630,49 @@ th.hide-for-touch {
   font-size: 1rem !important;
   cursor: pointer; }
 
+.pika-lendar {
+  width: 300px; }
+
 .pika-single.dark-theme {
-  color: #fff;
+  color: #E3DFBA;
+  font-size: 1.2em;
   background: #333;
   border: 1px solid #666;
   border-bottom-color: #999; }
-
-.dark-theme .pika-label {
-  background-color: #333; }
-
-.dark-theme .pika-prev,
-.dark-theme .is-rtl .pika-next {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAQAAACGG/bgAAAAQ0lEQVR4Ae3KIQ4AIBTD0N0/IeHGI3UIRA3ut/Zl+ltXc5++htVAmIAwAWECwgSEKbgthEoIlRAqIVRCqINQB9nDgQd7ktwFo6UpWQAAAABJRU5ErkJggg=="); }
-
-.dark-theme .pika-next,
-.dark-theme .is-rtl .pika-prev {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAQAAACGG/bgAAAAP0lEQVQ4y+3TMQoAMAgEwfwfAvvjTZ1uGzuvHhBPPGczEG+FRqqRaqQaqUaqkX6QBmmjacvQ6qEVTjsh+xizebvlaWptGXZAAAAAAElFTkSuQmCC"); }
-
-.dark-theme .pika-table th {
-  color: #999; }
-
-.dark-theme .pika-button {
-  color: #fff;
-  background: #222; }
-
-.dark-theme .pika-week {
-  color: #999; }
-
-.dark-theme .is-today .pika-button {
-  color: #33aaff; }
-
-.dark-theme .is-selected .pika-button {
-  color: #fff;
-  background: #33aaff;
-  box-shadow: inset 0 1px 3px #178fe5; }
-
-.dark-theme .is-disabled .pika-button {
-  color: #999;
-  opacity: .3; }
-
-.dark-theme .pika-button:hover {
-  color: #fff !important;
-  background: #ff8000 !important; }
+  .pika-single.dark-theme .pika-label {
+    background-color: #333;
+    font-size: 20px; }
+  .pika-single.dark-theme .pika-prev,
+  .pika-single.dark-theme .is-rtl .pika-next {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAQAAACGG/bgAAAAQ0lEQVR4Ae3KIQ4AIBTD0N0/IeHGI3UIRA3ut/Zl+ltXc5++htVAmIAwAWECwgSEKbgthEoIlRAqIVRCqINQB9nDgQd7ktwFo6UpWQAAAABJRU5ErkJggg=="); }
+  .pika-single.dark-theme .pika-next,
+  .pika-single.dark-theme .is-rtl .pika-prev {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAQAAACGG/bgAAAAP0lEQVQ4y+3TMQoAMAgEwfwfAvvjTZ1uGzuvHhBPPGczEG+FRqqRaqQaqUaqkX6QBmmjacvQ6qEVTjsh+xizebvlaWptGXZAAAAAAElFTkSuQmCC"); }
+  .pika-single.dark-theme .pika-table th {
+    color: #999; }
+  .pika-single.dark-theme .pika-table tr th,
+  .pika-single.dark-theme .pika-table tr td {
+    background-color: #333;
+    font-size: 16px; }
+  .pika-single.dark-theme .pika-button {
+    color: #fff;
+    background: #222;
+    font-size: 18px;
+    height: 35px; }
+  .pika-single.dark-theme .pika-week {
+    color: #999; }
+  .pika-single.dark-theme .is-today .pika-button {
+    color: #33aaff; }
+  .pika-single.dark-theme .is-selected .pika-button {
+    color: #fff;
+    background: #33aaff;
+    box-shadow: inset 0 1px 3px #178fe5; }
+  .pika-single.dark-theme .is-disabled .pika-button {
+    color: #999;
+    opacity: .3; }
+  .pika-single.dark-theme .pika-button:hover {
+    color: #fff !important;
+    background: #ff8000 !important; }
 
 /* Comic Grid */
 .comic-grid {
