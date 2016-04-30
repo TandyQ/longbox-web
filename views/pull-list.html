@@ -9,7 +9,7 @@
         <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + series.latestComicCoverPath + '.' + series.latestComicCoverExtension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
             <div class="cover-overlay" ng-style="tapOverlayCSS">
                 <div class="buttons">
-                    <button class="remove-button" ng-click="removeFromPullList(series)"><i class="fa fa-trash fa-2x"></i></button>
+                    <button class="remove-button" ng-click="removeFromPullList(series)"><i class="fa fa-minus fa-2x"></i></button>
                     <button class="info-button" ng-click="openModalForSeries(series)"><i class="fa fa-info fa-2x"></i></button>
                 </div>
             </div>

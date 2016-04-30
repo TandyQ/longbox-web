@@ -48,7 +48,7 @@
                   minDate = "undefined" != typeof $scope.minDate ? new Date($scope.minDate) : !1,
                   maxDate = "undefined" != typeof $scope.maxDate ? new Date($scope.maxDate) : !1,
                   disableWeekends = !!$scope.disableWeekends || !1,
-                  yearRange = $scope.yearRange || [1990, date.getFullYear()];
+                  yearRange = $scope.yearRange || [1939, date.getFullYear()];
 
                   picker = new Pikaday({
                       field: $elem[0],

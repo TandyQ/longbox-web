@@ -2,7 +2,7 @@
     <div class="textintro">
         <h1>All New Comics</h1>
     </div>
-    <p>Week of <input class="date-picker" type="text" ng-model="weekToShow" picka-day /></p>
+    <p><i ng-show="isLoading" class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>Week of <input class="date-picker" type="text" ng-model="weekToShow" picka-day /></p>
 </div>
 <div class="row comic-grid" data-equalizer>
     <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData" data-equalizer-watch>
@@ -12,7 +12,7 @@
                 <div class="buttons">
                     <div class="management-buttons" ng-show="currentUser">
                     <button class="add-button" ng-click="addComic(comic.series)" ng-hide="isInPullList(comic.series)"><i class="fa fa-plus fa-2x"></i></button>
-                    <button class="remove-button" ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic.series)"><i class="fa fa-trash fa-2x"></i></button>
+                    <button class="remove-button" ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic.series)"><i class="fa fa-minus fa-2x"></i></button>
                     </div>
                     <button class="info-button" ng-click="openModalForComic(comic)"><i class="fa fa-info fa-2x"></i></button>
                 </div>

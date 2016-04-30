@@ -6636,8 +6636,8 @@ div.stretchy-wrapper {
     margin-bottom: 10px; }
     .cover-overlay button .fa-plus {
       padding: 4px 0 0 0; }
-    .cover-overlay button .fa-trash {
-      padding: 1px 0 0 0; }
+    .cover-overlay button .fa-minus {
+      padding: 4px 0 0 0; }
     .cover-overlay button .fa-info {
       padding: 2px 0 0 1px; }
   .cover-overlay .remove-button {

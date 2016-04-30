@@ -2,6 +2,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'DateU
     function($scope, $modal, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
+        $scope.isLoading = false;
 
         auth.$onAuth(function(authUser) {
             if (authUser) {
@@ -19,10 +20,11 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'DateU
         });
 
         $scope.$watch('weekToShow', function(newValue, oldValue) {
+            $scope.isLoading = true;
             var dateRange = DateUtils.getDateRange(new Date(newValue)); // Get first and last day of week
-            console.log(dateRange);
             Marvel.getComicDataForWeek(dateRange).then(function(data) {
                 $scope.comicData = data;
+                $scope.isLoading = false;
             });
         });
 
