@@ -81,6 +81,12 @@ $header-bg-color: #1A1F1E;
         font-size: 18px;
         height: 35px;
         text-align: center;
+
+        &:hover {
+            color: #fff !important;
+            background: #ff8000 !important;
+            border-radius: 0;
+        }
     }
 
     .pika-week {
@@ -102,11 +108,14 @@ $header-bg-color: #1A1F1E;
         color: #999;
         opacity: .3;
     }
+}
 
-    .pika-button:hover {
-        color: #fff !important;
-        background: #ff8000 !important;
-        border-radius: 0;
+.inline-button {
+    margin-top: -10px;
+    display: inline;
+
+    .fa {
+        font-size: 30px;
     }
 }
 
@@ -118,7 +127,20 @@ $header-bg-color: #1A1F1E;
     -moz-border-radius: 50%;
     border-radius: 50%;
     padding: 0;
-    margin: 0;
+    background-color: $bg-color;
+
+    &:hover,
+    &:focus {
+        background-color: $bg-color;
+    }
+}
+
+.back-button {
+    margin-right: 10px;
+}
+
+.forward-button {
+    margin-left: 10px;
 }
 
 /* Comic Grid */
@@ -132,17 +154,13 @@ $header-bg-color: #1A1F1E;
 }
 
 .page-title-content {
-    padding: 0 10px 0 10px;
+    padding: 10px 10px 10px 10px;
 }
 
 .page-title {
-    text-align: left;
-}
+    text-align: center;
 
-.date-title {
-    text-align: right;
-
-    h3 {
+    h2 {
         display: inline;
     }
 }
@@ -275,6 +293,29 @@ div.stretchy-wrapper {
 
 /* Media Queries */
 
+@media #{$tiny-only} {
+    .inline-button {
+        width: 40px;
+        height: 40px;
+        display: inline;
+
+        .fa {
+            font-size: 30px;
+        }
+    }
+
+    .date-nav-button {
+        width: 20px;
+        height: 20px;
+    }
+
+    .page-title {
+        h2 {
+            font-size: 16px;
+        }
+    }
+}
+
 @media #{$small-only} {
     .top-bar .name h1 a,
     .top-bar .name h2 a,
@@ -285,14 +326,25 @@ div.stretchy-wrapper {
         padding: 0 0.5rem;
     }
 
-    .comic-grid,
-    .page-title-content {
-        padding: 0 5px 0 5px;
+    .page-title {
+        h2 {
+            font-size: 14px;
+        }
     }
 
-    .date-title,
-    .page-title {
-        text-align: center;
+    .inline-button {
+        width: 40px;
+        height: 40px;
+        display: inline;
+
+        .fa {
+            font-size: 30px;
+        }
+    }
+
+    .page-title-content,
+    .comic-grid {
+        padding: 0 5px 0 5px;
     }
 
     .comic-title {

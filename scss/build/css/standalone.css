@@ -6650,6 +6650,10 @@ th.hide-for-touch {
     font-size: 18px;
     height: 35px;
     text-align: center; }
+    .pika-single.dark-theme .pika-button:hover {
+      color: #fff !important;
+      background: #ff8000 !important;
+      border-radius: 0; }
   .pika-single.dark-theme .pika-week {
     color: #999; }
   .pika-single.dark-theme .is-today .pika-button {
@@ -6662,10 +6666,11 @@ th.hide-for-touch {
   .pika-single.dark-theme .is-disabled .pika-button {
     color: #999;
     opacity: .3; }
-  .pika-single.dark-theme .pika-button:hover {
-    color: #fff !important;
-    background: #ff8000 !important;
-    border-radius: 0; }
+
+.inline-button {
+  width: 40px;
+  height: 40px;
+  display: inline; }
 
 .date-nav-button {
   width: 30px;
@@ -6675,7 +6680,14 @@ th.hide-for-touch {
   -moz-border-radius: 50%;
   border-radius: 50%;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  background-color: #0E1111;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+  .date-nav-button:hover, .date-nav-button:focus {
+    background-color: #0E1111; }
 
 /* Comic Grid */
 .comic-grid {
@@ -6686,16 +6698,12 @@ th.hide-for-touch {
     text-overflow: ellipsis; }
 
 .page-title-content {
-  padding: 0 10px 0 10px; }
+  padding: 10px 10px 10px 10px; }
 
 .page-title {
-  text-align: left; }
-
-.date-title {
-  text-align: right; }
-  .date-title h3 {
-    display: inline;
-    line-height: 30px; }
+  text-align: center; }
+  .page-title h2 {
+    display: inline; }
 
 .columns.tight {
   padding-left: .4rem;
@@ -6793,6 +6801,13 @@ div.stretchy-wrapper {
   overflow: hidden; }
 
 /* Media Queries */
+@media only screen and (max-width: 25em) {
+  .date-nav-button {
+    width: 20px;
+    height: 20px; }
+  .page-title h2 {
+    font-size: 16px; } }
+
 @media only screen and (min-width: 25.0625em) and (max-width: 40em) {
   .top-bar .name h1 a,
   .top-bar .name h2 a,
@@ -6801,12 +6816,11 @@ div.stretchy-wrapper {
   .top-bar .name p a,
   .top-bar .name span a {
     padding: 0 0.5rem; }
-  .comic-grid,
-  .page-title-content {
+  .page-title h2 {
+    font-size: 14px; }
+  .page-title-content,
+  .comic-grid {
     padding: 0 5px 0 5px; }
-  .date-title,
-  .page-title {
-    text-align: center; }
   .comic-title {
     font-size: .9em; } }
 

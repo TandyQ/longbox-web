@@ -1,11 +1,13 @@
 <div class="row page-title-content">
-    <div class="small-12 medium-6 large-6 columns page-title">
-        <h3>New Issues</h3></div>
-    <div class="small-12 medium-6 large-6 columns date-title">
-        <button class="date-nav-button back-button" ng-click="moveBackOneWeek()"><i class="fa fa-arrow-left"></i></button>
+    <div class="large-12 columns tight page-title">
+        <div class="inline-button">
+        <button class="date-nav-button back-button" ng-click="moveBackOneWeek()"><i class="fa fa-chevron-left"></i></button>
+        </div>
         <i ng-show="isLoading" class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>
-        <h3 id="datepicker-text">{{weekToShow}}</h3>
-        <button class="date-nav-button forward-button" ng-click="moveForwardOneWeek()"><i class="fa fa-arrow-right"></i></button>
+        <h2 id="datepicker-text">New Issues - {{weekToShow}}</h2>
+        <div class="inline-button">
+        <button class="date-nav-button forward-button" ng-click="moveForwardOneWeek()"><i class="fa fa-chevron-right"></i></button>
+        </div>
     </div>
     <input class="date-picker" ng-model="weekToShow" id="datepicker-input" type="text" picka-day />
 </div>
