@@ -21,7 +21,7 @@
     }
 }(this, function (Pikaday){
   angular.module("angular.datepicker", [])
-  .directive("pickaDay",function() {
+  .directive("pickaDay",['DateUtils', function(DateUtils) {
       return {
           restrict: "A",
           scope: {
@@ -44,7 +44,7 @@
                   }
                   var date = new Date();
                   format = $scope.format || "YYYY-MM-D",
-                  defaultDate = "undefined" != typeof $scope.defaultDate ? new Date($scope.defaultDate) : !1,
+                  defaultDate = DateUtils.getWednesdayDate(new Date()),
                   minDate = "undefined" != typeof $scope.minDate ? new Date($scope.minDate) : !1,
                   maxDate = "undefined" != typeof $scope.maxDate ? new Date($scope.maxDate) : !1,
                   disableWeekends = !!$scope.disableWeekends || !1,
@@ -63,22 +63,22 @@
                       disableWeekends: disableWeekends,
                       yearRange: yearRange,
                       onSelect: function() {
-                          $scope.onSelect && "function" == typeof $scope.onSelect && $scope.onSelect(this.getMoment().format(format), this.getMoment())
+                          $scope.onSelect && "function" == typeof $scope.onSelect && $scope.onSelect(this.getMoment().format(format), this.getMoment());
                       },
                       onOpen: function() {
-                          $scope.onOpen && "function" == typeof $scope.onOpen && $scope.onOpen(this.getMoment().format(format), this.getMoment())
+                          $scope.onOpen && "function" == typeof $scope.onOpen && $scope.onOpen(this.getMoment().format(format), this.getMoment());
                       },
                       onClose: function() {
-                          $scope.onClose && "function" == typeof $scope.onClose && $scope.onClose(this.getMoment().format(format), this.getMoment())
+                          $scope.onClose && "function" == typeof $scope.onClose && $scope.onClose(this.getMoment().format(format), this.getMoment());
                       },
                       onDraw: function() {
-                          $scope.onDraw && "function" == typeof $scope.onDraw && $scope.onDraw(this.getMoment().format(format), this.getMoment())
+                          $scope.onDraw && "function" == typeof $scope.onDraw && $scope.onDraw(this.getMoment().format(format), this.getMoment());
                       }
-                  })
+                  });
               }), $scope.$on("$destroy", function() {
                   picker.destroy();
-              })
+              });
           }
-      }
-})
+      };
+}]);
 }));

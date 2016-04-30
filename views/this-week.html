@@ -2,7 +2,7 @@
     <div class="textintro">
         <h1>THIS WEEK</h1>
     </div>
-    <h1>{{ message }}</h1>
+    <p>Week of <input class="date-picker" type="text" ng-model="weekToShow" picka-day /></p>
 </div>
 <div class="row comic-grid">
     <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList">

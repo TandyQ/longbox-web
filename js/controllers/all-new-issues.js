@@ -1,9 +1,5 @@
 myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
     function($scope, $modal, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
-        var wedDate = DateUtils.getWednesdayDate(new Date());
-        $scope.message = "Week of " +
-            (DateUtils.getMonthName(wedDate)) + " " + wedDate.getUTCDate() + ", " + wedDate.getFullYear();
-
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
@@ -22,6 +18,14 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'DateU
             }
         });
 
+        $scope.$watch('weekToShow', function(newValue, oldValue) {
+            var dateRange = DateUtils.getDateRange(new Date(newValue)); // Get first and last day of week
+            console.log(dateRange);
+            Marvel.getComicDataForWeek(dateRange).then(function(data) {
+                $scope.comicData = data;
+            });
+        });
+
         $scope.openModalForComic = function(selectedComic) {
             var modalInstance = $modal.open({
                 templateUrl: 'views/comic-detail-view.html',
@@ -36,11 +40,6 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'DateU
                 }
             });
         };
-
-        var dateRange = DateUtils.getDateRange(new Date()); // Get first and last day of week
-        Marvel.getComicDataForWeek(dateRange).then(function(data) {
-            $scope.comicData = data;
-        });
 
         $scope.onPullListChange = function(series) {
             if ($scope.isInPullList(series)) {

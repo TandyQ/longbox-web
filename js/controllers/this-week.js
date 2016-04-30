@@ -1,14 +1,14 @@
 myApp.controller('ThisWeekController', ['$scope', '$modal', 'Marvel', 'DateUtils', "PullList", "PullListUtils", "FirebaseUtils",
     function($scope, $modal, Marvel, DateUtils, PullList, PullListUtils, FirebaseUtils) {
         var wedDate = DateUtils.getWednesdayDate(new Date());
-        $scope.message = "Week of " +
-            (DateUtils.getMonthName(wedDate)) + " " + wedDate.getUTCDate() + ", " + wedDate.getFullYear();
 
         PullList.getPullList();
 
-        var dateRange = DateUtils.getDateRange(new Date()); // Get first and last day of week
-        Marvel.getComicDataForWeek(dateRange).then(function(data) {
-            $scope.comicData = data;
+        $scope.$watch('weekToShow', function(newValue, oldValue) {
+            var dateRange = DateUtils.getDateRange(new Date(newValue)); // Get first and last day of week
+            Marvel.getComicDataForWeek(dateRange).then(function(data) {
+                $scope.comicData = data;
+            });
         });
 
         $scope.openModalForComic = function(selectedComic) {
