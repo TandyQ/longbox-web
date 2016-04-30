@@ -6619,16 +6619,7 @@ th.hide-for-touch {
 
 /* Date Picker Styling */
 .date-picker {
-  background-color: #0E1111 !important;
-  color: #E3DFBA !important;
-  border: 0 !important;
-  display: inline !important;
-  width: auto !important;
-  height: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 1rem !important;
-  cursor: pointer; }
+  display: none !important; }
 
 .pika-lendar {
   width: 300px; }
@@ -6676,6 +6667,16 @@ th.hide-for-touch {
     background: #ff8000 !important;
     border-radius: 0; }
 
+.date-nav-button {
+  width: 30px;
+  height: 30px;
+  display: inline;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0; }
+
 /* Comic Grid */
 .comic-grid {
   padding: 0 10px 0 10px; }
@@ -6692,6 +6693,9 @@ th.hide-for-touch {
 
 .date-title {
   text-align: right; }
+  .date-title h3 {
+    display: inline;
+    line-height: 30px; }
 
 .columns.tight {
   padding-left: .4rem;
@@ -6800,7 +6804,8 @@ div.stretchy-wrapper {
   .comic-grid,
   .page-title-content {
     padding: 0 5px 0 5px; }
-  .date-title, .page-title {
+  .date-title,
+  .page-title {
     text-align: center; }
   .comic-title {
     font-size: .9em; } }

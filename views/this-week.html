@@ -1,8 +1,13 @@
-<div class="card meetings cf">
-    <div class="row page-title-content">
-        <div class="small-12 medium-6 large-6 columns tight page-title"><h2>THIS WEEK</h2></div>
-        <div class="small-12 medium-6 large-6 columns tight date-title"><p><i ng-show="isLoading" class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>Week of <input class="date-picker" type="text" ng-model="weekToShow" picka-day /></p></div>
+<div class="row page-title-content">
+    <div class="small-12 medium-6 large-6 columns page-title">
+        <h3>New Issues</h3></div>
+    <div class="small-12 medium-6 large-6 columns date-title">
+        <button class="back-button" ng-click="moveBackOneWeek()"><i class="fa fa-arrow-left"></i></button>
+        <i ng-show="isLoading" class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>
+        <h3 id="datepicker-text">{{weekToShow}}</h3>
+        <button class="forward-button" ng-click="moveForwardOneWeek()"><i class="fa fa-arrow-right"></i></button>
     </div>
+    <input class="date-picker" ng-model="weekToShow" id="datepicker-input" type="text" picka-day />
 </div>
 <div class="row comic-grid">
     <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList">
@@ -11,7 +16,7 @@
             <div class="cover-overlay" ng-style="tapOverlayCSS">
                 <div class="buttons">
                     <button class="remove-button" ng-click="removeFromPullList(comic)"><i class="fa fa-minus fa-2x"></i></button>
-                    <button class="info-button"  ng-click="openModalForComic(comic)"><i class="fa fa-info fa-2x"></i></button>
+                    <button class="info-button" ng-click="openModalForComic(comic)"><i class="fa fa-info fa-2x"></i></button>
                 </div>
             </div>
         </div>

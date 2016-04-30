@@ -37,16 +37,7 @@ $header-bg-color: #1A1F1E;
 /* Date Picker Styling */
 
 .date-picker {
-    background-color: $bg-color !important;
-    color: $font-color !important;
-    border: 0 !important;
-    display: inline !important;
-    width: auto !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    font-size: 1rem !important;
-    cursor: pointer;
+    display: none !important;
 }
 
 .pika-lendar {
@@ -119,6 +110,17 @@ $header-bg-color: #1A1F1E;
     }
 }
 
+.date-nav-button {
+    width: 30px;
+    height: 30px;
+    display: inline;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+}
+
 /* Comic Grid */
 
 .comic-grid {
@@ -139,6 +141,10 @@ $header-bg-color: #1A1F1E;
 
 .date-title {
     text-align: right;
+
+    h3 {
+        display: inline;
+    }
 }
 
 .columns.tight {
@@ -284,7 +290,8 @@ div.stretchy-wrapper {
         padding: 0 5px 0 5px;
     }
 
-    .date-title, .page-title {
+    .date-title,
+    .page-title {
         text-align: center;
     }
 

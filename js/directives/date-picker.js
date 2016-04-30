@@ -51,7 +51,8 @@
                   yearRange = $scope.yearRange || [1939, date.getFullYear()];
 
                   picker = new Pikaday({
-                      field: $elem[0],
+                      field: document.getElementById('datepicker-input'),
+                      trigger: document.getElementById('datepicker-text'),
                       position: "bottomleft",
                       theme: "dark-theme",
                       format: format,
