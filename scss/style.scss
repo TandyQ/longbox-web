@@ -13,11 +13,29 @@ $header-bg-color: #1A1F1E;
     // values are: clip, ellipsis, or a string
 }
 
-@mixin centerer {
-    position: absolute;
+@mixin centererWithPosition($position: null, $width: null, $height: null) {
+    position: $position;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+
+    @if not $width and not $height {
+        transform: translate(-50%, -50%);
+    }
+    @else if $width and $height {
+        width: $width;
+        height: $height;
+        margin: unquote("#{-($width / 2)} #{0 0} -#{$height / 2}");
+    }
+    @else if not $height {
+        width: $width;
+        margin-left: -($width / 2);
+        transform: translateY(-50%);
+    }
+    @else {
+        height: $height;
+        margin-top: -($height / 2);
+        transform: translateX(-50%);
+    }
 }
 
 .logo {
@@ -119,13 +137,14 @@ $header-bg-color: #1A1F1E;
     }
 }
 
+.spinner-container {
+    @include centererWithPosition(fixed, 5em, 5em);
+}
+
 .date-nav-button {
     width: 30px;
     height: 30px;
     display: inline;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
     padding: 0;
     background-color: $bg-color;
 
@@ -155,10 +174,19 @@ $header-bg-color: #1A1F1E;
 
 .page-title-content {
     padding: 10px 10px 10px 10px;
+    height: 50px;
 }
 
 .page-title {
-    text-align: center;
+    text-align: left;
+
+    h2 {
+        display: inline;
+    }
+}
+
+.date-title {
+    text-align: right;
 
     h2 {
         display: inline;
@@ -214,7 +242,7 @@ div.stretchy-wrapper {
         height: auto;
         margin-top: 5px;
 
-        @include centerer;
+        @include centererWithPosition(absolute, 70px, null);
     }
 
     button {

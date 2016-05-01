@@ -6668,26 +6668,33 @@ th.hide-for-touch {
     opacity: .3; }
 
 .inline-button {
-  width: 40px;
-  height: 40px;
+  margin-top: -10px;
   display: inline; }
+  .inline-button .fa {
+    font-size: 30px; }
+
+.spinner-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 5em;
+  height: 5em;
+  margin: -2.5em 0 0 -2.5em; }
 
 .date-nav-button {
   width: 30px;
   height: 30px;
   display: inline;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
   padding: 0;
-  margin: 0;
-  background-color: #0E1111;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); }
+  background-color: #0E1111; }
   .date-nav-button:hover, .date-nav-button:focus {
     background-color: #0E1111; }
+
+.back-button {
+  margin-right: 10px; }
+
+.forward-button {
+  margin-left: 10px; }
 
 /* Comic Grid */
 .comic-grid {
@@ -6698,11 +6705,17 @@ th.hide-for-touch {
     text-overflow: ellipsis; }
 
 .page-title-content {
-  padding: 10px 10px 10px 10px; }
+  padding: 10px 10px 10px 10px;
+  height: 50px; }
 
 .page-title {
-  text-align: center; }
+  text-align: left; }
   .page-title h2 {
+    display: inline; }
+
+.date-title {
+  text-align: right; }
+  .date-title h2 {
     display: inline; }
 
 .columns.tight {
@@ -6747,7 +6760,9 @@ div.stretchy-wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); }
+    width: 70px;
+    margin-left: -35px;
+    transform: translateY(-50%); }
   .cover-overlay button {
     width: 70px;
     height: 70px;
@@ -6802,6 +6817,12 @@ div.stretchy-wrapper {
 
 /* Media Queries */
 @media only screen and (max-width: 25em) {
+  .inline-button {
+    width: 40px;
+    height: 40px;
+    display: inline; }
+    .inline-button .fa {
+      font-size: 30px; }
   .date-nav-button {
     width: 20px;
     height: 20px; }
@@ -6818,6 +6839,12 @@ div.stretchy-wrapper {
     padding: 0 0.5rem; }
   .page-title h2 {
     font-size: 14px; }
+  .inline-button {
+    width: 40px;
+    height: 40px;
+    display: inline; }
+    .inline-button .fa {
+      font-size: 30px; }
   .page-title-content,
   .comic-grid {
     padding: 0 5px 0 5px; }

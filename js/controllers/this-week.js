@@ -2,12 +2,18 @@ myApp.controller('ThisWeekController', ['$scope', '$modal', 'Marvel', 'DateUtils
     function($scope, $modal, Marvel, DateUtils, PullList, PullListUtils, FirebaseUtils) {
         var wedDate = DateUtils.getWednesdayDate(new Date());
         $scope.isLoading = false;
+        $scope.dateDisplayString = "";
+
 
         PullList.getPullList();
 
         $scope.$watch('weekToShow', function(newValue, oldValue) {
-            $scope.isLoading = true;
-            loadWeeklyComicsForDay(new Date(newValue));
+            if (newValue) {
+                $scope.isLoading = true;
+                var newDate = new Date(newValue);
+                $scope.dateDisplayString = (DateUtils.getShortMonthName(newDate)) + " " + newDate.getUTCDate() + ", " + newDate.getFullYear();
+                loadWeeklyComicsForDay(newDate);
+            }
         });
 
         $scope.moveBackOneWeek = function() {

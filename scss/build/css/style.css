@@ -6575,13 +6575,18 @@ th.hide-for-touch {
   .inline-button .fa {
     font-size: 30px; }
 
+.spinner-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 5em;
+  height: 5em;
+  margin: -2.5em 0 0 -2.5em; }
+
 .date-nav-button {
   width: 30px;
   height: 30px;
   display: inline;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
   padding: 0;
   background-color: #0E1111; }
   .date-nav-button:hover, .date-nav-button:focus {
@@ -6602,11 +6607,17 @@ th.hide-for-touch {
     text-overflow: ellipsis; }
 
 .page-title-content {
-  padding: 10px 10px 10px 10px; }
+  padding: 10px 10px 10px 10px;
+  height: 50px; }
 
 .page-title {
-  text-align: center; }
+  text-align: left; }
   .page-title h2 {
+    display: inline; }
+
+.date-title {
+  text-align: right; }
+  .date-title h2 {
     display: inline; }
 
 .columns.tight {
@@ -6651,7 +6662,9 @@ div.stretchy-wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); }
+    width: 70px;
+    margin-left: -35px;
+    transform: translateY(-50%); }
   .cover-overlay button {
     width: 70px;
     height: 70px;

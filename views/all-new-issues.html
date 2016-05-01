@@ -1,13 +1,19 @@
 <div class="row page-title-content">
-    <div class="large-12 columns tight page-title">
-        <button class="date-nav-button back-button" ng-click="moveBackOneWeek()"><i class="fa fa-chevron-left"></i></button>
-        <i ng-show="isLoading" class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>
-        <h2 id="datepicker-text" class="date-title-text">All Releases - {{weekToShow}}</h2>
-        <button class="date-nav-button forward-button" ng-click="moveForwardOneWeek()"><i class="fa fa-chevron-right"></i></button>
+    <div class="small-12 medium-6 large-6 columns tight page-title">
+        <h2>This Week</h2>
+    </div>
+    <div class="small-12 medium-6 large-6 columns tight date-title">
+        <div class="inline-button">
+            <button class="date-nav-button back-button" ng-click="moveBackOneWeek()"><i class="fa fa-chevron-left"></i></button>
+        </div>
+        <h2 id="datepicker-text" class="date-title-text">{{dateDisplayString}}</h2>
+        <div class="inline-button">
+            <button class="date-nav-button forward-button" ng-click="moveForwardOneWeek()"><i class="fa fa-chevron-right"></i></button>
+        </div>
     </div>
     <input class="date-picker" ng-model="weekToShow" id="datepicker-input" type="text" picka-day />
 </div>
-<div class="row comic-grid" data-equalizer>
+<div ng-hide="isLoading" class="row comic-grid" data-equalizer>
     <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData" data-equalizer-watch>
         <!-- Fix for different cover sizes -->
         <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
@@ -26,4 +32,7 @@
         </div>
         <p class="comic-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
     </div>
+</div>
+<div ng-show="isLoading" class="spinner-container">
+    <i class="fa fa-refresh fa-spin fa-fw fa-5x margin-bottom loading-spinner"></i>
 </div>

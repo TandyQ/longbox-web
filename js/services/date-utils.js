@@ -18,7 +18,7 @@ myApp.factory('DateUtils', ['$rootScope', function($rootScope) {
             return monthNames[inputDate.getMonth()];
         },
         getShortMonthName: function(inputDate) {
-            return myObject.getMonthName(inputDate).subsrt(0, 3);
+            return myObject.getMonthName(inputDate).substr(0, 3);
         },
         getDateRange: function(inputDate) {
             var first = inputDate.getDate() - inputDate.getDay(); // First day is the day of the month - the day of the week
