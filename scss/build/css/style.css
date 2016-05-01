@@ -6575,14 +6575,6 @@ th.hide-for-touch {
   .inline-button .fa {
     font-size: 30px; }
 
-.spinner-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 5em;
-  height: 5em;
-  margin: -2.5em 0 0 -2.5em; }
-
 .date-nav-button {
   width: 30px;
   height: 30px;
@@ -6716,6 +6708,19 @@ div.stretchy-wrapper {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden; }
+
+/* Loading Spinner */
+.spinner-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 5em;
+  height: 5em;
+  margin: -2.5em 0 0 -2.5em; }
+
+/* Attribution */
+.attribution {
+  text-align: center; }
 
 /* Media Queries */
 @media only screen and (max-width: 25em) {

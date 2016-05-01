@@ -4,6 +4,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'DateU
         var auth = $firebaseAuth(ref);
         $scope.isLoading = false;
         $scope.dateDisplayString = "";
+        $scope.currentYear = new Date().getFullYear();
 
         auth.$onAuth(function(authUser) {
             if (authUser) {

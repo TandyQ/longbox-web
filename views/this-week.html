@@ -27,6 +27,11 @@
         <p class="comic-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
     </div>
 </div>
+<div class="row attribution">
+    <div class="large-12 columns">
+        <p>Data provided by Marvel. &copy; {{currentYear}} Marvel</p>
+    </div>
+</div>
 <div ng-show="isLoading" class="spinner-container">
     <i class="fa fa-refresh fa-spin fa-fw fa-5x margin-bottom loading-spinner"></i>
 </div>

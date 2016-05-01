@@ -3,7 +3,7 @@ myApp.controller('ThisWeekController', ['$scope', '$modal', 'Marvel', 'DateUtils
         var wedDate = DateUtils.getWednesdayDate(new Date());
         $scope.isLoading = false;
         $scope.dateDisplayString = "";
-
+        $scope.currentYear = new Date().getFullYear();
 
         PullList.getPullList();
 

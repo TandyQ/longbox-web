@@ -137,10 +137,6 @@ $header-bg-color: #1A1F1E;
     }
 }
 
-.spinner-container {
-    @include centererWithPosition(fixed, 5em, 5em);
-}
-
 .date-nav-button {
     width: 30px;
     height: 30px;
@@ -317,6 +313,18 @@ div.stretchy-wrapper {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+/* Loading Spinner */
+
+.spinner-container {
+    @include centererWithPosition(fixed, 5em, 5em);
+}
+
+/* Attribution */
+
+.attribution {
+    text-align: center;
 }
 
 /* Media Queries */
