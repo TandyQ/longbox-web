@@ -35,14 +35,13 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'views/all-new-issues.html',
         controller: 'AllNewIssuesController'
     }).
-    when('/this-week', {
-        templateUrl: 'views/this-week.html',
-        controller: 'ThisWeekController',
-        resolve: {
-            currentAuth: function(Authentication) {
-                    return Authentication.requireAuth();
-                } // current authentication
-        } // resolve
+    when('/search/:seriesSearch', {
+      templateUrl: 'views/search.html',
+      controller: 'SearchController'
+    }).
+    when('/search', {
+      templateUrl: 'views/search.html',
+      controller: 'SearchController'
     }).
     when('/pull-list', {
         templateUrl: 'views/pull-list.html',

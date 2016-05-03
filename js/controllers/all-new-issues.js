@@ -82,7 +82,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'DateU
         };
 
         $scope.addComic = function(series) {
-            FirebaseUtils.addToPullList(series);
+            FirebaseUtils.addToPullList(series.name, series.resourceURI);
         };
 
         $scope.removeFromPullList = function(series) {

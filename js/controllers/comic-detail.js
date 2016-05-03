@@ -19,7 +19,7 @@ myApp.controller('ComicDetailController', ['$scope', 'FirebaseUtils', 'PullListU
         };
 
         $scope.addComic = function(series) {
-            FirebaseUtils.addToPullList(series);
+            FirebaseUtils.addToPullList(series.name, series.resourceURI);
         };
 
         $scope.removeFromPullList = function(series) {

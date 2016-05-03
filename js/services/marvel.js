@@ -49,8 +49,8 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
         };
 
         var myObject = {
-            getComicDataForQuery: function(queryUrl) {
-                var promise = constructURL("comic", { "query": queryUrl }).then(queryComics).then(function(response) {
+            getComicDataForQuery: function(queryString) {
+                var promise = constructURL("comic", { "query": queryString }).then(queryComics).then(function(response) {
                     relevantComics = [];
                     for (var i = 0; i < response.data.results.length; i++) {
                         var comic = response.data.results[i];
@@ -87,20 +87,28 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
             getLatestComicCoverForSeriesId: function(seriesId) {
                 var promise = constructURL("", { "query": "series/" + seriesId + "/comics?format=comic&formatType=comic&noVariants=true&orderBy=-onsaleDate" }).
                 then(queryComics).then(function(response) {
-                    var thumbnail = {
-                        extension: response.data.results[response.data.results.length-1].thumbnail.extension,
-                        path: response.data.results[response.data.results.length-1].thumbnail.path,
-                    };
+                    var thumbnail;
+                    if (response.data.results.length > 0) {
+                        if (response.data.results[response.data.results.length - 1].thumbnail.extension &&
+                            response.data.results[response.data.results.length - 1].thumbnail.path) {
+                            thumbnail = {
+                                extension: response.data.results[response.data.results.length - 1].thumbnail.extension,
+                                path: response.data.results[response.data.results.length - 1].thumbnail.path,
+                            };
+                        }
+                    }
+
                     var haveThumbnail = false;
                     for (var i = 0; i < response.data.results.length; i++) {
                         var comic = response.data.results[i];
                         var releaseDate = $filter('filter')(comic.dates, { type: "onsaleDate" }, true);
                         if (releaseDate.length !== 0) {
-                            formattedReleaseDateString = releaseDate[0].date.slice(0,19);
+                            formattedReleaseDateString = releaseDate[0].date.slice(0, 19);
                             formattedReleaseDate = Date.parse(formattedReleaseDateString);
 
                             var wedDate = DateUtils.getWednesdayDate(new Date());
                             if ((formattedReleaseDate <= wedDate) && (comic.thumbnail.path !== IMAGE_NOT_AVAILABLE)) {
+                                if (comic.thumbnail.extension && comic.thumbnail.path) {}
                                 thumbnail = {
                                     extension: comic.thumbnail.extension,
                                     path: comic.thumbnail.path
@@ -109,6 +117,12 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                             }
                         }
                     }
+                    if (!thumbnail) {
+                        thumbnail = {
+                            extension: "jpg",
+                            path: IMAGE_NOT_AVAILABLE
+                        };
+                    }
                     return thumbnail;
                 });
                 return promise;
@@ -116,6 +130,21 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
             getComicDataForResourceURI: function(resourceURI) {
                 var promise = constructURL("comic", { "resourceURI": resourceURI }).then(queryComics).then(function(response) {
                     return response.data.results[0];
+                });
+                return promise;
+            },
+            getSeriesDataForQuery: function(queryString) {
+                var promise = constructURL("series", { "query": queryString }).then(queryComics).then(function(response) {
+                    relevantSeries = [];
+                    for (var i = 0; i < response.data.results.length; i++) {
+                        var series = response.data.results[i];
+                        if (series.comics.items.length > 0) {
+                            relevantSeries.push(series);
+                        }
+
+                    }
+                    console.log(relevantSeries);
+                    return relevantSeries;
                 });
                 return promise;
             }
