@@ -158,6 +158,46 @@ $header-bg-color: #1A1F1E;
     margin-left: 10px;
 }
 
+/* Tabs */
+
+.my-longbox-content {
+    .tabs {
+        text-align: center;
+
+        dd {
+            float: none !important;
+            display: inline-block;
+            padding: 0;
+        }
+
+        dd > a,
+        .tab-title > a {
+            background-color: transparent;
+            color: $font-color;
+            padding: 0 1rem;
+            width: 170px;
+        }
+
+        dd.active > a {
+            background-color: $font-color;
+            color: $bg-color;
+        }
+
+        .first-tab > a {
+            border: 1px solid $font-color;
+            border-top-left-radius: 7px;
+            border-bottom-left-radius: 7px;
+        }
+
+        .last-tab > a {
+            border: 1px solid $font-color;
+            border-top-right-radius: 7px;
+            border-bottom-right-radius: 7px;
+            margin-left: -4px;
+        }
+    }
+}
+
 /* Comic Grid */
 
 .comic-grid {
@@ -187,6 +227,10 @@ $header-bg-color: #1A1F1E;
     h2 {
         display: inline;
     }
+}
+
+.date-title-text {
+    cursor: pointer;
 }
 
 .columns.tight {

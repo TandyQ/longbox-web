@@ -97,8 +97,8 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'DateU
             }
         };
 
-        $scope.isInPullList = function(series) {
-            return PullListUtils.isInPullList(series.resourceURI, $scope.pullList);
+        $scope.isInPullList = function(comic) {
+            return PullListUtils.isInPullList(comic.series.resourceURI, $scope.pullList);
         };
     }
 ]);

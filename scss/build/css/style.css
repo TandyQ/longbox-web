@@ -6590,6 +6590,32 @@ th.hide-for-touch {
 .forward-button {
   margin-left: 10px; }
 
+/* Tabs */
+.my-longbox-content .tabs {
+  text-align: center; }
+  .my-longbox-content .tabs dd {
+    float: none !important;
+    display: inline-block;
+    padding: 0; }
+  .my-longbox-content .tabs dd > a,
+  .my-longbox-content .tabs .tab-title > a {
+    background-color: transparent;
+    color: #E3DFBA;
+    padding: 0 1rem;
+    width: 170px; }
+  .my-longbox-content .tabs dd.active > a {
+    background-color: #E3DFBA;
+    color: #0E1111; }
+  .my-longbox-content .tabs .first-tab > a {
+    border: 1px solid #E3DFBA;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px; }
+  .my-longbox-content .tabs .last-tab > a {
+    border: 1px solid #E3DFBA;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    margin-left: -4px; }
+
 /* Comic Grid */
 .comic-grid {
   padding: 0 10px 0 10px; }
@@ -6611,6 +6637,9 @@ th.hide-for-touch {
   text-align: right; }
   .date-title h2 {
     display: inline; }
+
+.date-title-text {
+  cursor: pointer; }
 
 .columns.tight {
   padding-left: .4rem;

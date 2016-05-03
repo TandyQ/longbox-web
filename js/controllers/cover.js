@@ -2,8 +2,6 @@ myApp.controller('CoverController', ['$scope', function($scope) {
     $scope.shouldShowOverlay = false;
     $scope.tapOverlayCSS = {};
     $scope.toggleOverlay = function toggleOverlay(event) {
-        console.log("toggled!");
-        console.log(event.target.nodeName);
         if (Modernizr.touch && (event.target.nodeName.toLowerCase() !== "button") && (event.target.nodeName.toLowerCase() !== "i")) {
             $scope.shouldShowOverlay = !$scope.shouldShowOverlay;
             if ($scope.shouldShowOverlay) {
@@ -17,7 +15,6 @@ myApp.controller('CoverController', ['$scope', function($scope) {
                     "opacity": "0"
                 };
             }
-            console.log($scope.tapOverlayCSS);
         }
     };
 }]);
