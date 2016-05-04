@@ -2,7 +2,6 @@ myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', 'Marve
     function($scope, $modal, $routeParams, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
-        $scope.isLoading = true;
         $scope.currentYear = new Date().getFullYear();
         $scope.searchString = $routeParams.seriesSearch;
 
@@ -20,6 +19,7 @@ myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', 'Marve
         };
 
         if ($scope.searchString && $scope.searchString !== "") {
+            $scope.isLoading = true;
             loadSeriesMatchingString($scope.searchString);
         }
 

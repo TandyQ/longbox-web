@@ -36,12 +36,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
         controller: 'AllNewIssuesController'
     }).
     when('/search/:seriesSearch', {
-      templateUrl: 'views/search.html',
-      controller: 'SearchController'
+        templateUrl: 'views/search.html',
+        controller: 'SearchController'
     }).
     when('/search', {
-      templateUrl: 'views/search.html',
-      controller: 'SearchController'
+        templateUrl: 'views/search.html',
+        controller: 'SearchController'
     }).
     when('/pull-list', {
         templateUrl: 'views/pull-list.html',
@@ -85,6 +85,26 @@ myApp.factory('PullList', ['$rootScope', '$firebaseArray', '$firebaseAuth', 'FIR
         return myObject;
     }
 ]);
+
+myApp.directive('ngEnter', function($parse) {
+    return {
+        restrict: 'A',
+        compile: function($element, attr) {
+            var fn = $parse(attr.myEnter, null, true);
+            return function(scope, element, attrs) {
+                element.on("keydown keypress", function(event) {
+                    if (event.which === 13) {
+                        element[0].blur();
+                        scope.$apply(function() {
+                            scope.$eval(attrs.ngEnter);
+                        });
+                        event.preventDefault();
+                    }
+                });
+            };
+        }
+    };
+});
 
 myApp.filter('limitFromToChar', function() {
     return function(input, from, toString) {

@@ -24,12 +24,12 @@
                         <li><a ng-href="#/all-new-issues">My Longbox</a></li>
                         <li><a ng-show="currentUser" ng-href="#/pull-list">Subscriptions</a></li>
                         <li>
-                            <div class="row collapse">
+                            <div class="row collapse" ng-controller="NavController">
                                 <div class="large-8 small-9 columns">
-                                    <input type="text" ng-model="seriesSearch" placeholder="Find A Series">
+                                    <input type="text" ng-model="seriesSearch" ng-enter="searchForSeries()" placeholder="Find A Series">
                                 </div>
                                 <div class="large-4 small-3 columns">
-                                    <a href="#/search/{{seriesSearch}}" class="button expand">Search</a>
+                                    <a ng-click="searchForSeries()" class="button expand"><i class="fa fa-search"></i></a>
                                 </div>
                             </div>
                         </li>
