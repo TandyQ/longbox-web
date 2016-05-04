@@ -100,6 +100,14 @@ myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', 'Marve
             return PullListUtils.isInPullList(series.resourceURI, $scope.pullList);
         };
 
+        $scope.hasComics = function() {
+            if ($scope.seriesData) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
         $scope.isEnded = function(series) {
             if (series.endYear == 2099) {
                 return false;

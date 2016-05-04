@@ -1,27 +1,33 @@
-<div class="row comic-grid">
-    <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="series in seriesData | orderBy:[isEnded, 'title']">
+<div class="row search-grid">
+    <div class="small-12 medium-12 large-6 columns tight end" ng-repeat="series in seriesData | orderBy:[isEnded, 'title']">
         <!-- Fix for different cover sizes -->
-        <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + series.latestComicCoverPath + '.' + series.latestComicCoverExtension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
-            <div class="cover-overlay" ng-style="tapOverlayCSS">
-                <div class="buttons">
-                    <div class="management-buttons">
-                        <button class="add-button" ng-click="addSeries(series)" ng-hide="isInPullList(series)"><i class="fa fa-plus fa-2x"></i></button>
-                        <button class="remove-button" ng-click="removeFromPullList(series)" ng-show="isInPullList(series)"><i class="fa fa-minus fa-2x"></i></button>
+        <div class="row  search-result">
+            <div class="small-4 medium-4 large-4 columns tight">
+                <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + series.latestComicCoverPath + '.' + series.latestComicCoverExtension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
+                    <div class="cover-overlay" ng-style="tapOverlayCSS">
+                        <div class="buttons">
+                            <div class="management-buttons">
+                                <button class="add-button" ng-click="addSeries(series)" ng-hide="isInPullList(series)"><i class="fa fa-plus fa-2x"></i></button>
+                                <button class="remove-button" ng-click="removeFromPullList(series)" ng-show="isInPullList(series)"><i class="fa fa-minus fa-2x"></i></button>
+                            </div>
+                            <button class="info-button" ng-click="openModalForSeries(series)"><i class="fa fa-info fa-2x"></i></button>
+                        </div>
                     </div>
-                    <button class="info-button" ng-click="openModalForSeries(series)"><i class="fa fa-info fa-2x"></i></button>
+                    <div class="pull-list-badge" ng-show="isInPullList(series)">
+                        <i class="fa fa-check fa-inverse"></i>
+                    </div>
+                    <div class="warning-badge" ng-show="isEnded(series)">
+                        <i class="fa fa-ban fa-inverse"></i>
+                    </div>
                 </div>
             </div>
-            <div class="pull-list-badge" ng-show="isInPullList(series)">
-                <i class="fa fa-check fa-inverse"></i>
-            </div>
-            <div class="warning-badge" ng-show="isEnded(series)">
-                <i class="fa fa-ban fa-inverse"></i>
+            <div class="small-8 medium-8 large-8 columns tight">
+                <p>{{series.title}}</p>
             </div>
         </div>
-        <p class="comic-title">{{series.title}}</p>
     </div>
 </div>
-<div ng-hide="isLoading" class="row attribution">
+<div ng-hide="isLoading || !hasComics()" class="row attribution">
     <div class="large-12 columns">
         <p>Data provided by Marvel. &copy; {{currentYear}} Marvel</p>
     </div>

@@ -371,6 +371,16 @@ div.stretchy-wrapper {
     text-align: center;
 }
 
+/* Search Results */
+
+.search-result {
+    margin-bottom: 20px !important;
+
+    p {
+        font-size: 1.2em;
+    }
+}
+
 /* Media Queries */
 
 @media #{$tiny-only} {
