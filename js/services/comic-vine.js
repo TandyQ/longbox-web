@@ -52,6 +52,15 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                     relevantComics = [];
                     for (var i = 0; i < response.results.length; i++) {
                         var comic = response.results[i];
+                        comic.resourceURI = comic.api_detail_url;
+                        comic.series = comic.volume;
+                        comic.series.name = comic.series.name + " ";
+                        comic.issueNumber = comic.issue_number;
+                        var imageUrl = comic.image.super_url;
+                        comic.thumbnail = {
+                            extension: imageUrl.substr(imageUrl.lastIndexOf('.')+1),
+                            path: imageUrl.substr(0, imageUrl.lastIndexOf('.'))
+                        };
                         relevantComics.push(comic);
                     }
                     console.log(relevantComics);
