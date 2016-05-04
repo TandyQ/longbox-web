@@ -29,10 +29,10 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
 
             var deferred = $q.defer();
             $http.get("config/config.json").then(function successCallback(response) {
-                queryUrl += "apikey=" + response.data.API_KEY;
+                queryUrl += "apikey=" + response.data.MARVEL_API_KEY;
                 deferred.resolve(queryUrl);
             }, function errorCallback(response) {
-                // $rootScope.errorMessage = response.statusText;
+                $rootScope.errorMessage = response.statusText;
             });
             return deferred.promise;
         };
