@@ -13,10 +13,11 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                 queryUrl += "series/?format=jsonp&json_callback=JSON_CALLBACK";
             }
 
-            if (options.date) {
-                var date = options.date;
-                queryUrl += comicDateQuery + date.getFullYear() + "-" + (date.getUTCMonth() + 1) + "-" +
-                    date.getUTCDate();
+            if (options.dateRange) {
+                var dateRange = options.dateRange;
+                queryUrl += comicDateQuery + dateRange.firstDate.getFullYear() + "-" + (dateRange.firstDate.getUTCMonth() + 1) + "-" +
+                    dateRange.firstDate.getUTCDate() + "|" + dateRange.lastDate.getFullYear() + "-" + (dateRange.lastDate.getUTCMonth() + 1) +
+                    "-" + dateRange.lastDate.getUTCDate() + "&";
             } else if (options.query) {
                 queryUrl += options.query + "&";
             } else if (options.resourceURI) {
@@ -36,7 +37,7 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
         };
 
         var queryComics = function(queryUrl) {
-            // console.log(queryUrl); //logging query URL
+            console.log(queryUrl); //logging query URL
             var deferred = $q.defer();
             $http.jsonp(queryUrl).then(function successCallback(response) {
                 deferred.resolve(response.data);
@@ -47,14 +48,15 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
         };
 
         var myObject = {
-            getComicDataForWeek: function(date) {
-                var promise = constructURL("comic", { "date": date }).then(queryComics).then(function(response) {
+            getComicDataForWeek: function(dateRange) {
+                console.log(dateRange);
+                var promise = constructURL("comic", { "dateRange": dateRange }).then(queryComics).then(function(response) {
                     relevantComics = [];
                     for (var i = 0; i < response.results.length; i++) {
                         var comic = response.results[i];
-                        comic.resourceURI = comic.api_detail_url;
                         comic.series = comic.volume;
                         comic.series.name = comic.series.name + " ";
+                        comic.series.resourceURI = comic.api_detail_url;
                         comic.issueNumber = comic.issue_number;
                         var imageUrl = comic.image.super_url;
                         comic.thumbnail = {
