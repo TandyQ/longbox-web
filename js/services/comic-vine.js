@@ -74,11 +74,11 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
             var promise = constructURL("comic", { "dateRange": dateRange, "offset": offset }).then(queryComics).then(function(response) {
                 offset += 100;
                 var numTotalResults = response.data.number_of_total_results;
-                console.log(numTotalResults);
-                console.log(response);
                 parseComics(response.data);
                 if ((offset) > numTotalResults) {
-                    return comicResults;
+                    var returnedComics = comicResults;
+                    comicResults = [];
+                    return returnedComics;
                 } else {
                     return loadComicDataForWeek(dateRange, offset);
                 }
