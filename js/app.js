@@ -108,7 +108,12 @@ myApp.directive('ngEnter', function($parse) {
 
 myApp.filter('limitFromToChar', function() {
     return function(input, from, toString) {
-        return (input !== undefined) ? input.slice(from, input.indexOf(toString)) : '';
+        if (input.indexOf(toString)) {
+            return (input !== undefined) ? input.slice(from, input.indexOf(toString)) : '';
+        } else {
+            return input;
+        }
+
     };
 });
 

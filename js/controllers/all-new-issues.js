@@ -64,6 +64,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'Comic
             // than Marvel's api. It currently only has the controller layer. No view or model layers
             // are present.
 
+            // ComicVine.clearLoadedComics();
             // ComicVine.getComicDataForWeek(dateRange).then(function(data) {
             //     $scope.comicData = data;
             //     $scope.isLoading = false;
@@ -94,7 +95,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'Comic
         };
 
         $scope.addComic = function(series) {
-            FirebaseUtils.addToPullList(series.name, series.resourceURI);
+            FirebaseUtils.addToPullList(series.name, series.resourceURI, series.id);
         };
 
         $scope.removeFromPullList = function(series) {

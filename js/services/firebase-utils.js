@@ -5,7 +5,7 @@ myApp.factory('FirebaseUtils', ['$rootScope', "PullListUtils", '$firebaseArray',
         var auth = $firebaseAuth(ref);
 
         var myObject = {
-            addToPullList: function(seriesTitle, seriesURI) {
+            addToPullList: function(seriesTitle, seriesURI, seriesId) {
                 auth.$onAuth(function(authUser) {
                     if (authUser) {
                         var pullListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
@@ -13,10 +13,14 @@ myApp.factory('FirebaseUtils', ['$rootScope', "PullListUtils", '$firebaseArray',
 
                         pullListInfo.$loaded().then(function(data) {
                             if (!PullListUtils.isInPullList(seriesTitle, pullListInfo)) {
-                                pullListInfo.$add({
+                                var series = {
                                     name: seriesTitle,
                                     resourceURI: seriesURI
-                                }).then(function() {
+                                };
+                                if (seriesId) {
+                                    series.id = seriesId;
+                                }
+                                pullListInfo.$add(series).then(function() {
                                     // do something
                                 });
                             } else {
