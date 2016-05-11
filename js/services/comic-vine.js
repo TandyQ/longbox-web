@@ -38,6 +38,7 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
             var deferred = $q.defer();
             $http.get("config/config.json").then(function successCallback(response) {
                 queryUrl += "&api_key=" + response.data.COMIC_VINE_API_KEY;
+                // console.log(queryUrl); //logging query URL
                 deferred.resolve(queryUrl);
             }, function errorCallback(response) {
                 $rootScope.errorMessage = response.statusText;
@@ -46,7 +47,6 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
         };
 
         var queryComics = function(queryUrl) {
-            console.log(queryUrl); //logging query URL
             var deferred = $q.defer();
             $http.jsonp(queryUrl).then(function successCallback(response) {
                 deferred.resolve(response);
@@ -75,11 +75,7 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
 
         var loadComicDataForWeek = function(dateRange, offset) {
             var promise = constructURL("comic", { "dateRange": dateRange, "offset": offset }).then(queryComics).then(function(response) {
-                if (offset === 0) {
-                    offset += 99;
-                } else {
-                    offset += 100;
-                }
+                offset += 100;
 
                 var numTotalResults = response.data.number_of_total_results;
                 parseComics(response.data);
@@ -129,7 +125,6 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                 return loadLatestCoverForIssueId(issueId);
             },
             clearLoadedComics: function() {
-                console.log("load cleared");
                 comicResults = [];
             }
         };
