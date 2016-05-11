@@ -20,7 +20,7 @@
             <div ng-hide="isLoading" class="row comic-grid" data-equalizer>
                 <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList | orderBy:'series.name'" data-equalizer-watch>
                     <!-- Fix for different cover sizes -->
-                    <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
+                    <div ng-class="{'new-series': comic.issueNumber <= 1}" class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
                         <div class="cover-overlay" ng-style="tapOverlayCSS">
                             <div class="buttons">
                                 <button class="remove-button" ng-click="removeFromPullList(comic.series)"><i class="fa fa-minus fa-2x"></i></button>
@@ -41,32 +41,7 @@
             <div ng-hide="isLoading" class="row comic-grid" data-equalizer>
                 <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData" data-equalizer-watch>
                     <!-- Fix for different cover sizes -->
-                    <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
-                        <div class="cover-overlay" ng-style="tapOverlayCSS">
-                            <div class="buttons">
-                                <div class="management-buttons">
-                                    <button class="add-button" ng-click="addComic(comic.series)" ng-hide="isInPullList(comic)"><i class="fa fa-plus fa-2x"></i></button>
-                                    <button class="remove-button" ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic)"><i class="fa fa-minus fa-2x"></i></button>
-                                </div>
-                                <button class="info-button" ng-click="openModalForComic(comic)"><i class="fa fa-info fa-2x"></i></button>
-                            </div>
-                        </div>
-                        <div class="pull-list-badge" ng-show="isInPullList(comic)">
-                            <i class="fa fa-check fa-inverse"></i>
-                        </div>
-                    </div>
-                    <p class="comic-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
-                </div>
-            </div>
-            <div ng-hide="isLoading || noFirstIssues" class="row page-title-content">
-                <div class="small-12 medium-12 large-12 columns tight page-title">
-                    <h2>New First Issues</h2>
-                </div>
-            </div>
-            <div ng-hide="isLoading || noFirstIssues" class="row comic-grid" data-equalizer>
-                <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isFirstIssue " data-equalizer-watch>
-                    <!-- Fix for different cover sizes -->
-                    <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
+                    <div ng-class="{'new-series': comic.issueNumber <= 1}" class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
                         <div class="cover-overlay" ng-style="tapOverlayCSS">
                             <div class="buttons">
                                 <div class="management-buttons">
@@ -98,7 +73,7 @@
     <div ng-hide="isLoading" class="row comic-grid" data-equalizer>
         <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData" data-equalizer-watch>
             <!-- Fix for different cover sizes -->
-            <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
+            <div ng-class="{'new-series': comic.issueNumber <= 1}" class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
                 <div class="cover-overlay" ng-style="tapOverlayCSS">
                     <div class="buttons">
                         <button class="info-button" ng-click="openModalForComic(comic)"><i class="fa fa-info fa-2x"></i></button>
