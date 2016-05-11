@@ -3,6 +3,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'Comic
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
         $scope.isLoading = false;
+        $scope.noFirstIssues = true;
         $scope.dateDisplayString = "";
         $scope.currentYear = new Date().getFullYear();
 
@@ -52,10 +53,16 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'Comic
 
         var loadWeeklyComicsForDay = function(selectedDate) {
             var dateRange = DateUtils.getDateRange(selectedDate); // Get first and last day of week
-
+            $scope.noFirstIssues = true;
             Marvel.getComicDataForWeek(dateRange).then(function(data) {
                 $scope.comicData = data;
                 $scope.isLoading = false;
+                for(var i = 0; i < $scope.comicData.length; i++) {
+                    var tempComic = $scope.comicData[i];
+                    if(tempComic.issueNumber === 1) {
+                        $scope.noFirstIssues = false;
+                    }
+                }
             });
 
             // Enable this for Comic Vine support (such as it is)
@@ -112,6 +119,10 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'Comic
 
         $scope.isInPullList = function(comic) {
             return PullListUtils.isInPullList(comic.series.resourceURI, $scope.pullList);
+        };
+
+        $scope.isFirstIssue = function(comic) {
+            return (comic.issueNumber === 1);
         };
     }
 ]);

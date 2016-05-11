@@ -6508,6 +6508,9 @@ th.hide-for-touch {
   th.show-for-print {
     display: table-cell !important; } }
 
+button {
+  outline: none; }
+
 .logo {
   fill: #E3DFBA;
   margin-top: 0.5rem;

@@ -38,6 +38,10 @@ $button-text-color: #233D3B;
     }
 }
 
+button {
+    outline: none;
+}
+
 .logo {
     fill: $font-color;
     margin-top: 0.5rem;
