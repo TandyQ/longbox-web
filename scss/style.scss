@@ -307,13 +307,17 @@ div.stretchy-wrapper {
 
     .remove-button {
         background-color: red;
+        color: white;
     }
 
     .add-button {
         background-color: green;
+        color: white;
     }
 
-    .info-button {}
+    .info-button {
+        color: white;
+    }
 }
 
 .pull-list-badge {
@@ -380,6 +384,21 @@ div.stretchy-wrapper {
 
     h1 {
         font-size: 1.2em;
+    }
+}
+
+.reveal-modal {
+    h4 {
+        font-size: 1.3em !important;
+        margin: 0 auto;
+    }
+
+    h2 {
+        margin: 0 auto;
+    }
+
+    .creators {
+        padding-bottom: 10px;
     }
 }
 

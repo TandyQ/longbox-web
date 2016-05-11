@@ -130,6 +130,8 @@ $font-stack: Helvetica Neue, sans-serif;
 $bg-color: #0E1111;
 $header-bg-color: #1A1F1E;
 $font-color: #E3DFBA;
+$interactive-color: #6CBDB5;
+$button-text-color: #233D3B;
 
 // We use these to control various global styles
 $body-bg: $bg-color;
@@ -282,7 +284,8 @@ $header-font-color: $font-color;
 // We use these to style anchors
 // $anchor-text-decoration: none;
 // $anchor-text-decoration-hover: none;
-// $anchor-font-color: $primary-color;
+$anchor-font-color: $interactive-color;
+
 // $anchor-font-color-hover: scale-color($anchor-font-color, $lightness: -14%);
 
 // We use these to style the <hr> element
@@ -463,7 +466,8 @@ $header-font-color: $font-color;
 
 // We use these to control button text styles.
 // $button-font-family: $body-font-family;
-// $button-font-color: $white;
+$button-font-color: $button-text-color;
+
 // $button-font-color-alt: $oil;
 // $button-font-tny: rem-calc(11);
 // $button-font-sml: rem-calc(13);
@@ -478,7 +482,8 @@ $header-font-color: $font-color;
 // We use these to control button border styles.
 // $button-border-width: 0;
 // $button-border-style: solid;
-// $button-bg-color: $primary-color;
+$button-bg-color: $interactive-color;
+
 // $button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
 // $button-border-color: $button-bg-hover;
 // $secondary-button-bg-hover: scale-color($secondary-color, $lightness: $button-function-factor);
