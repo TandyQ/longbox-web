@@ -64,6 +64,9 @@ myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Marvel',
             if (series.resourceURI) {
                 Marvel.getSeriesDataForResourceURI(series.resourceURI).then(function(comicData) {
                     if ($scope.seriesData.indexOf(comicData) == -1) {
+                        if (!comicData.description) {
+                            comicData.description = "No description available.";
+                        }
                         $scope.seriesData.push(comicData);
                         $scope.getLatestComicCoverForSeries(comicData, $scope.seriesData.indexOf(comicData));
                     }

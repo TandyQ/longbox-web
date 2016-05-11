@@ -9,8 +9,6 @@ $header-bg-color: #1A1F1E;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: $overflow;
-
-    // values are: clip, ellipsis, or a string
 }
 
 @mixin centererWithPosition($position: null, $width: null, $height: null) {
@@ -377,6 +375,10 @@ div.stretchy-wrapper {
     margin-bottom: 20px !important;
 
     p {
+        font-size: 0.9em;
+    }
+
+    h1 {
         font-size: 1.2em;
     }
 }

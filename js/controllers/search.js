@@ -1,5 +1,5 @@
-myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', 'Marvel', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function($scope, $modal, $routeParams, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', '$location', 'Marvel', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
+    function($scope, $modal, $routeParams, $location, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
         $scope.currentYear = new Date().getFullYear();
@@ -12,6 +12,9 @@ myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', 'Marve
                 $scope.seriesData = data;
                 for (var i = 0; i < data.length; i++) {
                     var series = data[i];
+                    if (!series.description) {
+                        series.description = "No description available.";
+                    }
                     $scope.getLatestComicCoverForSeries(series, i);
                 }
                 $scope.isLoading = false;
@@ -113,6 +116,15 @@ myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', 'Marve
                 return false;
             }
             return true;
+        };
+
+        $scope.searchForSeries = function($event) {
+            console.log($scope.newSearch);
+            if ($scope.newSearch && $scope.newSearch !== "") {
+                $location.path('/search/' + $scope.newSearch);
+                $scope.newSearch = "";
+            }
+
         };
     }
 ]);

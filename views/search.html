@@ -1,18 +1,17 @@
+<div class="row page-title-content">
+    <div class="large-10 small-11 columns">
+        <input type="text" ng-model="newSearch" ng-enter="searchForSeries()" placeholder="Find A Series">
+    </div>
+    <div class="large-2 small-1 columns">
+        <a ng-click="searchForSeries()" class="button expand"><i class="fa fa-search"></i></a>
+    </div>
+</div>
 <div class="row search-grid">
     <div class="small-12 medium-12 large-6 columns tight end" ng-repeat="series in seriesData | orderBy:[isEnded, 'title']">
         <!-- Fix for different cover sizes -->
         <div class="row  search-result">
             <div class="small-4 medium-4 large-4 columns tight">
                 <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + series.latestComicCoverPath + '.' + series.latestComicCoverExtension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
-                    <div class="cover-overlay" ng-style="tapOverlayCSS">
-                        <div class="buttons">
-                            <div class="management-buttons">
-                                <button class="add-button" ng-click="addSeries(series)" ng-hide="isInPullList(series)"><i class="fa fa-plus fa-2x"></i></button>
-                                <button class="remove-button" ng-click="removeFromPullList(series)" ng-show="isInPullList(series)"><i class="fa fa-minus fa-2x"></i></button>
-                            </div>
-                            <button class="info-button" ng-click="openModalForSeries(series)"><i class="fa fa-info fa-2x"></i></button>
-                        </div>
-                    </div>
                     <div class="pull-list-badge" ng-show="isInPullList(series)">
                         <i class="fa fa-check fa-inverse"></i>
                     </div>
@@ -21,9 +20,14 @@
                     </div>
                 </div>
             </div>
-            <div class="small-8 medium-8 large-8 columns tight">
-                <p>{{series.title}}</p>
+            <div class="small-8 medium-8 large-8 columns">
+                <h1>{{series.title}}</h1>
+                <p>{{series.description}}</p>
             </div>
+        </div>
+        <div class="row search-result">
+            <button class="add-button" ng-click="addSeries(series)" ng-hide="isInPullList(series)">Add to Subscriptions</button>
+            <button class="remove-button" ng-click="removeFromPullList(series)" ng-show="isInPullList(series)">Remove from Subscriptions</button>
         </div>
     </div>
 </div>

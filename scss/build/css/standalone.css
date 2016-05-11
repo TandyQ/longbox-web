@@ -6849,6 +6849,14 @@ div.stretchy-wrapper {
 .attribution {
   text-align: center; }
 
+/* Search Results */
+.search-result {
+  margin-bottom: 20px !important; }
+  .search-result p {
+    font-size: 0.9em; }
+  .search-result h1 {
+    font-size: 1.2em; }
+
 /* Media Queries */
 @media only screen and (max-width: 25em) {
   .inline-button {

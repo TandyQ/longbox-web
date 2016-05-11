@@ -6755,6 +6755,8 @@ div.stretchy-wrapper {
 .search-result {
   margin-bottom: 20px !important; }
   .search-result p {
+    font-size: 0.9em; }
+  .search-result h1 {
     font-size: 1.2em; }
 
 /* Media Queries */

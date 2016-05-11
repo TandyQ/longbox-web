@@ -3,20 +3,20 @@ myApp.controller('SeriesDetailController', ['$scope', 'FirebaseUtils', 'PullList
         $scope.series = series;
         $scope.pullList = pullList;
 
-        // var pencillers = [];
-        // var writers = [];
-        // for (var i = 0; i < comic.creators.items.length; i++) {
-        //     var creator = comic.creators.items[i];
-        //     if (creator.role.toLowerCase().indexOf("penciller (cover)") !== -1) {
-        //         pencillers.push(creator.name);
-        //     } else if (creator.role.toLowerCase().indexOf("writer") !== -1) {
-        //         writers.push(creator.name);
-        //     }
-        // }
-        // $scope.creators = {
-        //     pencillers:pencillers,
-        //     writers:writers
-        // };
+        var pencillers = [];
+        var writers = [];
+        for (var i = 0; i < series.creators.items.length; i++) {
+            var creator = series.creators.items[i];
+            if (creator.role.toLowerCase().indexOf("penciller (cover)") !== -1) {
+                pencillers.push(creator.name);
+            } else if (creator.role.toLowerCase().indexOf("writer") !== -1) {
+                writers.push(creator.name);
+            }
+        }
+        $scope.creators = {
+            pencillers:pencillers,
+            writers:writers
+        };
 
         $scope.removeFromPullList = function(series) {
             if ($scope.pullList) {
