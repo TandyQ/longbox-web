@@ -5,6 +5,6 @@
 <h4><ng-pluralize count="creators.pencillers.length" when="{'0': '', '1': 'Artist: ', 'other': 'Artists: '}"></ng-pluralize>
 {{ creators.pencillers | joinBy:", " }}</h4>
 <p>{{comic.description}}</p>
-<button class="add-button" ng-click="addComic(comic.series)" ng-hide="isInPullList(comic.series)"><i class="fa fa-plus fa-2x"></i></button>
-<button class="remove-button" ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic.series)"><i class="fa fa-trash fa-2x"></i></button>
+<button class="add-button" ng-click="addComic(comic.series)" ng-hide="isInPullList(comic.series)">Add to Subscriptions</button>
+<button class="remove-button" ng-click="removeFromPullList(comic.series)" ng-show="isInPullList(comic.series)">Remove from Subscriptions</button>
 <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>

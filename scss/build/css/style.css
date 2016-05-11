@@ -3978,9 +3978,9 @@ ul.pagination {
   width: 100%;
   z-index: 1005;
   left: 0;
-  background-color: #FFFFFF;
+  background-color: #1A1F1E;
   padding: 1.875rem;
-  border: solid 1px #666666;
+  border: solid 1px #0E1111;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
   @media only screen and (min-width: 25.0625em) and (max-width: 40em) {
     .reveal-modal {

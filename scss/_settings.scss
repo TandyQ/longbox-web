@@ -1141,7 +1141,8 @@ $header-font-color: $font-color;
 // $reveal-overlay-bg-old: $black;
 
 // We use these to control the style of the modal itself.
-// $reveal-modal-bg: $white;
+$reveal-modal-bg: $header-bg-color;
+
 // $reveal-position-top: rem-calc(100);
 // $reveal-default-width: 80%;
 // $reveal-max-width: $row-width;
@@ -1162,7 +1163,7 @@ $header-font-color: $font-color;
 // We use these to control the modal border
 // $reveal-border-style: solid;
 // $reveal-border-width: 1px;
-// $reveal-border-color: $steel;
+$reveal-border-color: $bg-color;
 
 // $reveal-modal-class: "reveal-modal";
 // $close-reveal-modal-class: "close-reveal-modal";
