@@ -25,7 +25,7 @@
                 <p>{{series.description}}</p>
             </div>
         </div>
-        <div class="row search-result">
+        <div ng-show="currentUser" class="row search-result">
             <button class="add-button" ng-click="addSeries(series)" ng-hide="isInPullList(series)">Add to Subscriptions</button>
             <button class="remove-button" ng-click="removeFromPullList(series)" ng-show="isInPullList(series)">Remove from Subscriptions</button>
         </div>

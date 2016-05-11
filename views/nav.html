@@ -21,7 +21,8 @@
                     </ul>
                     <!-- Left Nav Section -->
                     <ul class="left">
-                        <li><a ng-href="#/all-new-issues">My Longbox</a></li>
+                        <li><a ng-show="currentUser" ng-href="#/all-new-issues">My Longbox</a></li>
+                        <li><a ng-hide="currentUser" ng-href="#/all-new-issues">New Releases</a></li>
                         <li><a ng-show="currentUser" ng-href="#/pull-list">Subscriptions</a></li>
                         <li>
                             <div class="row collapse" ng-controller="NavController">

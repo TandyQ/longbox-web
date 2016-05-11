@@ -324,13 +324,29 @@ footer {
     z-index: 4;
 }
 
-.fixed-bottom {
+.fixed-bottom-logged-in {
     ul {
         width: 100%;
     }
 
     li {
         width: 25%;
+        text-align: center;
+    }
+
+    i {
+        padding-top: 10px;
+        color: $font-color;
+    }
+}
+
+.fixed-bottom-logged-out {
+    ul {
+        width: 100%;
+    }
+
+    li {
+        width: 33%;
         text-align: center;
     }
 

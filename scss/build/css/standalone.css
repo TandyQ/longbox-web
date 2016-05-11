@@ -6678,7 +6678,8 @@ th.hide-for-touch {
   height: 30px;
   display: inline;
   padding: 0;
-  background-color: #0E1111; }
+  background-color: #0E1111;
+  color: #6CBDB5; }
   .date-nav-button:hover, .date-nav-button:focus {
     background-color: #0E1111; }
 
@@ -6799,9 +6800,13 @@ div.stretchy-wrapper {
     .cover-overlay button .fa-info {
       padding: 2px 0 0 1px; }
   .cover-overlay .remove-button {
-    background-color: red; }
+    background-color: red;
+    color: white; }
   .cover-overlay .add-button {
-    background-color: green; }
+    background-color: green;
+    color: white; }
+  .cover-overlay .info-button {
+    color: white; }
 
 .pull-list-badge {
   position: absolute;
@@ -6857,15 +6862,20 @@ div.stretchy-wrapper {
   .search-result h1 {
     font-size: 1.2em; }
 
-.reveal-modal h4 {
-  font-size: 1.3em !important;
-  margin: 0 auto; }
-
-.reveal-modal h2 {
-  margin: 0 auto; }
-
-.reveal-modal .creators {
-  padding-bottom: 10px; }
+.reveal-modal {
+  outline: none; }
+  .reveal-modal h4 {
+    font-size: 1.3em !important;
+    margin: 0 auto; }
+  .reveal-modal h2 {
+    margin: 0 auto; }
+  .reveal-modal .creators {
+    padding-bottom: 10px; }
+  .reveal-modal button {
+    padding: 15px 20px;
+    border-radius: 5px;
+    float: right;
+    margin: 0; }
 
 /* Media Queries */
 @media only screen and (max-width: 25em) {
@@ -6879,7 +6889,9 @@ div.stretchy-wrapper {
     width: 20px;
     height: 20px; }
   .page-title h2 {
-    font-size: 16px; } }
+    font-size: 16px; }
+  .reveal-modal button {
+    width: 100%; } }
 
 @media only screen and (min-width: 25.0625em) and (max-width: 40em) {
   .top-bar .name h1 a,
@@ -6901,7 +6913,9 @@ div.stretchy-wrapper {
   .comic-grid {
     padding: 0 5px 0 5px; }
   .comic-title {
-    font-size: .9em; } }
+    font-size: .9em; }
+  .reveal-modal button {
+    width: 100%; } }
 
 @media only screen and (min-width: 40.0625em) {
   .comic-grid,
@@ -7118,14 +7132,25 @@ footer {
   height: 45px;
   z-index: 4; }
 
-.fixed-bottom ul {
+.fixed-bottom-logged-in ul {
   width: 100%; }
 
-.fixed-bottom li {
+.fixed-bottom-logged-in li {
   width: 25%;
   text-align: center; }
 
-.fixed-bottom i {
+.fixed-bottom-logged-in i {
+  padding-top: 10px;
+  color: #E3DFBA; }
+
+.fixed-bottom-logged-out ul {
+  width: 100%; }
+
+.fixed-bottom-logged-out li {
+  width: 33%;
+  text-align: center; }
+
+.fixed-bottom-logged-out i {
   padding-top: 10px;
   color: #E3DFBA; }
 

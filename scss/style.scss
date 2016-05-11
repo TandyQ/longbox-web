@@ -4,6 +4,8 @@
 $font-color: #E3DFBA;
 $bg-color: #0E1111;
 $header-bg-color: #1A1F1E;
+$interactive-color: #6CBDB5;
+$button-text-color: #233D3B;
 
 @mixin truncateText($overflow: ellipsis) {
     overflow: hidden;
@@ -141,6 +143,7 @@ $header-bg-color: #1A1F1E;
     display: inline;
     padding: 0;
     background-color: $bg-color;
+    color: $interactive-color;
 
     &:hover,
     &:focus {
@@ -388,6 +391,8 @@ div.stretchy-wrapper {
 }
 
 .reveal-modal {
+    outline: none;
+
     h4 {
         font-size: 1.3em !important;
         margin: 0 auto;

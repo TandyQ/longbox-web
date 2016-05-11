@@ -6580,7 +6580,8 @@ th.hide-for-touch {
   height: 30px;
   display: inline;
   padding: 0;
-  background-color: #0E1111; }
+  background-color: #0E1111;
+  color: #6CBDB5; }
   .date-nav-button:hover, .date-nav-button:focus {
     background-color: #0E1111; }
 
@@ -6763,21 +6764,20 @@ div.stretchy-wrapper {
   .search-result h1 {
     font-size: 1.2em; }
 
-.reveal-modal h4 {
-  font-size: 1.3em !important;
-  margin: 0 auto; }
-
-.reveal-modal h2 {
-  margin: 0 auto; }
-
-.reveal-modal .creators {
-  padding-bottom: 10px; }
-
-.reveal-modal button {
-  padding: 15px 20px;
-  border-radius: 5px;
-  float: right;
-  margin: 0; }
+.reveal-modal {
+  outline: none; }
+  .reveal-modal h4 {
+    font-size: 1.3em !important;
+    margin: 0 auto; }
+  .reveal-modal h2 {
+    margin: 0 auto; }
+  .reveal-modal .creators {
+    padding-bottom: 10px; }
+  .reveal-modal button {
+    padding: 15px 20px;
+    border-radius: 5px;
+    float: right;
+    margin: 0; }
 
 /* Media Queries */
 @media only screen and (max-width: 25em) {
