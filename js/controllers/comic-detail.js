@@ -18,15 +18,15 @@ myApp.controller('ComicDetailController', ['$scope', 'FirebaseUtils', 'PullListU
             writers:writers
         };
 
-        $scope.addComic = function(series) {
-            FirebaseUtils.addToPullList(series.name, series.resourceURI);
+        $scope.addComic = function() {
+            FirebaseUtils.addToPullList($scope.comic.series.name, $scope.comic.series.resourceURI);
         };
 
-        $scope.removeFromPullList = function(series) {
+        $scope.removeFromPullList = function() {
             if ($scope.pullList) {
                 for (var i = 0; i < $scope.pullList.length; i++) {
                     var sub = $scope.pullList[i];
-                    if (sub.name === series.name) {
+                    if (sub.name === $scope.comic.series.name) {
                         FirebaseUtils.removeFromPullList(sub);
                         break;
                     }

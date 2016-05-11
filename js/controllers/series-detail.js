@@ -18,16 +18,24 @@ myApp.controller('SeriesDetailController', ['$scope', 'FirebaseUtils', 'PullList
             writers:writers
         };
 
-        $scope.removeFromPullList = function(series) {
+        $scope.addComic = function() {
+            FirebaseUtils.addToPullList($scope.series.title, $scope.series.resourceURI);
+        };
+
+        $scope.removeFromPullList = function() {
             if ($scope.pullList) {
                 for (var i = 0; i < $scope.pullList.length; i++) {
                     var sub = $scope.pullList[i];
-                    if (sub.name === series.title) {
+                    if (sub.name === $scope.series.title) {
                         FirebaseUtils.removeFromPullList(sub);
                         break;
                     }
                 }
             }
+        };
+
+        $scope.isInPullList = function() {
+            return PullListUtils.isInPullList($scope.series.resourceURI, $scope.pullList);
         };
 
         $scope.cancel = function() {
