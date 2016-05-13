@@ -1,11 +1,13 @@
-<h2><a ng-href="{{comic.urls[0].url}}" target="_blank">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</a></h2>
-<div class="creators">
-    <h4><ng-pluralize count="creators.writers.length" when="{'0': '', '1': 'Writer: ', 'other': 'Writers: '}"></ng-pluralize>
+<div class="comic-detail">
+    <h2><a ng-href="{{comic.urls[0].url}}" target="_blank">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</a></h2>
+    <div class="creators">
+        <h4><ng-pluralize count="creators.writers.length" when="{'0': '', '1': 'Writer: ', 'other': 'Writers: '}"></ng-pluralize>
 {{ creators.writers | joinBy:", " }}</h4>
-    <h4><ng-pluralize count="creators.pencillers.length" when="{'0': '', '1': 'Artist: ', 'other': 'Artists: '}"></ng-pluralize>
+        <h4><ng-pluralize count="creators.pencillers.length" when="{'0': '', '1': 'Artist: ', 'other': 'Artists: '}"></ng-pluralize>
 {{ creators.pencillers | joinBy:", " }}</h4>
+    </div>
+    <p>{{comic.description}}</p>
+    <button class="add-button" ng-click="addComic()" ng-hide="isInPullList()">Add to Subscriptions</button>
+    <button class="remove-button" ng-click="removeFromPullList()" ng-show="isInPullList()">Remove from Subscriptions</button>
+    <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
 </div>
-<p>{{comic.description}}</p>
-<button class="add-button" ng-click="addComic()" ng-hide="isInPullList()">Add to Subscriptions</button>
-<button class="remove-button" ng-click="removeFromPullList()" ng-show="isInPullList()">Remove from Subscriptions</button>
-<a class="close-reveal-modal" ng-click="cancel()">&#215;</a>

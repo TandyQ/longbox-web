@@ -6869,6 +6869,15 @@ div.stretchy-wrapper {
   .reveal-modal .close-reveal-modal {
     color: #6CBDB5; }
 
+.series-detail .description p {
+  font-size: 1.2em; }
+
+.series-detail .creative {
+  margin-bottom: 1.2em;
+  font-size: 1em; }
+  .series-detail .creative p {
+    margin: 0; }
+
 /* Loading Spinner */
 .spinner-container {
   position: fixed;
