@@ -6630,8 +6630,9 @@ button {
     text-overflow: ellipsis; }
 
 .page-title-content {
-  padding: 10px 10px 10px 10px;
-  height: 50px; }
+  padding: 0 10px 60px 10px !important;
+  height: 50px;
+  margin-top: 0.6em !important; }
 
 .page-title {
   text-align: left; }
@@ -6756,9 +6757,6 @@ div.stretchy-wrapper {
 .reveal-modal {
   outline: none;
   padding: .8rem 1.875rem 1.875rem 1.875rem !important; }
-  .reveal-modal h4 {
-    font-size: 1.3em !important;
-    margin: 0 auto; }
   .reveal-modal h2 {
     margin: 0 auto; }
   .reveal-modal button {
@@ -6766,19 +6764,15 @@ div.stretchy-wrapper {
     border-radius: 5px;
     float: right;
     margin: 0; }
-  .reveal-modal .creators {
-    padding-bottom: 10px; }
+  .reveal-modal .description p {
+    font-size: 1.2em; }
+  .reveal-modal .creative {
+    margin-bottom: 1.2em;
+    font-size: 1em; }
+    .reveal-modal .creative p {
+      margin: 0; }
   .reveal-modal .close-reveal-modal {
     color: #6CBDB5; }
-
-.series-detail .description p {
-  font-size: 1.2em; }
-
-.series-detail .creative {
-  margin-bottom: 1.2em;
-  font-size: 1em; }
-  .series-detail .creative p {
-    margin: 0; }
 
 /* Loading Spinner */
 .spinner-container {

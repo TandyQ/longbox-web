@@ -215,8 +215,9 @@ button {
 }
 
 .page-title-content {
-    padding: 10px 10px 10px 10px;
+    padding: 0 10px 60px 10px !important;
     height: 50px;
+    margin-top: 0.6em !important;
 }
 
 .page-title {
@@ -381,11 +382,6 @@ div.stretchy-wrapper {
     outline: none;
     padding: .8rem 1.875rem 1.875rem 1.875rem !important;
 
-    h4 {
-        font-size: 1.3em !important;
-        margin: 0 auto;
-    }
-
     h2 {
         margin: 0 auto;
     }
@@ -397,16 +393,6 @@ div.stretchy-wrapper {
         margin: 0;
     }
 
-    .creators {
-        padding-bottom: 10px;
-    }
-
-    .close-reveal-modal {
-        color: $interactive-color;
-    }
-}
-
-.series-detail {
     .description p {
         font-size: 1.2em;
     }
@@ -418,6 +404,10 @@ div.stretchy-wrapper {
         p {
             margin: 0;
         }
+    }
+
+    .close-reveal-modal {
+        color: $interactive-color;
     }
 }
 

@@ -43,22 +43,3 @@ myApp.controller('ComicDetailController', ['$scope', 'FirebaseUtils', 'PullListU
         };
     }
 ]);
-
-
-// angular.module('foundationDemoApp').controller('ModalInstanceCtrl', function($scope, $modalInstance, items) {
-
-//     $scope.items = items;
-//     $scope.selected = {
-//         item: $scope.items[0]
-//     };
-
-//     $scope.reposition = function() {
-//         $modalInstance.reposition();
-//     };
-
-//     $scope.ok = function() {
-//         $modalInstance.close($scope.selected.item);
-//     };
-
-
-// });
