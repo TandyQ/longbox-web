@@ -1,7 +1,7 @@
 <div class="comic-detail">
     <div class="title">
         <h2>{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</h2>
-        <p>{{comic.pageCount}} pages | ${{comic.prices[0].price}} | <a ng-href="{{comic.urls[0].url}}" target="_blank">View on Marvel.com</a>
+        <p>{{comic.pageCount}} pages | ${{comic.prices[0].price}} | <a ng-href="{{comic.urls[0].url}}" target="_blank">View on Marvel.com <i class="fa fa-arrow-circle-o-right"></i></a>
     </div>
     <div class="description">
         <p>{{comic.description}}</p>
@@ -9,10 +9,10 @@
     <div class="creative">
         <p>
             <ng-pluralize count="creators.writers.length" when="{'0': '', '1': 'Writer: ', 'other': 'Writers: '}"></ng-pluralize>
-            {{ creators.writers | joinBy:", " }}</p>
+            {{ creators.writers | orderBy:'toString()' | joinBy:", " }}</p>
         <p>
             <ng-pluralize count="creators.pencillers.length" when="{'0': '', '1': 'Artist: ', 'other': 'Artists: '}"></ng-pluralize>
-            {{ creators.pencillers | joinBy:", " }}</p>
+            {{ creators.pencillers | orderBy:'toString()' | joinBy:", " }}</p>
     </div>
     <button class="add-button" ng-click="addComic()" ng-hide="isInPullList()">Add to Subscriptions</button>
     <button class="remove-button" ng-click="removeFromPullList()" ng-show="isInPullList()">Remove from Subscriptions</button>

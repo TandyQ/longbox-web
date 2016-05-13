@@ -1,4 +1,4 @@
-myApp.controller('SeriesDetailController', ['$scope', 'FirebaseUtils', 'PullListUtils',  '$modalInstance', 'series', 'pullList',
+myApp.controller('SeriesDetailController', ['$scope', 'FirebaseUtils', 'PullListUtils', '$modalInstance', 'series', 'pullList',
     function($scope, FirebaseUtils, PullListUtils, $modalInstance, series, pullList) {
         $scope.series = series;
         $scope.pullList = pullList;
@@ -7,15 +7,19 @@ myApp.controller('SeriesDetailController', ['$scope', 'FirebaseUtils', 'PullList
         var writers = [];
         for (var i = 0; i < series.creators.items.length; i++) {
             var creator = series.creators.items[i];
-            if (creator.role.toLowerCase().indexOf("penciller (cover)") !== -1) {
+            if (((creator.role.toLowerCase().indexOf("penciller") > -1) ||
+                    (creator.role.toLowerCase().indexOf("penciler") > -1) ||
+                    (creator.role.toLowerCase().indexOf("artist") > -1)) &&
+                $.inArray(creator.name, pencillers) < 0) {
                 pencillers.push(creator.name);
-            } else if (creator.role.toLowerCase().indexOf("writer") !== -1) {
+            } else if ((creator.role.toLowerCase().indexOf("writer") > -1) &&
+                ($.inArray(creator.name, pencillers) < 0)) {
                 writers.push(creator.name);
             }
         }
         $scope.creators = {
-            pencillers:pencillers,
-            writers:writers
+            pencillers: pencillers,
+            writers: writers
         };
 
         $scope.addComic = function() {

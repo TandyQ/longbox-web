@@ -3,16 +3,16 @@
         <h2>{{series.title | limitFromToChar:0:" ("}}</h2>
         <p>Status:
             <ng-pluralize count="series.endYear" when="{'2099': 'Ongoing', 'other': 'Ended ({{series.endYear}})'}"></ng-pluralize> |
-            <a ng-href="{{series.urls[0].url}}" target="_blank">View on Marvel.com</a></p>
+            <a ng-href="{{series.urls[0].url}}" target="_blank">View on Marvel.com <i class="fa fa-arrow-circle-o-right"></i></a></p>
     </div>
     <div class="description">
         <p>{{series.description}}</p>
     </div>
     <div class="creative">
         <p><ng-pluralize count="creators.writers.length" when="{'0': '', '1': 'Writer: ', 'other': 'Writers: '}"></ng-pluralize>
-{{ creators.writers | joinBy:", " }}</p>
+{{ creators.writers | orderBy:'toString()' | joinBy:", "}}</p>
         <p><ng-pluralize count="creators.pencillers.length" when="{'0': '', '1': 'Artist: ', 'other': 'Artists: '}"></ng-pluralize>
-{{ creators.pencillers | joinBy:", " }}</p>
+{{ creators.pencillers | orderBy:'toString()' | joinBy:", "}}</p>
     </div>
     <button class="add-button" ng-click="addComic()" ng-hide="isInPullList()">Add to Subscriptions</button>
     <button class="remove-button" ng-click="removeFromPullList()" ng-show="isInPullList()">Remove from Subscriptions</button>
