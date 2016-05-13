@@ -6605,18 +6605,18 @@ button {
   .my-longbox-content .tabs dd > a,
   .my-longbox-content .tabs .tab-title > a {
     background-color: transparent;
-    color: #E3DFBA;
+    color: #6CBDB5;
     padding: 0 1rem;
     width: 170px; }
   .my-longbox-content .tabs dd.active > a {
-    background-color: #E3DFBA;
+    background-color: #6CBDB5;
     color: #0E1111; }
   .my-longbox-content .tabs .first-tab > a {
-    border: 1px solid #E3DFBA;
+    border: 1px solid #6CBDB5;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px; }
   .my-longbox-content .tabs .last-tab > a {
-    border: 1px solid #E3DFBA;
+    border: 1px solid #6CBDB5;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
     margin-left: -5px; }
@@ -6754,19 +6754,22 @@ div.stretchy-wrapper {
 
 /* Modal styling */
 .reveal-modal {
-  outline: none; }
+  outline: none;
+  padding: .8rem 1.875rem 1.875rem 1.875rem !important; }
   .reveal-modal h4 {
     font-size: 1.3em !important;
     margin: 0 auto; }
   .reveal-modal h2 {
     margin: 0 auto; }
-  .reveal-modal .creators {
-    padding-bottom: 10px; }
   .reveal-modal button {
     padding: 15px 20px;
     border-radius: 5px;
     float: right;
     margin: 0; }
+  .reveal-modal .creators {
+    padding-bottom: 10px; }
+  .reveal-modal .close-reveal-modal {
+    color: #6CBDB5; }
 
 /* Loading Spinner */
 .spinner-container {

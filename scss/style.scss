@@ -179,24 +179,24 @@ button {
         dd > a,
         .tab-title > a {
             background-color: transparent;
-            color: $font-color;
+            color: $interactive-color;
             padding: 0 1rem;
             width: 170px;
         }
 
         dd.active > a {
-            background-color: $font-color;
+            background-color: $interactive-color;
             color: $bg-color;
         }
 
         .first-tab > a {
-            border: 1px solid $font-color;
+            border: 1px solid $interactive-color;
             border-top-left-radius: 7px;
             border-bottom-left-radius: 7px;
         }
 
         .last-tab > a {
-            border: 1px solid $font-color;
+            border: 1px solid $interactive-color;
             border-top-right-radius: 7px;
             border-bottom-right-radius: 7px;
             margin-left: -5px;
@@ -379,6 +379,7 @@ div.stretchy-wrapper {
 
 .reveal-modal {
     outline: none;
+    padding: .8rem 1.875rem 1.875rem 1.875rem !important;
 
     h4 {
         font-size: 1.3em !important;
@@ -389,15 +390,19 @@ div.stretchy-wrapper {
         margin: 0 auto;
     }
 
-    .creators {
-        padding-bottom: 10px;
-    }
-
     button {
         padding: 15px 20px;
         border-radius: 5px;
         float: right;
         margin: 0;
+    }
+
+    .creators {
+        padding-bottom: 10px;
+    }
+
+    .close-reveal-modal {
+        color: $interactive-color;
     }
 }
 
