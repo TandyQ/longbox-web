@@ -5,6 +5,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Settings', 'Mar
         $scope.isLoading = false;
         $scope.dateDisplayString = "";
         $scope.currentYear = new Date().getFullYear();
+        $scope.viewMode = Settings.getViewMode();
 
         auth.$onAuth(function(authUser) {
             if (authUser) {

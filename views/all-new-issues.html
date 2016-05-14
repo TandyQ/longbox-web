@@ -18,7 +18,7 @@
     <tabset>
         <tab heading="My Releases" class="first-tab">
             <div ng-hide="isLoading" class="row comic-grid" data-equalizer>
-                <div class="tiny-6 small-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList | orderBy:'series.name'" data-equalizer-watch>
+                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList | orderBy:'series.name'" data-equalizer-watch>
                     <!-- Fix for different cover sizes -->
                     <div ng-class="{'new-series': comic.issueNumber <= 1}" class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
                         <div class="cover-overlay" ng-style="tapOverlayCSS">
