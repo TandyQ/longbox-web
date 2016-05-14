@@ -5,6 +5,7 @@ myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Settings
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
         $scope.currentYear = new Date().getFullYear();
+        $scope.viewMode = Settings.getViewMode();
 
         auth.$onAuth(function(authUser) {
             if (authUser) {
