@@ -1,5 +1,5 @@
-myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'ComicVine', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function($scope, $modal, Marvel, ComicVine, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Settings', 'Marvel', 'ComicVine', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
+    function($scope, $modal, Settings, Marvel, ComicVine, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
         $scope.isLoading = false;
@@ -8,7 +8,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'Comic
 
         auth.$onAuth(function(authUser) {
             if (authUser) {
-                var pullRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid + '/pulllist/');
+                var pullRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid + '/' + Settings.getSelectedServicePrefix() + '-pulllist/');
                 var pullListInfo = $firebaseArray(pullRef);
 
                 pullListInfo.$loaded().then(function(data) {
@@ -52,27 +52,29 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Marvel', 'Comic
 
         var loadWeeklyComicsForDay = function(selectedDate) {
             var dateRange = DateUtils.getDateRange(selectedDate); // Get first and last day of week
-            Marvel.getComicDataForWeek(dateRange).then(function(data) {
-                $scope.comicData = data;
-                $scope.isLoading = false;
-                for (var i = 0; i < $scope.comicData.length; i++) {
-                    if (!$scope.comicData[i].description) {
-                        $scope.comicData[i].description = "No description available.";
+            var selectedService = Settings.getSelectedServicePrefix();
+            if (selectedService == 'marvel') {
+                Marvel.getComicDataForWeek(dateRange).then(function(data) {
+                    $scope.comicData = data;
+                    $scope.isLoading = false;
+                    for (var i = 0; i < $scope.comicData.length; i++) {
+                        if (!$scope.comicData[i].description) {
+                            $scope.comicData[i].description = "No description available.";
+                        }
                     }
-                }
-            });
+                });
+            } else if (selectedService == 'comic-vine') {
+                // WARNING: Comic Vine is not set up to be used with the current Firebase data management
+                // scheme. This is only part of an experimental, in-development support for a resource other
+                // than Marvel's api. It currently only has the controller layer. No view or model layers
+                // are present.
 
-            // Enable this for Comic Vine support (such as it is)
-            // WARNING: Comic Vine is not set up to be used with the current Firebase data management
-            // scheme. This is only part of an experimental, in-development support for a resource other
-            // than Marvel's api. It currently only has the controller layer. No view or model layers
-            // are present.
-
-            // ComicVine.clearLoadedComics();
-            // ComicVine.getComicDataForWeek(dateRange).then(function(data) {
-            //     $scope.comicData = data;
-            //     $scope.isLoading = false;
-            // });
+                ComicVine.clearLoadedComics();
+                ComicVine.getComicDataForWeek(dateRange).then(function(data) {
+                    $scope.comicData = data;
+                    $scope.isLoading = false;
+                });
+            }
         };
 
         $scope.openModalForComic = function(selectedComic) {

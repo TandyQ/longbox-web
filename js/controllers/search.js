@@ -1,5 +1,5 @@
-myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', '$location', 'Marvel', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function($scope, $modal, $routeParams, $location, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', '$location', 'Settings', 'Marvel', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
+    function($scope, $modal, $routeParams, $location, Settings, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
         $scope.currentYear = new Date().getFullYear();
@@ -28,7 +28,7 @@ myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', '$loca
 
         auth.$onAuth(function(authUser) {
             if (authUser) {
-                var pullRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid + '/pulllist/');
+                var pullRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid + '/' + Settings.getSelectedServicePrefix() + '-pulllist/');
                 var pullListInfo = $firebaseArray(pullRef);
 
                 pullListInfo.$loaded().then(function(data) {

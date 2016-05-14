@@ -1,6 +1,6 @@
-myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Marvel', 'ComicVine', 'DateUtils', "PullListUtils",
+myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Settings', 'Marvel', 'ComicVine', 'DateUtils', "PullListUtils",
     "FirebaseUtils", '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function($scope, $modal, $filter, Marvel, ComicVine, DateUtils, PullListUtils,
+    function($scope, $modal, $filter, Settings, Marvel, ComicVine, DateUtils, PullListUtils,
         FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
@@ -8,7 +8,7 @@ myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Marvel',
 
         auth.$onAuth(function(authUser) {
             if (authUser) {
-                var pullRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid + '/pulllist/');
+                var pullRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid + '/' + Settings.getSelectedServicePrefix() + '-pulllist/');
                 var pullListInfo = $firebaseArray(pullRef);
 
                 $scope.seriesData = [];
@@ -62,28 +62,30 @@ myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Marvel',
 
         $scope.getSeries = function(series) {
             if (series.resourceURI) {
-                Marvel.getSeriesDataForResourceURI(series.resourceURI).then(function(comicData) {
-                    if ($scope.seriesData.indexOf(comicData) == -1) {
-                        if (!comicData.description) {
-                            comicData.description = "No description available.";
+                var selectedService = Settings.getSelectedServicePrefix();
+                if (selectedService == 'marvel') {
+                    Marvel.getSeriesDataForResourceURI(series.resourceURI).then(function(comicData) {
+                        if ($scope.seriesData.indexOf(comicData) == -1) {
+                            if (!comicData.description) {
+                                comicData.description = "No description available.";
+                            }
+                            $scope.seriesData.push(comicData);
+                            $scope.getLatestComicCoverForSeries(comicData, $scope.seriesData.indexOf(comicData));
                         }
-                        $scope.seriesData.push(comicData);
-                        $scope.getLatestComicCoverForSeries(comicData, $scope.seriesData.indexOf(comicData));
-                    }
-                });
+                    });
+                } else if (selectedService == 'comic-vine') {
+                    // WARNING: Comic Vine is not set up to be used with the current Firebase data management
+                    // scheme. This is only part of an experimental, in-development support for a resource other
+                    // than Marvel's api. It currently only has the controller layer. No view or model layers
+                    // are present.
 
-                // Enable this for Comic Vine support (such as it is)
-                // WARNING: Comic Vine is not set up to be used with the current Firebase data management
-                // scheme. This is only part of an experimental, in-development support for a resource other
-                // than Marvel's api. It currently only has the controller layer. No view or model layers
-                // are present.
-
-                // ComicVine.getVolumeDataForId(series.id).then(function(data) {
-                //     if ($scope.seriesData.indexOf(data) == -1) {
-                //         $scope.seriesData.push(data);
-                //         $scope.getLatestComicCoverForSeries(data, $scope.seriesData.indexOf(data));
-                //     }
-                // });
+                    ComicVine.getVolumeDataForId(series.id).then(function(data) {
+                        if ($scope.seriesData.indexOf(data) == -1) {
+                            $scope.seriesData.push(data);
+                            $scope.getLatestComicCoverForSeries(data, $scope.seriesData.indexOf(data));
+                        }
+                    });
+                }
             }
         };
 
@@ -100,25 +102,27 @@ myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Marvel',
 
         $scope.getLatestComicCoverForSeries = function(series, index) {
             if (series.id) {
-                Marvel.getLatestComicCoverForSeriesId(series.id).then(function(thumbnail) {
-                    if ($scope.seriesData[index]) {
-                        $scope.seriesData[index].latestComicCoverPath = thumbnail.path;
-                        $scope.seriesData[index].latestComicCoverExtension = thumbnail.extension;
-                    }
-                });
+                var selectedService = Settings.getSelectedServicePrefix();
+                if (selectedService == 'marvel') {
+                    Marvel.getLatestComicCoverForSeriesId(series.id).then(function(thumbnail) {
+                        if ($scope.seriesData[index]) {
+                            $scope.seriesData[index].latestComicCoverPath = thumbnail.path;
+                            $scope.seriesData[index].latestComicCoverExtension = thumbnail.extension;
+                        }
+                    });
+                } else if (selectedService == 'comic-vine') {
+                    // WARNING: Comic Vine is not set up to be used with the current Firebase data management
+                    // scheme. This is only part of an experimental, in-development support for a resource other
+                    // than Marvel's api. It currently only has the controller layer. No view or model layers
+                    // are present.
 
-                // Enable this for Comic Vine support (such as it is)
-                // WARNING: Comic Vine is not set up to be used with the current Firebase data management
-                // scheme. This is only part of an experimental, in-development support for a resource other
-                // than Marvel's api. It currently only has the controller layer. No view or model layers
-                // are present.
-
-                // ComicVine.getLatestCoverForIssueId(series.last_issue.id).then(function(thumbnail) {
-                //     if ($scope.seriesData[index]) {
-                //         $scope.seriesData[index].latestComicCoverPath = thumbnail.path;
-                //         $scope.seriesData[index].latestComicCoverExtension = thumbnail.extension;
-                //     }
-                // });
+                    ComicVine.getLatestCoverForIssueId(series.last_issue.id).then(function(thumbnail) {
+                        if ($scope.seriesData[index]) {
+                            $scope.seriesData[index].latestComicCoverPath = thumbnail.path;
+                            $scope.seriesData[index].latestComicCoverExtension = thumbnail.extension;
+                        }
+                    });
+                }
             }
         };
 

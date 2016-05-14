@@ -1,5 +1,5 @@
-myApp.factory('FirebaseUtils', ['$rootScope', "PullListUtils", '$firebaseArray', '$firebaseAuth', 'FIREBASE_URL',
-    function($rootScope, PullListUtils, $firebaseArray, $firebaseAuth, FIREBASE_URL) {
+myApp.factory('FirebaseUtils', ['$rootScope', 'Settings', 'PullListUtils', '$firebaseArray', '$firebaseAuth', 'FIREBASE_URL',
+    function($rootScope, Settings, PullListUtils, $firebaseArray, $firebaseAuth, FIREBASE_URL) {
 
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
@@ -8,7 +8,7 @@ myApp.factory('FirebaseUtils', ['$rootScope', "PullListUtils", '$firebaseArray',
             addToPullList: function(seriesTitle, seriesURI, seriesId) {
                 auth.$onAuth(function(authUser) {
                     if (authUser) {
-                        var pullListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
+                        var pullListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/' + Settings.getSelectedServicePrefix() + '-pulllist/');
                         var pullListInfo = $firebaseArray(pullListRef);
 
                         pullListInfo.$loaded().then(function(data) {
@@ -39,7 +39,7 @@ myApp.factory('FirebaseUtils', ['$rootScope', "PullListUtils", '$firebaseArray',
             removeFromPullList: function(sub) {
                 auth.$onAuth(function(authUser) {
                     if (authUser) {
-                        var pullListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/pulllist/');
+                        var pullListRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/' + Settings.getSelectedServicePrefix() + '-pulllist/');
                         var pullListInfo = $firebaseArray(pullListRef);
                         pullListInfo.$loaded().then(function(data) {
                             var index = pullListInfo.$getRecord(sub.$id);

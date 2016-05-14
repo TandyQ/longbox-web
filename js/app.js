@@ -39,6 +39,15 @@ myApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'views/search.html',
         controller: 'SearchController'
     }).
+    when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileController',
+        resolve: {
+            currentAuth: function(Authentication) {
+                    return Authentication.requireAuth();
+                } // current authentication
+        } // resolve
+    }).
     when('/search', {
         templateUrl: 'views/search.html',
         controller: 'SearchController'

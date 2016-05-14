@@ -1,5 +1,5 @@
-myApp.controller('SeriesDetailController', ['$scope', 'FirebaseUtils', 'PullListUtils', '$modalInstance', 'series', 'pullList',
-    function($scope, FirebaseUtils, PullListUtils, $modalInstance, series, pullList) {
+myApp.controller('SeriesDetailController', ['$scope', 'Settings', 'FirebaseUtils', 'PullListUtils', '$modalInstance', 'series', 'pullList',
+    function($scope, Settings, FirebaseUtils, PullListUtils, $modalInstance, series, pullList) {
         $scope.series = series;
         $scope.pullList = pullList;
 

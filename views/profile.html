@@ -1,0 +1,9 @@
+<div class="profile" ng-controller="ProfileController">
+    <p>{{ currentUser.firstname }} {{ currentUser.lastname }}</p>
+</div>
+<div class="service-selection">
+    <input id="marvel" type="radio" ng-model="selectedService" name="selected-service" value="Marvel">
+    <label for="marvel">Marvel</label>&nbsp;
+    <input id="comic-vine" type="radio" ng-model="selectedService" name="selected-service" value="Comic Vine">
+    <label for="comic-vine">Comic Vine</label>
+</div>
