@@ -2804,18 +2804,18 @@ textarea {
   max-width: 100%; }
 
 ::-webkit-input-placeholder {
-  color: #67706f; }
+  color: red; }
 
 :-moz-placeholder {
   /* Firefox 18- */
-  color: #67706f; }
+  color: red; }
 
 ::-moz-placeholder {
   /* Firefox 19+ */
-  color: #67706f; }
+  color: red; }
 
 :-ms-input-placeholder {
-  color: #67706f; }
+  color: red; }
 
 /* Add height value for select elements to match text input height */
 select {
@@ -6529,6 +6529,20 @@ button {
     border-color: #343d3b;
     border-right-color: #303837; }
 
+.top-bar ::-webkit-input-placeholder {
+  color: #67706f; }
+
+.top-bar :-moz-placeholder {
+  /* Firefox 18- */
+  color: #67706f; }
+
+.top-bar ::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #67706f; }
+
+.top-bar :-ms-input-placeholder {
+  color: #67706f; }
+
 .top-bar .search-button {
   font-size: 0.8rem;
   border-radius: 0 7px 7px 0; }
@@ -6729,10 +6743,10 @@ div.stretchy-wrapper {
     .cover-overlay button .fa-info {
       padding: 2px 0 0 1px; }
   .cover-overlay .remove-button {
-    background-color: red;
+    background-color: #e21d38;
     color: white; }
   .cover-overlay .add-button {
-    background-color: green;
+    background-color: #19823a;
     color: white; }
   .cover-overlay .info-button {
     color: white; }
@@ -6741,7 +6755,7 @@ div.stretchy-wrapper {
   position: absolute;
   width: 0;
   height: 0;
-  border-top: 40px solid green;
+  border-top: 40px solid #19823a;
   border-right: 40px solid transparent;
   z-index: 3; }
   .pull-list-badge .fa-check {
@@ -6753,7 +6767,7 @@ div.stretchy-wrapper {
   position: absolute;
   width: 0;
   height: 0;
-  border-top: 40px solid red;
+  border-top: 40px solid #e21d38;
   border-right: 40px solid transparent;
   z-index: 3; }
   .warning-badge .fa-ban {
@@ -6771,9 +6785,14 @@ div.stretchy-wrapper {
   overflow: hidden; }
 
 .new-series {
-  -webkit-box-shadow: inset 0px 0px 0px 2px yellow;
-  -moz-box-shadow: inset 0px 0px 0px 2px yellow;
-  box-shadow: inset 0px 0px 0px 2px yellow; }
+  -webkit-box-shadow: inset 0px 0px 0px 2px #ffe61f;
+  -moz-box-shadow: inset 0px 0px 0px 2px #ffe61f;
+  box-shadow: inset 0px 0px 0px 2px #ffe61f; }
+
+.ended-series {
+  -webkit-box-shadow: inset 0px 0px 0px 2px #e21d38;
+  -moz-box-shadow: inset 0px 0px 0px 2px #e21d38;
+  box-shadow: inset 0px 0px 0px 2px #e21d38; }
 
 /* Modal styling */
 .reveal-modal {

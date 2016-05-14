@@ -9,6 +9,9 @@ $button-text-color: #233D3B;
 $search-bg-color: #2a3130;
 $search-active-bg-color: #303837;
 $search-border-color: #343d3b;
+$new-series-outline-color: #ffe61f;
+$ended-series-color: #e21d38;
+$add-series-color: #19823a;
 
 @mixin truncateText($overflow: ellipsis) {
     overflow: hidden;
@@ -68,6 +71,24 @@ button {
             border-color: $search-border-color;
             border-right-color: $search-active-bg-color;
         }
+    }
+
+    ::-webkit-input-placeholder {
+        color: #67706f;
+    }
+
+    :-moz-placeholder {
+        /* Firefox 18- */
+        color: #67706f;
+    }
+
+    ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #67706f;
+    }
+
+    :-ms-input-placeholder {
+        color: #67706f;
     }
 
     .search-button {
@@ -349,12 +370,12 @@ div.stretchy-wrapper {
     }
 
     .remove-button {
-        background-color: red;
+        background-color: $ended-series-color;
         color: white;
     }
 
     .add-button {
-        background-color: green;
+        background-color: $add-series-color;
         color: white;
     }
 
@@ -367,7 +388,7 @@ div.stretchy-wrapper {
     position: absolute;
     width: 0;
     height: 0;
-    border-top: 40px solid green;
+    border-top: 40px solid $add-series-color;
     border-right: 40px solid transparent;
     z-index: 3;
 
@@ -382,7 +403,7 @@ div.stretchy-wrapper {
     position: absolute;
     width: 0;
     height: 0;
-    border-top: 40px solid red;
+    border-top: 40px solid $ended-series-color;
     border-right: 40px solid transparent;
     z-index: 3;
 
@@ -405,9 +426,15 @@ div.stretchy-wrapper {
 }
 
 .new-series {
-    -webkit-box-shadow: inset 0px 0px 0px 2px yellow;
-    -moz-box-shadow: inset 0px 0px 0px 2px yellow;
-    box-shadow: inset 0px 0px 0px 2px yellow;
+    -webkit-box-shadow: inset 0px 0px 0px 2px $new-series-outline-color;
+    -moz-box-shadow: inset 0px 0px 0px 2px $new-series-outline-color;
+    box-shadow: inset 0px 0px 0px 2px $new-series-outline-color;
+}
+
+.ended-series {
+    -webkit-box-shadow: inset 0px 0px 0px 2px $ended-series-color;
+    -moz-box-shadow: inset 0px 0px 0px 2px $ended-series-color;
+    box-shadow: inset 0px 0px 0px 2px $ended-series-color;
 }
 
 /* Modal styling */
