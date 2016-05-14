@@ -203,6 +203,10 @@ button {
     &:focus {
         background-color: $bg-color;
     }
+
+    &:focus {
+        color: $interactive-color;
+    }
 }
 
 .back-button {
@@ -481,6 +485,15 @@ div.stretchy-wrapper {
 /* Attribution */
 
 .attribution {
+    text-align: center;
+}
+
+/* No Results */
+
+.no-results {
+    @include centererWithPosition(fixed);
+
+    font-size: 1.3em;
     text-align: center;
 }
 

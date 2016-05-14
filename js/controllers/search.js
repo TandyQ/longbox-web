@@ -4,8 +4,12 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
         var auth = $firebaseAuth(ref);
         $scope.currentYear = new Date().getFullYear();
         $scope.searchString = $routeParams.seriesSearch;
+        $scope.isLoading = false;
+        $scope.hasComics = true;
 
         var loadSeriesMatchingString = function(string) {
+            $scope.hasComics = true;
+            $scope.isLoading = true;
             var selectedService = Settings.getSelectedServicePrefix();
             var queryString = '';
             if (selectedService == 'marvel') {
@@ -19,6 +23,9 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
                             series.description = "No description available.";
                         }
                         $scope.getLatestComicCoverForSeries(series, i);
+                    }
+                    if ($scope.seriesData.length < 1) {
+                        $scope.hasComics = false;
                     }
                     $scope.isLoading = false;
                 });
@@ -40,13 +47,15 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
                         }
                         $scope.getLatestComicCoverForSeries(series, i);
                     }
+                    if ($scope.seriesData.length < 1) {
+                        $scope.hasComics = false;
+                    }
                     $scope.isLoading = false;
                 });
             }
         };
 
         if ($scope.searchString && $scope.searchString !== "") {
-            $scope.isLoading = true;
             loadSeriesMatchingString($scope.searchString);
         }
 

@@ -32,8 +32,10 @@
                 </div>
             </div>
             <div ng-hide="isLoading" class="row attribution">
-                <div class="large-12 columns">
-                    <p><div ng-bind-html="sourceText()"></div></p>
+                <div ng-show="hasComics" class="large-12 columns">
+                    <p>
+                        <div ng-bind-html="sourceText()"></div>
+                    </p>
                 </div>
             </div>
         </tab>
@@ -59,13 +61,18 @@
                 </div>
             </div>
             <div ng-hide="isLoading" class="row attribution">
-                <div class="large-12 columns">
-                    <p><div ng-bind-html="sourceText()"></div></p>
+                <div ng-show="hasComics" class="large-12 columns">
+                    <p>
+                        <div ng-bind-html="sourceText()"></div>
+                    </p>
                 </div>
             </div>
         </tab>
         <div ng-show="isLoading" class="spinner-container">
             <i class="fa fa-refresh fa-spin fa-fw fa-5x margin-bottom loading-spinner"></i>
+        </div>
+        <div ng-hide="hasComics" class="no-results">
+            No Comics This Week
         </div>
     </tabset>
 </div>
@@ -87,11 +94,16 @@
         </div>
     </div>
     <div ng-hide="isLoading" class="row attribution">
-        <div class="large-12 columns">
-            <p><div ng-bind-html="sourceText()"></div></p>
+        <div ng-show="hasComics" class="large-12 columns">
+            <p>
+                <div ng-bind-html="sourceText()"></div>
+            </p>
         </div>
     </div>
     <div ng-show="isLoading" class="spinner-container">
         <i class="fa fa-refresh fa-spin fa-fw fa-5x margin-bottom loading-spinner"></i>
+    </div>
+    <div ng-hide="hasComics" class="no-results">
+        No Comics This Week
     </div>
 </div>

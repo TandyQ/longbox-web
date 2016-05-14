@@ -6717,6 +6717,8 @@ button {
   color: #6CBDB5; }
   .date-nav-button:hover, .date-nav-button:focus {
     background-color: #0E1111; }
+  .date-nav-button:focus {
+    color: #6CBDB5; }
 
 .back-button {
   margin-right: 10px; }
@@ -6924,6 +6926,15 @@ div.stretchy-wrapper {
 
 /* Attribution */
 .attribution {
+  text-align: center; }
+
+/* No Results */
+.no-results {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5em;
   text-align: center; }
 
 /* Search Results */
