@@ -460,12 +460,16 @@ div.stretchy-wrapper {
         margin: 0;
     }
 
-    p {
-        display: inline-block;
+    .title {
+        p {
+            display: inline-block;
+        }
     }
 
-    .description p {
-        font-size: 1.2em;
+    .description {
+        p {
+            font-size: 1.2em;
+        }
     }
 
     .creative {

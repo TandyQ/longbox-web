@@ -6807,7 +6807,7 @@ div.stretchy-wrapper {
     border-radius: 5px;
     float: right;
     margin: 0; }
-  .reveal-modal p {
+  .reveal-modal .title p {
     display: inline-block; }
   .reveal-modal .description p {
     font-size: 1.2em; }
