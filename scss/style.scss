@@ -6,7 +6,9 @@ $bg-color: #0E1111;
 $header-bg-color: #1A1F1E;
 $interactive-color: #6CBDB5;
 $button-text-color: #233D3B;
+$calendar-header-color: #999;
 $search-bg-color: #2a3130;
+$search-placeholder-color: #67706f;
 $search-active-bg-color: #303837;
 $search-border-color: #343d3b;
 $new-series-outline-color: #ffe61f;
@@ -74,21 +76,21 @@ button {
     }
 
     ::-webkit-input-placeholder {
-        color: #67706f;
+        color: $search-placeholder-color;
     }
 
     :-moz-placeholder {
         /* Firefox 18- */
-        color: #67706f;
+        color: $search-placeholder-color;
     }
 
     ::-moz-placeholder {
         /* Firefox 19+ */
-        color: #67706f;
+        color: $search-placeholder-color;
     }
 
     :-ms-input-placeholder {
-        color: #67706f;
+        color: $search-placeholder-color;
     }
 
     .search-button {
@@ -137,7 +139,7 @@ button {
     }
 
     .pika-table th {
-        color: #999;
+        color: $calendar-header-color;
     }
 
     .pika-table tr th,
@@ -162,7 +164,7 @@ button {
     }
 
     .pika-week {
-        color: #999;
+        color: $calendar-header-color;
     }
 
     .is-today .pika-button {
@@ -177,7 +179,7 @@ button {
     }
 
     .is-disabled .pika-button {
-        color: #999;
+        color: $calendar-header-color;
         opacity: .3;
     }
 }
@@ -458,6 +460,10 @@ div.stretchy-wrapper {
         margin: 0;
     }
 
+    p {
+        display: inline-block;
+    }
+
     .description p {
         font-size: 1.2em;
     }
@@ -473,6 +479,16 @@ div.stretchy-wrapper {
 
     .close-reveal-modal {
         color: $interactive-color;
+    }
+
+    .ended-status {
+        color: $ended-series-color;
+        display: inline-block;
+    }
+
+    .ongoing-status {
+        color: $add-series-color;
+        display: inline-block;
     }
 }
 
@@ -495,6 +511,66 @@ div.stretchy-wrapper {
 
     font-size: 1.3em;
     text-align: center;
+}
+
+/* User Profile */
+
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+label {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 10px;
+    line-height: 36px;
+    cursor: pointer;
+    color: $font-color;
+}
+
+label::before {
+    content: " ";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    display: block;
+    width: 24px;
+    height: 24px;
+    border: 2px solid $interactive-color;
+    border-radius: 4px;
+    z-index: -1;
+}
+
+input[type="radio"] + label::before {
+    border-radius: 7px;
+}
+
+/* Checked */
+
+input[type="radio"]:checked + label {
+    padding-left: 10px;
+    color: $button-text-color;
+}
+
+input[type="radio"]:checked + label::before {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: $interactive-color;
+}
+
+/* Transition */
+
+label,
+label::before {
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
 }
 
 /* Search Results */
