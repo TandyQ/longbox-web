@@ -6,6 +6,9 @@ $bg-color: #0E1111;
 $header-bg-color: #1A1F1E;
 $interactive-color: #6CBDB5;
 $button-text-color: #233D3B;
+$search-bg-color: #2a3130;
+$search-active-bg-color: #303837;
+$search-border-color: #343d3b;
 
 @mixin truncateText($overflow: ellipsis) {
     overflow: hidden;
@@ -46,10 +49,35 @@ button {
     fill: $font-color;
     margin-top: 0.5rem;
     width: 210px;
+
+    &:hover {
+        fill: $interactive-color;
+    }
 }
 
-.top-bar .toggle-topbar.menu-icon a {
-    padding: 0 0.9375rem 0 0.9375rem;
+.top-bar {
+    input {
+        border-radius: 7px 0 0 7px;
+        background-color: $search-bg-color;
+        border-color: $search-border-color;
+        border-right-color: $search-bg-color;
+        box-shadow: none;
+
+        &:focus {
+            background-color: $search-active-bg-color;
+            border-color: $search-border-color;
+            border-right-color: $search-active-bg-color;
+        }
+    }
+
+    .search-button {
+        font-size: 0.8rem;
+        border-radius: 0 7px 7px 0;
+    }
+
+    .toggle-topbar.menu-icon a {
+        padding: 0 0.9375rem 0 0.9375rem;
+    }
 }
 
 .row {
@@ -214,8 +242,14 @@ button {
     }
 }
 
-.page-title-content {
+.subscription-title {
     padding: 0 10px 60px 0px !important;
+    height: 50px;
+    margin-top: 0.6em !important;
+}
+
+.my-longbox-title {
+    padding: 0 10px 0px 10px !important;
     height: 50px;
     margin-top: 0.6em !important;
 }

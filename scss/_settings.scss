@@ -132,6 +132,8 @@ $header-bg-color: #1A1F1E;
 $font-color: #E3DFBA;
 $interactive-color: #6CBDB5;
 $button-text-color: #233D3B;
+$search-placeholder-color: #67706f;
+$search-text-color: #9daaa8;
 
 // We use these to control various global styles
 $body-bg: $bg-color;
@@ -663,9 +665,11 @@ $button-bg-color: $interactive-color;
 // $form-label-small-transform: capitalize;
 // $form-label-bottom-margin: 0;
 // $input-font-family: inherit;
-// $input-font-color: rgba(0,0,0,0.75);
+$input-font-color: $search-text-color;
+
 // $input-font-size: rem-calc(14);
-// $input-placeholder-font-color: #cccccc;
+$input-placeholder-font-color: $search-placeholder-color;
+
 // $input-bg-color: $white;
 // $input-focus-bg-color: scale-color($white, $lightness: -2%);
 // $input-border-color: scale-color($white, $lightness: -20%);
@@ -1417,7 +1421,7 @@ $reveal-border-color: $bg-color;
 // Background color for the top bar
 $topbar-bg-color: $header-bg-color;
 
-// $topbar-bg: $topbar-bg-color;
+$topbar-bg: $topbar-bg-color;
 
 // Height and margin
 // $topbar-height: rem-calc(45);
@@ -1428,16 +1432,19 @@ $topbar-bg-color: $header-bg-color;
 // $topbar-title-font-size: rem-calc(17);
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: $white;
-// $topbar-link-color-hover: $white;
-// $topbar-link-color-active: $white;
-// $topbar-link-color-active-hover: $white;
+$topbar-link-color: $font-color;
+$topbar-link-color-hover: $interactive-color;
+
+$topbar-link-color-active: $interactive-color;
+$topbar-link-color-active-hover: $interactive-color;
+
 // $topbar-link-weight: $font-weight-normal;
 // $topbar-link-font-size: rem-calc(13);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 // $topbar-link-bg: $topbar-bg;
-// $topbar-link-bg-hover: $jet;
-// $topbar-link-bg-color-hover: $charcoal;
+$topbar-link-bg-hover: $topbar-bg;
+$topbar-link-bg-color-hover: $topbar-bg;
+
 // $topbar-link-bg-active: $primary-color;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
 // $topbar-link-font-family: $body-font-family;
@@ -1449,13 +1456,14 @@ $topbar-bg-color: $header-bg-color;
 // $topbar-button-top: 7px;
 
 // Style the top bar dropdown elements
-$topbar-dropdown-bg: $header-bg-color;
+$topbar-dropdown-bg: $topbar-bg;
 $topbar-dropdown-link-color: $font-color;
 
-// $topbar-dropdown-link-color-hover: $topbar-link-color-hover;
-$topbar-dropdown-link-bg: $header-bg-color;
+$topbar-dropdown-link-color-hover: $topbar-link-color-hover;
+$topbar-dropdown-link-bg: $topbar-bg;
 
-// $topbar-dropdown-link-bg-hover: $jet;
+$topbar-dropdown-link-bg-hover: $topbar-bg;
+
 // $topbar-dropdown-link-weight: $font-weight-normal;
 // $topbar-dropdown-toggle-size: 5px;
 $topbar-dropdown-toggle-color: $font-color;

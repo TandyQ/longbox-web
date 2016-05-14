@@ -15,7 +15,7 @@
                         <li ng-show="currentUser" has-dropdown>
                             <a>{{ currentUser.firstname }}</a>
                             <ul top-bar-dropdown>
-                                <li><a ng-href="#/profile">Your Profile</a></li>
+                                <li><a ng-href="#/profile">My Profile</a></li>
                                 <li><a ng-href="#/login" ng-click="logout()">Log Out</a></li>
                             </ul>
                         </li>
@@ -27,11 +27,11 @@
                         <li><a ng-show="currentUser" ng-href="#/pull-list">Subscriptions</a></li>
                         <li>
                             <div class="row collapse" ng-controller="NavController">
-                                <div class="large-8 small-9 columns">
-                                    <input type="text" ng-model="seriesSearch" ng-enter="searchForSeries()" placeholder="Find A Series">
+                                <div class="large-9 small-9 columns">
+                                    <input type="text" ng-model="seriesSearch" ng-enter="searchForSeries()" placeholder="Find a Series">
                                 </div>
-                                <div class="large-4 small-3 columns">
-                                    <a ng-click="searchForSeries()" class="button expand"><i class="fa fa-search"></i></a>
+                                <div class="large-3 small-3 columns">
+                                    <a ng-click="searchForSeries()" class="button expand search-button"><i class="fa fa-search"></i></a>
                                 </div>
                             </div>
                         </li>
