@@ -1,6 +1,6 @@
-myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Settings', 'Marvel', 'ComicVine', 'DateUtils', "PullListUtils",
+myApp.controller('PullListController', ['$scope', '$modal', '$sce', '$filter', 'Settings', 'Marvel', 'ComicVine', 'DateUtils', "PullListUtils",
     "FirebaseUtils", '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function($scope, $modal, $filter, Settings, Marvel, ComicVine, DateUtils, PullListUtils,
+    function($scope, $modal, $sce, $filter, Settings, Marvel, ComicVine, DateUtils, PullListUtils,
         FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
@@ -147,6 +147,17 @@ myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Settings
                 return false;
             }
             return true;
+        };
+
+        $scope.sourceText = function() {
+            var sourceText = '';
+            var selectedService = Settings.getSelectedServicePrefix();
+            if (selectedService == 'marvel') {
+                sourceText = 'Data provided by Marvel. &copy; ' + $scope.currentYear + ' Marvel';
+            } else if (selectedService == 'comic-vine') {
+                sourceText = 'Data provided by <a href="http://comicvine.gamespot.com/">ComicVine</a>';
+            }
+            return $sce.trustAsHtml(sourceText);
         };
     }
 ]);

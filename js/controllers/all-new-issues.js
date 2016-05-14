@@ -1,5 +1,5 @@
-myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Settings', 'Marvel', 'ComicVine', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function($scope, $modal, Settings, Marvel, ComicVine, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Settings', 'Marvel', 'ComicVine', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
+    function($scope, $modal, $sce, Settings, Marvel, ComicVine, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
         $scope.isLoading = false;
@@ -123,6 +123,17 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Settings', 'Mar
 
         $scope.isFirstIssue = function(comic) {
             return (comic.issueNumber === 1);
+        };
+
+        $scope.sourceText = function() {
+            var sourceText = '';
+            var selectedService = Settings.getSelectedServicePrefix();
+            if (selectedService == 'marvel') {
+                sourceText = 'Data provided by Marvel. &copy; ' + $scope.currentYear + ' Marvel';
+            } else if (selectedService == 'comic-vine') {
+                sourceText = 'Data provided by <a href="http://comicvine.gamespot.com/">ComicVine</a>';
+            }
+            return $sce.trustAsHtml(sourceText);
         };
     }
 ]);

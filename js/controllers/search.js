@@ -1,5 +1,5 @@
-myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', '$location', 'Settings', 'Marvel', 'ComicVine', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function($scope, $modal, $routeParams, $location, Settings, Marvel, ComicVine, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams', '$location', 'Settings', 'Marvel', 'ComicVine', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
+    function($scope, $modal, $sce, $routeParams, $location, Settings, Marvel, ComicVine, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
         $scope.currentYear = new Date().getFullYear();
@@ -161,6 +161,17 @@ myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', '$loca
                 $scope.newSearch = "";
             }
 
+        };
+
+        $scope.sourceText = function() {
+            var sourceText = '';
+            var selectedService = Settings.getSelectedServicePrefix();
+            if (selectedService == 'marvel') {
+                sourceText = 'Data provided by Marvel. &copy; ' + $scope.currentYear + ' Marvel';
+            } else if (selectedService == 'comic-vine') {
+                sourceText = 'Data provided by <a href="http://comicvine.gamespot.com/">ComicVine</a>';
+            }
+            return $sce.trustAsHtml(sourceText);
         };
     }
 ]);

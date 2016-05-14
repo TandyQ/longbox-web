@@ -26,7 +26,7 @@
 </div>
 <div ng-hide="isLoading || !hasComics()" class="row attribution">
     <div class="large-12 columns">
-        <p>Data provided by Marvel. &copy; {{currentYear}} Marvel</p>
+        <p><div ng-bind-html="sourceText()"></div></p>
     </div>
 </div>
 <div ng-show="isLoading" class="spinner-container">
