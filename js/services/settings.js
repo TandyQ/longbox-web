@@ -3,7 +3,6 @@ myApp.factory('Settings', ['$rootScope', '$cookies', 'localStorageService', func
     var viewMode = '';
 
     if (localStorageService.isSupported) {
-        console.log("supported");
         if (localStorageService.get('selectedService') === "Marvel" ||
             localStorageService.get('selectedService') === "Comic Vine") {
             selectedService = localStorageService.get('selectedService');

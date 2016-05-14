@@ -73,7 +73,6 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                             relevantComics.push(comic);
                         }
                     }
-                    console.log(relevantComics);
                     return relevantComics;
                 });
                 return promise;
@@ -143,7 +142,6 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                         }
 
                     }
-                    console.log(relevantSeries);
                     return relevantSeries;
                 });
                 return promise;

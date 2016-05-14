@@ -70,7 +70,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', 'Settings', 'Mar
                 // than Marvel's api. It currently only has the controller layer. No view or model layers
                 // are present.
 
-                ComicVine.clearLoadedComics();
+                ComicVine.clearLoadedResults();
                 ComicVine.getComicDataForWeek(dateRange).then(function(data) {
                     $scope.comicData = data;
                     $scope.isLoading = false;

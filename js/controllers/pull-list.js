@@ -46,7 +46,6 @@ myApp.controller('PullListController', ['$scope', '$modal', '$filter', 'Settings
         });
 
         $scope.openModalForSeries = function(selectedSeries) {
-            console.log(selectedSeries);
             var modalInstance = $modal.open({
                 templateUrl: 'views/series-detail-view.html',
                 controller: 'SeriesDetailController',

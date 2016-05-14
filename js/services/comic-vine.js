@@ -2,7 +2,7 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
     function($rootScope, $http, $q, DateUtils, $filter) {
 
         var resultsPerPage = 100;
-        var comicResults = [];
+        var parsedResults = [];
 
         var baseComicVineUrl = "http://www.comicvine.com/api/";
         var comicDateQuery = "&filter=store_date:";
@@ -68,9 +68,18 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                     extension: imageUrl.substr(imageUrl.lastIndexOf('.') + 1),
                     path: imageUrl.substr(0, imageUrl.lastIndexOf('.'))
                 };
-                comicResults.push(comic);
+                parsedResults.push(comic);
             }
-            console.log(comicResults);
+        };
+
+        var parseVolumes = function(volumes) {
+            for (var i = 0; i < volumes.results.length; i++) {
+                var volume = volumes.results[i];
+                volume.title = volume.name;
+                volume.resourceURI = volume.api_detail_url;
+                volume.endYear = 2099;
+                parsedResults.push(volume);
+            }
         };
 
         var loadComicDataForWeek = function(dateRange, offset) {
@@ -80,8 +89,8 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                 var numTotalResults = response.data.number_of_total_results;
                 parseComics(response.data);
                 if ((offset) > numTotalResults) {
-                    var returnedComics = comicResults;
-                    comicResults = [];
+                    var returnedComics = parsedResults;
+                    parsedResults = [];
                     return returnedComics;
                 } else {
                     return loadComicDataForWeek(dateRange, offset);
@@ -92,11 +101,10 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
 
         var loadVolumeDataForId = function(volumeId) {
             var promise = constructURL("volume", { "id": volumeId }).then(queryComics).then(function(response) {
-                console.log(response.data);
-                // temporary hack for end date
-                var volume = response.data.results[0];
-                volume.title = volume.name;
-                volume.endYear = 2099;
+                parseVolumes(response.data);
+                // hack for end date
+                var volume = parsedResults[0];
+                parsedResults = [];
                 return volume;
             });
             return promise;
@@ -114,6 +122,22 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
             return promise;
         };
 
+        var loadVolumeDataForQuery = function(queryString, offset) {
+            var promise = constructURL("volume", { "query": queryString }).then(queryComics).then(function(response) {
+                offset += 100;
+                var numTotalResults = response.data.number_of_total_results;
+                parseVolumes(response.data);
+                if ((offset) > numTotalResults) {
+                    var returnedVolumes = parsedResults;
+                    parsedResults = [];
+                    return returnedVolumes;
+                } else {
+                    return loadVolumeDataForQuery(queryString, offset);
+                }
+            });
+            return promise;
+        };
+
         var myObject = {
             getComicDataForWeek: function(dateRange) {
                 return loadComicDataForWeek(dateRange, 0);
@@ -124,8 +148,11 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
             getLatestCoverForIssueId: function(issueId) {
                 return loadLatestCoverForIssueId(issueId);
             },
-            clearLoadedComics: function() {
-                comicResults = [];
+            clearLoadedResults: function() {
+                parsedResults = [];
+            },
+            getVolumeDataForQuery: function(queryString) {
+                return loadVolumeDataForQuery(queryString, 0);
             }
         };
 

@@ -1,24 +1,48 @@
-myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', '$location', 'Settings', 'Marvel', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function($scope, $modal, $routeParams, $location, Settings, Marvel, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', '$location', 'Settings', 'Marvel', 'ComicVine', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
+    function($scope, $modal, $routeParams, $location, Settings, Marvel, ComicVine, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
         $scope.currentYear = new Date().getFullYear();
         $scope.searchString = $routeParams.seriesSearch;
 
         var loadSeriesMatchingString = function(string) {
-            var queryString = "titleStartsWith=" + string + "&seriesType=ongoing";
-            queryString = encodeURI(queryString);
-            Marvel.getSeriesDataForQuery(queryString).then(function(data) {
-                $scope.seriesData = data;
-                for (var i = 0; i < data.length; i++) {
-                    var series = data[i];
-                    if (!series.description) {
-                        series.description = "No description available.";
+            var selectedService = Settings.getSelectedServicePrefix();
+            var queryString = '';
+            if (selectedService == 'marvel') {
+                queryString = "titleStartsWith=" + string + "&seriesType=ongoing";
+                queryString = encodeURI(queryString);
+                Marvel.getSeriesDataForQuery(queryString).then(function(data) {
+                    $scope.seriesData = data;
+                    for (var i = 0; i < data.length; i++) {
+                        var series = data[i];
+                        if (!series.description) {
+                            series.description = "No description available.";
+                        }
+                        $scope.getLatestComicCoverForSeries(series, i);
                     }
-                    $scope.getLatestComicCoverForSeries(series, i);
-                }
-                $scope.isLoading = false;
-            });
+                    $scope.isLoading = false;
+                });
+            } else if (selectedService == 'comic-vine') {
+                // WARNING: Comic Vine is not set up to be used with the current Firebase data management
+                // scheme. This is only part of an experimental, in-development support for a resource other
+                // than Marvel's api. It currently only has the controller layer. No view or model layers
+                // are present.
+
+                ComicVine.clearLoadedResults();
+                queryString = "&filter=name:" + string;
+                queryString = encodeURI(queryString);
+                ComicVine.getVolumeDataForQuery(queryString).then(function(data) {
+                    $scope.seriesData = data;
+                    for (var i = 0; i < data.length; i++) {
+                        var series = data[i];
+                        if (!series.description) {
+                            series.description = "No description available.";
+                        }
+                        $scope.getLatestComicCoverForSeries(series, i);
+                    }
+                    $scope.isLoading = false;
+                });
+            }
         };
 
         if ($scope.searchString && $scope.searchString !== "") {
@@ -43,17 +67,31 @@ myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', '$loca
 
         $scope.getLatestComicCoverForSeries = function(series, index) {
             if (series.id) {
-                Marvel.getLatestComicCoverForSeriesId(series.id).then(function(thumbnail) {
-                    if ($scope.seriesData[index]) {
-                        $scope.seriesData[index].latestComicCoverPath = thumbnail.path;
-                        $scope.seriesData[index].latestComicCoverExtension = thumbnail.extension;
-                    }
-                });
+                var selectedService = Settings.getSelectedServicePrefix();
+                if (selectedService == 'marvel') {
+                    Marvel.getLatestComicCoverForSeriesId(series.id).then(function(thumbnail) {
+                        if ($scope.seriesData[index]) {
+                            $scope.seriesData[index].latestComicCoverPath = thumbnail.path;
+                            $scope.seriesData[index].latestComicCoverExtension = thumbnail.extension;
+                        }
+                    });
+                } else if (selectedService == 'comic-vine') {
+                    // WARNING: Comic Vine is not set up to be used with the current Firebase data management
+                    // scheme. This is only part of an experimental, in-development support for a resource other
+                    // than Marvel's api. It currently only has the controller layer. No view or model layers
+                    // are present.
+
+                    ComicVine.getLatestCoverForIssueId(series.last_issue.id).then(function(thumbnail) {
+                        if ($scope.seriesData[index]) {
+                            $scope.seriesData[index].latestComicCoverPath = thumbnail.path;
+                            $scope.seriesData[index].latestComicCoverExtension = thumbnail.extension;
+                        }
+                    });
+                }
             }
         };
 
         $scope.openModalForSeries = function(selectedSeries) {
-            console.log(selectedSeries);
             var modalInstance = $modal.open({
                 templateUrl: 'views/series-detail-view.html',
                 controller: 'SeriesDetailController',
@@ -83,8 +121,7 @@ myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', '$loca
         };
 
         $scope.addSeries = function(series) {
-            console.log(series);
-            FirebaseUtils.addToPullList(series.title, series.resourceURI);
+            FirebaseUtils.addToPullList(series.title, series.resourceURI, series.id);
         };
 
         $scope.removeFromPullList = function(series) {
@@ -119,7 +156,6 @@ myApp.controller('SearchController', ['$scope', '$modal', '$routeParams', '$loca
         };
 
         $scope.searchForSeries = function($event) {
-            console.log($scope.newSearch);
             if ($scope.newSearch && $scope.newSearch !== "") {
                 $location.path('/search/' + $scope.newSearch);
                 $scope.newSearch = "";
