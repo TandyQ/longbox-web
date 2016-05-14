@@ -1,6 +1,12 @@
-myApp.factory('Settings', ['$rootScope', function($rootScope) {
-
-    var selectedService = 'Comic Vine';
+myApp.factory('Settings', ['$rootScope', '$cookies', function($rootScope, $cookies) {
+    var selectedService = '';
+    if ($cookies.get('selectedService') === "Marvel" ||
+        $cookies.get('selectedService') === "Comic Vine") {
+        selectedService = $cookies.get('selectedService');
+    } else {
+        selectedService = 'Marvel';
+        $cookies.put('selectedService', selectedService);
+    }
 
     var myObject = {
         getSelectedServicePrefix: function() {
@@ -17,6 +23,8 @@ myApp.factory('Settings', ['$rootScope', function($rootScope) {
         },
         setSelectedService: function(service) {
             selectedService = service;
+            console.log("Set!");
+            $cookies.put('selectedService', selectedService);
         },
     };
     return myObject;

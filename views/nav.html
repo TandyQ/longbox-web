@@ -15,6 +15,7 @@
                         <li ng-show="currentUser" has-dropdown>
                             <a>{{ currentUser.firstname }}</a>
                             <ul top-bar-dropdown>
+                                <li><a ng-href="#/profile">Your Profile</a></li>
                                 <li><a ng-href="#/login" ng-click="logout()">Log Out</a></li>
                             </ul>
                         </li>
