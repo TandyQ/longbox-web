@@ -1,10 +1,18 @@
 <div class="profile" ng-controller="ProfileController">
     <div class="profile-name">
-        <p>{{ currentUser.firstname }} {{ currentUser.lastname }}</p>
+        <h2>{{ currentUser.firstname }} {{ currentUser.lastname }}</h2>
+        <div class="subscription-count left-subscription-count">
+            <h3>{{marvelPullListCount}}</h3>
+            <p>Marvel<br />Subscriptions</p>
+        </div>
+        <div class="subscription-count">
+            <h3>{{comicVinePullListCount}}</h3>
+            <p>Comic Vine<br />Subscriptions</p>
+        </div>
     </div>
-    <div class="service-selection">
+    <div class="service-selection setting-container">
         <div class="setting-title">
-            Data Source
+            Data Source:
         </div>
         <div class="setting-options">
             <input id="marvel" type="radio" ng-model="selectedService" name="service-selection" value="Marvel">
@@ -13,9 +21,9 @@
             <label for="comic-vine">Comic Vine</label>
         </div>
     </div>
-    <div class="view-mode">
+    <div class="view-mode setting-container">
         <div class="setting-title">
-            View Mode
+            View Mode:
         </div>
         <div class="setting-options">
             <input id="standard" type="radio" ng-model="viewMode" name="view-mode" value="standard">
@@ -24,7 +32,7 @@
             <label for="compact">Compact on Phones</label>
         </div>
     </div>
-    <div ng-controller="RegistrationController">
+    <div class="profile-log-out" ng-controller="RegistrationController">
         <button class="log-out-button" ng-click="logout()">Log Out</button>
     </div>
 </div>

@@ -6989,10 +6989,39 @@ div.stretchy-wrapper {
     -webkit-transition: .25s all ease;
     -o-transition: .25s all ease;
     transition: .25s all ease; }
+  .profile .profile-name {
+    text-align: center; }
+    .profile .profile-name h2 {
+      font-size: 2.3rem;
+      margin-top: 0.8rem; }
+    .profile .profile-name h3 {
+      font-size: 2rem;
+      margin-top: 0; }
+    .profile .profile-name p {
+      font-size: 1rem;
+      margin-bottom: 0; }
+  .profile .subscription-count {
+    display: inline-block; }
+  .profile .left-subscription-count {
+    margin-right: 1rem; }
+  .profile .setting-container {
+    margin: 1em 0 1em 0;
+    display: block;
+    text-align: center; }
+  .profile .setting-title {
+    clear: both;
+    font-size: 1.2rem; }
+  .profile .setting-options {
+    clear: both; }
+  .profile .profile-log-out {
+    text-align: center; }
   .profile .log-out-button {
-    font-size: 0.8rem;
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    width: 20rem;
     padding: 0.5rem 1rem 0.53125rem 1rem;
-    border-radius: 7px; }
+    border-radius: 7px;
+    clear: both; }
 
 /* Search Results */
 .search-title {

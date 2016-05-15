@@ -580,10 +580,59 @@ div.stretchy-wrapper {
         transition: .25s all ease;
     }
 
+    .profile-name {
+        text-align: center;
+
+        h2 {
+            font-size: 2.3rem;
+            margin-top: 0.8rem;
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+    }
+
+    .subscription-count {
+        display: inline-block;
+    }
+
+    .left-subscription-count {
+        margin-right: 1rem;
+    }
+
+    .setting-container {
+        margin: 1em 0 1em 0;
+        display: block;
+        text-align: center;
+    }
+
+    .setting-title {
+        clear: both;
+        font-size: 1.2rem;
+    }
+
+    .setting-options {
+        clear: both;
+    }
+
+    .profile-log-out {
+        text-align: center;
+    }
+
     .log-out-button {
-        font-size: 0.8rem;
+        font-size: 1.3rem;
+        margin-top: 2rem;
+        width: 20rem;
         padding: 0.5rem 1rem 0.53125rem 1rem;
         border-radius: 7px;
+        clear: both;
     }
 }
 
