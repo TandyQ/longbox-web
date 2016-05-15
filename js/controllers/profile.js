@@ -12,7 +12,6 @@ myApp.controller('ProfileController', ['$scope', 'Settings', "FirebaseUtils", '$
                 var marvelPullRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid + '/marvel-pulllist/');
                 var marvelPullListInfo = $firebaseArray(marvelPullRef);
                 marvelPullListInfo.$loaded().then(function(data) {
-                    console.log(data);
                     $scope.marvelPullListCount = data.length;
                 }).catch(function(error) {
                     console.log(error);
@@ -21,7 +20,6 @@ myApp.controller('ProfileController', ['$scope', 'Settings', "FirebaseUtils", '$
                 var comicVinePullRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid + '/comic-vine-pulllist/');
                 var comicVinePullListInfo = $firebaseArray(comicVinePullRef);
                 comicVinePullListInfo.$loaded().then(function(data) {
-                    console.log(data);
                     $scope.comicVinePullListCount = data.length;
                 }).catch(function(error) {
                     console.log(error);
