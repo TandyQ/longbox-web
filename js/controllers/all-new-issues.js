@@ -93,6 +93,9 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
                     if ($scope.comicData.length < 1) {
                         $scope.hasComics = false;
                         $scope.resultsMessage = "No Comics This Week";
+                        if ($scope.pullList.length > 0) {
+                            $scope.pullListResultsMessage = "No Comics This Week";
+                        }
                     }
                     $scope.isLoading = false;
                 });
