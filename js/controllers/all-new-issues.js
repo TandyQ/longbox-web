@@ -1,5 +1,5 @@
-myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Settings', 'Marvel', 'ComicVine', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function($scope, $modal, $sce, Settings, Marvel, ComicVine, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Settings', 'Marvel', 'ComicVine', 'Authentication', 'DateUtils', 'PullListUtils', 'FirebaseUtils', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
+    function($scope, $modal, $sce, Settings, Marvel, ComicVine, Authentication, DateUtils, PullListUtils, FirebaseUtils, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
         $scope.isLoading = false;
@@ -10,6 +10,8 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
         $scope.viewMode = Settings.getViewMode();
         $scope.resultsMessage = "";
         $scope.pullListResultsMessage = "";
+        $scope.registrationUser = {};
+        $scope.loginUser = {};
 
         auth.$onAuth(function(authUser) {
             if (authUser) {
@@ -160,5 +162,13 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
             }
             return $sce.trustAsHtml(sourceText);
         };
+
+        $scope.login = function() {
+            Authentication.login($scope.loginUser);
+        }; // login
+
+        $scope.register = function() {
+            Authentication.register($scope.registrationUser);
+        }; // register
     }
 ]);

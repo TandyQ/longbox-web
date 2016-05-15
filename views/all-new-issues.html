@@ -1,3 +1,39 @@
+<div ng-hide="currentUser" class="home-login">
+    <div class="row">
+        <div class="small-12 medium-6 large-6 columns description">
+        </div>
+        <div class="small-12 medium-6 large-6 columns login">
+            <tabset>
+                <tab heading="Log In" class="first-tab">
+                    <form name="loginForm" ng-submit="login()" novalidate>
+                        <fieldset>
+                            <input type="email" name="email" placeholder="Email" ng-model="loginUser.email" ng-required="true">
+                            <p class="error validationerror" ng-show="loginForm.email.$invalid && loginForm.email.$touched">Must be a valid email</p>
+                            <input type="password" name="password" placeholder="Password" ng-model="loginUser.password" ng-required="true">
+                            <p class="error validationerror" ng-show="loginForm.password.$invalid && loginForm.email.$touched">Password is required</p>
+                        </fieldset>
+                        <button type="submit" class="btn" ng-disabled="loginForm.$invalid">Login</button>
+                    </form>
+                </tab>
+                <tab heading="Register" class="last-tab">
+                    <form name="registerForm" ng-submit="register()" novalidate>
+                        <fieldset>
+                            <input type="text" name="firstname" placeholder="First Name" ng-model="registrationUser.firstname" ng-required="true">
+                            <p class="error validationerror" ng-show="registerForm.firstname.$invalid && registerForm.firstname.$touched">First name required</p>
+                            <input type="text" name="lastname" placeholder="Last Name" ng-model="registrationUser.lastname" ng-required="true">
+                            <p class="error validationerror" ng-show="registerForm.lastname.$invalid && registerForm.lastname.$touched">Last name required</p>
+                            <input type="email" name="email" placeholder="Email" ng-model="registrationUser.email" ng-required="true">
+                            <p class="error validationerror" ng-show="registerForm.email.$invalid && registerForm.email.$touched">Must be a valid email</p>
+                            <input type="password" name="password" placeholder="Password" ng-model="registrationUser.password" ng-required="true">
+                            <p class="error validationerror" ng-show="registerForm.password.$invalid && registerForm.email.$touched">Password is required</p>
+                        </fieldset>
+                        <button type="submit" class="btn" ng-disabled="registerForm.$invalid">Register</button>
+                    </form>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</div>
 <div class="row my-longbox-title">
     <div class="small-12 medium-6 large-6 columns tight page-title show-for-medium-up">
         <h2 ng-show="currentUser">My Longbox</h2>
