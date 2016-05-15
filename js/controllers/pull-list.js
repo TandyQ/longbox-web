@@ -6,6 +6,9 @@ myApp.controller('PullListController', ['$scope', '$modal', '$sce', '$filter', '
         var auth = $firebaseAuth(ref);
         $scope.currentYear = new Date().getFullYear();
         $scope.viewMode = Settings.getViewMode();
+        $scope.isLoading = false;
+        $scope.hasComics = true;
+        $scope.resultsMessage = '';
 
         auth.$onAuth(function(authUser) {
             if (authUser) {
@@ -17,10 +20,18 @@ myApp.controller('PullListController', ['$scope', '$modal', '$sce', '$filter', '
 
                 pullListInfo.$loaded().then(function(data) {
                     $scope.pullList = data;
-                    for (var i = 0; i < data.length; i++) {
-                        var series = data[i];
-                        $scope.getSeries(series);
+                    if ($scope.pullList.length > 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            var series = data[i];
+                            $scope.hasComics = true;
+                            $scope.isLoading = true;
+                            $scope.getSeries(series);
+                        }
+                    } else {
+                        $scope.hasComics = false;
+                        $scope.resultsMessage = "No Subscriptions";
                     }
+                    $scope.isLoading = false;
                 }).catch(function(error) {
                     console.log(error);
                 });
@@ -41,7 +52,7 @@ myApp.controller('PullListController', ['$scope', '$modal', '$sce', '$filter', '
                     }
                 });
             } else {
-                $rootScope.pullList = {};
+                $scope.pullList = {};
             }
         });
 
@@ -65,12 +76,18 @@ myApp.controller('PullListController', ['$scope', '$modal', '$sce', '$filter', '
                 var selectedService = Settings.getSelectedServicePrefix();
                 if (selectedService == 'marvel') {
                     Marvel.getSeriesDataForResourceURI(series.resourceURI).then(function(comicData) {
-                        if ($scope.seriesData.indexOf(comicData) == -1) {
-                            if (!comicData.description) {
-                                comicData.description = "No description available.";
+                        if (comicData !== "Too Many Requests") {
+                            if ($scope.seriesData.indexOf(comicData) == -1) {
+                                if (!comicData.description) {
+                                    comicData.description = "No description available.";
+                                }
+                                $scope.seriesData.push(comicData);
+                                $scope.getLatestComicCoverForSeries(comicData, $scope.seriesData.indexOf(comicData));
                             }
-                            $scope.seriesData.push(comicData);
-                            $scope.getLatestComicCoverForSeries(comicData, $scope.seriesData.indexOf(comicData));
+                        } else {
+                            $scope.isLoading = false;
+                            $scope.hasComics = false;
+                            $scope.resultsMessage = "Reached API Limit";
                         }
                     });
                 } else if (selectedService == 'comic-vine') {

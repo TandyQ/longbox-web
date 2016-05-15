@@ -6799,8 +6799,7 @@ div.stretchy-wrapper {
 
 /* Modal styling */
 .reveal-modal {
-  outline: none;
-  padding: .8rem 1.875rem 1.875rem 1.875rem !important; }
+  outline: none; }
   .reveal-modal h2 {
     margin: 0 auto; }
   .reveal-modal button {
@@ -6949,7 +6948,9 @@ label::before {
 @media only screen and (min-width: 40.0625em) {
   .comic-grid,
   .page-title-content {
-    padding: 0 10px 0 10px; } }
+    padding: 0 10px 0 10px; }
+  .reveal-modal {
+    padding: .8rem 1.875rem 1.875rem 1.875rem !important; } }
 
 @media only screen and (min-width: 64.0625em) {
   .logo:hover {

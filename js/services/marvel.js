@@ -52,97 +52,122 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
             getComicDataForQuery: function(queryString) {
                 var promise = constructURL("comic", { "query": queryString }).then(queryComics).then(function(response) {
                     relevantComics = [];
-                    for (var i = 0; i < response.data.results.length; i++) {
-                        var comic = response.data.results[i];
+                    if (response !== "Too Many Requests") {
+                        for (var i = 0; i < response.data.results.length; i++) {
+                            var comic = response.data.results[i];
 
-                        if (comic.variantDescription === "") {
-                            relevantComics.push(comic);
+                            if (comic.variantDescription === "") {
+                                relevantComics.push(comic);
+                            }
                         }
+                        return relevantComics;
+                    } else {
+                        return response;
                     }
-                    return relevantComics;
                 });
                 return promise;
             },
             getComicDataForWeek: function(dateRange) {
                 var promise = constructURL("comic", { "dateRange": dateRange }).then(queryComics).then(function(response) {
                     relevantComics = [];
-                    for (var i = 0; i < response.data.results.length; i++) {
-                        var comic = response.data.results[i];
+                    if (response !== "Too Many Requests") {
+                        for (var i = 0; i < response.data.results.length; i++) {
+                            var comic = response.data.results[i];
 
-                        if (comic.variantDescription === "") {
-                            relevantComics.push(comic);
+                            if (comic.variantDescription === "") {
+                                relevantComics.push(comic);
+                            }
                         }
+                        return relevantComics;
+                    } else {
+                        return response;
                     }
-                    return relevantComics;
+
                 });
                 return promise;
             },
             getSeriesDataForResourceURI: function(resourceURI) {
                 var promise = constructURL("series", { "resourceURI": resourceURI }).then(queryComics).then(function(response) {
-                    return response.data.results[0];
+                    if (response !== "Too Many Requests") {
+                        return response.data.results[0];
+                    } else {
+                        return response;
+                    }
                 });
                 return promise;
             },
             getLatestComicCoverForSeriesId: function(seriesId) {
                 var promise = constructURL("", { "query": "series/" + seriesId + "/comics?format=comic&formatType=comic&noVariants=true&orderBy=-onsaleDate" }).
                 then(queryComics).then(function(response) {
-                    var thumbnail;
-                    if (response.data.results.length > 0) {
-                        if (response.data.results[response.data.results.length - 1].thumbnail.extension &&
-                            response.data.results[response.data.results.length - 1].thumbnail.path) {
-                            thumbnail = {
-                                extension: response.data.results[response.data.results.length - 1].thumbnail.extension,
-                                path: response.data.results[response.data.results.length - 1].thumbnail.path,
-                            };
-                        }
-                    }
-
-                    var haveThumbnail = false;
-                    for (var i = 0; i < response.data.results.length; i++) {
-                        var comic = response.data.results[i];
-                        var releaseDate = $filter('filter')(comic.dates, { type: "onsaleDate" }, true);
-                        if (releaseDate.length !== 0) {
-                            formattedReleaseDateString = releaseDate[0].date.slice(0, 19);
-                            formattedReleaseDate = Date.parse(formattedReleaseDateString);
-
-                            var wedDate = DateUtils.getWednesdayDate(new Date());
-                            if ((formattedReleaseDate <= wedDate) && (comic.thumbnail.path !== IMAGE_NOT_AVAILABLE)) {
-                                if (comic.thumbnail.extension && comic.thumbnail.path) {}
+                    if (response !== "Too Many Requests") {
+                        var thumbnail;
+                        if (response.data.results.length > 0) {
+                            if (response.data.results[response.data.results.length - 1].thumbnail.extension &&
+                                response.data.results[response.data.results.length - 1].thumbnail.path) {
                                 thumbnail = {
-                                    extension: comic.thumbnail.extension,
-                                    path: comic.thumbnail.path
+                                    extension: response.data.results[response.data.results.length - 1].thumbnail.extension,
+                                    path: response.data.results[response.data.results.length - 1].thumbnail.path,
                                 };
-                                break;
                             }
                         }
+
+                        var haveThumbnail = false;
+                        for (var i = 0; i < response.data.results.length; i++) {
+                            var comic = response.data.results[i];
+                            var releaseDate = $filter('filter')(comic.dates, { type: "onsaleDate" }, true);
+                            if (releaseDate.length !== 0) {
+                                formattedReleaseDateString = releaseDate[0].date.slice(0, 19);
+                                formattedReleaseDate = Date.parse(formattedReleaseDateString);
+
+                                var wedDate = DateUtils.getWednesdayDate(new Date());
+                                if ((formattedReleaseDate <= wedDate) && (comic.thumbnail.path !== IMAGE_NOT_AVAILABLE)) {
+                                    if (comic.thumbnail.extension && comic.thumbnail.path) {}
+                                    thumbnail = {
+                                        extension: comic.thumbnail.extension,
+                                        path: comic.thumbnail.path
+                                    };
+                                    break;
+                                }
+                            }
+                        }
+                        if (!thumbnail) {
+                            thumbnail = {
+                                extension: "jpg",
+                                path: IMAGE_NOT_AVAILABLE
+                            };
+                        }
+                        return thumbnail;
+                    } else {
+                        return response;
                     }
-                    if (!thumbnail) {
-                        thumbnail = {
-                            extension: "jpg",
-                            path: IMAGE_NOT_AVAILABLE
-                        };
-                    }
-                    return thumbnail;
+
                 });
                 return promise;
             },
             getComicDataForResourceURI: function(resourceURI) {
                 var promise = constructURL("comic", { "resourceURI": resourceURI }).then(queryComics).then(function(response) {
-                    return response.data.results[0];
+                    if (response !== "Too Many Requests") {
+                        return response.data.results[0];
+                    } else {
+                        return response;
+                    }
                 });
                 return promise;
             },
             getSeriesDataForQuery: function(queryString) {
                 var promise = constructURL("series", { "query": queryString }).then(queryComics).then(function(response) {
                     relevantSeries = [];
-                    for (var i = 0; i < response.data.results.length; i++) {
-                        var series = response.data.results[i];
-                        if (series.comics.items.length > 0) {
-                            relevantSeries.push(series);
+                    if (response !== "Too Many Requests") {
+                        for (var i = 0; i < response.data.results.length; i++) {
+                            var series = response.data.results[i];
+                            if (series.comics.items.length > 0) {
+                                relevantSeries.push(series);
+                            }
                         }
-
+                        return relevantSeries;
+                    } else {
+                        return response;
                     }
-                    return relevantSeries;
                 });
                 return promise;
             }

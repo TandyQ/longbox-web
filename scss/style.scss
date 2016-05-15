@@ -450,7 +450,6 @@ div.stretchy-wrapper {
 
 .reveal-modal {
     outline: none;
-    padding: .8rem 1.875rem 1.875rem 1.875rem !important;
 
     h2 {
         margin: 0 auto;
@@ -671,6 +670,10 @@ label::before {
     .comic-grid,
     .page-title-content {
         padding: 0 10px 0 10px;
+    }
+
+    .reveal-modal {
+        padding: .8rem 1.875rem 1.875rem 1.875rem !important;
     }
 }
 

@@ -4,9 +4,12 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
         var auth = $firebaseAuth(ref);
         $scope.isLoading = false;
         $scope.hasComics = true;
+        $scope.hasPullList = true;
         $scope.dateDisplayString = "";
         $scope.currentYear = new Date().getFullYear();
         $scope.viewMode = Settings.getViewMode();
+        $scope.resultsMessage = "";
+        $scope.pullListResultsMessage = "";
 
         auth.$onAuth(function(authUser) {
             if (authUser) {
@@ -15,6 +18,10 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
 
                 pullListInfo.$loaded().then(function(data) {
                     $scope.pullList = data;
+                    if ($scope.pullList.length < 1) {
+                        hasPullList = false;
+                        $scope.pullListResultsMessage = "No Subscriptions";
+                    }
                 }).catch(function(error) {
                     console.log(error);
                 });
@@ -56,15 +63,22 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
             var selectedService = Settings.getSelectedServicePrefix();
             if (selectedService == 'marvel') {
                 Marvel.getComicDataForWeek(dateRange).then(function(data) {
-                    $scope.comicData = data;
-                    $scope.isLoading = false;
-                    if ($scope.comicData.length < 1) {
-                        $scope.hasComics = false;
-                    }
-                    for (var i = 0; i < $scope.comicData.length; i++) {
-                        if (!$scope.comicData[i].description) {
-                            $scope.comicData[i].description = "No description available.";
+                    if (data !== "Too Many Requests") {
+                        $scope.comicData = data;
+                        $scope.isLoading = false;
+                        if ($scope.comicData.length < 1) {
+                            $scope.hasComics = false;
+                            $scope.resultsMessage = "No Comics This Week";
                         }
+                        for (var i = 0; i < $scope.comicData.length; i++) {
+                            if (!$scope.comicData[i].description) {
+                                $scope.comicData[i].description = "No description available.";
+                            }
+                        }
+                    } else {
+                        $scope.isLoading = false;
+                        $scope.hasComics = false;
+                        $scope.resultsMessage = "Reached API Limit";
                     }
                 });
             } else if (selectedService == 'comic-vine') {
@@ -78,6 +92,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
                     $scope.comicData = data;
                     if ($scope.comicData.length < 1) {
                         $scope.hasComics = false;
+                        $scope.resultsMessage = "No Comics This Week";
                     }
                     $scope.isLoading = false;
                 });

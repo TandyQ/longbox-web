@@ -17,7 +17,7 @@
 <div ng-show="currentUser" class="my-longbox-content">
     <tabset>
         <tab heading="My Releases" class="first-tab">
-            <div ng-hide="isLoading" class="row comic-grid" data-equalizer>
+            <div ng-hide="isLoading || !hasPullList" class="row comic-grid" data-equalizer>
                 <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList | orderBy:'series.name'" data-equalizer-watch>
                     <!-- Fix for different cover sizes -->
                     <div ng-class="{'new-series': comic.issueNumber <= 1}" class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
@@ -30,6 +30,9 @@
                     </div>
                     <p class="comic-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
                 </div>
+            </div>
+            <div ng-hide="hasComics" class="no-results">
+                {{pullListResultsMessage}}
             </div>
             <div ng-hide="isLoading" class="row attribution">
                 <div ng-show="hasComics" class="large-12 columns">
@@ -60,6 +63,9 @@
                     <p class="comic-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
                 </div>
             </div>
+            <div ng-hide="hasComics" class="no-results">
+                {{resultsMessage}}
+            </div>
             <div ng-hide="isLoading" class="row attribution">
                 <div ng-show="hasComics" class="large-12 columns">
                     <p>
@@ -70,9 +76,6 @@
         </tab>
         <div ng-show="isLoading" class="spinner-container">
             <i class="fa fa-refresh fa-spin fa-fw fa-5x margin-bottom loading-spinner"></i>
-        </div>
-        <div ng-hide="hasComics" class="no-results">
-            No Comics This Week
         </div>
     </tabset>
 </div>
@@ -104,6 +107,6 @@
         <i class="fa fa-refresh fa-spin fa-fw fa-5x margin-bottom loading-spinner"></i>
     </div>
     <div ng-hide="hasComics" class="no-results">
-        No Comics This Week
+        {{resultsMessage}}
     </div>
 </div>
