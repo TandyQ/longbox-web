@@ -107,7 +107,80 @@ button {
 }
 
 .row {
-    max-width: 1280px;
+    max-width: 100%;
+}
+
+/* New Releases About */
+
+.about-longbox {
+    background: $bg-color url("../../../images/about-bg.jpg") no-repeat;
+    background-size: cover;
+    padding: 10px 10px 8px 10px;
+
+    fieldset {
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    input {
+        border-radius: 7px;
+    }
+
+    button {
+        border-radius: 7px;
+        float: right;
+        padding: .8em 1.5em;
+    }
+
+    .h2 {
+        text-align: left;
+    }
+
+    .tabbable {
+        margin-top: 10px;
+        float: right;
+    }
+
+    .tabs {
+        text-align: center;
+
+        dd {
+            float: none !important;
+            display: inline-block;
+            padding: 0;
+        }
+
+        dd > a,
+        .tab-title > a {
+            background-color: transparent;
+            color: $interactive-color;
+            padding: 0 1rem;
+            width: 170px;
+        }
+
+        dd.active > a {
+            background-color: $interactive-color;
+            color: $bg-color;
+        }
+
+        .first-tab > a {
+            border: 1px solid $interactive-color;
+            border-top-left-radius: 7px;
+            border-bottom-left-radius: 7px;
+        }
+
+        .last-tab > a {
+            border: 1px solid $interactive-color;
+            border-top-right-radius: 7px;
+            border-bottom-right-radius: 7px;
+            margin-left: -5px;
+        }
+    }
+
+    .tabs-content {
+        margin-bottom: 0;
+    }
 }
 
 /* Date Picker Styling */
@@ -562,7 +635,6 @@ div.stretchy-wrapper {
     }
 
     /* Checked */
-
     input[type="radio"]:checked + label {
         padding-left: 10px;
         color: $button-text-color;
@@ -576,7 +648,6 @@ div.stretchy-wrapper {
     }
 
     /* Transition */
-
     label,
     label::before {
         -webkit-transition: .25s all ease;

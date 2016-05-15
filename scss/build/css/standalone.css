@@ -6652,6 +6652,15 @@ button {
 .row {
   max-width: 1280px; }
 
+/* New Releases About */
+.about-longbox fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+.about-longbox input {
+  border-radius: 7px; }
+
 /* Date Picker Styling */
 .date-picker {
   display: none !important; }
