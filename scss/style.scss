@@ -726,6 +726,16 @@ div.stretchy-wrapper {
         padding: 0 0.5rem;
     }
 
+    .top-bar {
+        input {
+            border-radius: 0;
+        }
+
+        .search-button {
+            border-radius: 0;
+        }
+    }
+
     .page-title {
         h2 {
             font-size: 14px;

@@ -6982,6 +6982,10 @@ div.stretchy-wrapper {
   .top-bar .name p a,
   .top-bar .name span a {
     padding: 0 0.5rem; }
+  .top-bar input {
+    border-radius: 0; }
+  .top-bar .search-button {
+    border-radius: 0; }
   .page-title h2 {
     font-size: 14px; }
   .date-title {
