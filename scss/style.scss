@@ -15,6 +15,9 @@ $new-series-outline-color: #ffe61f;
 $ended-series-color: #e21d38;
 $add-series-color: #19823a;
 $empty-bg-color: rgba(0, 0, 0, 0);
+$auth-input-bg-color: rgba(26, 31, 30, 0.8);
+$auth-input-active-bg-color: rgba(32, 38, 37, 0.8);
+$auth-input-border-color: #121615;
 
 @mixin truncateText($overflow: ellipsis) {
     overflow: hidden;
@@ -124,10 +127,61 @@ button {
     }
 
     input {
-        border-radius: 7px;
+        border-radius: 0;
+        margin: 0;
+        background-color: $auth-input-bg-color;
+        border-color: $auth-input-border-color;
+        box-shadow: none;
+        border-bottom-width: 0;
+
+        &:focus {
+            background-color: $auth-input-active-bg-color;
+            border-color: $auth-input-border-color;
+        }
+    }
+
+    ::-webkit-input-placeholder {
+        color: $search-placeholder-color;
+    }
+
+    :-moz-placeholder {
+        /* Firefox 18- */
+        color: $search-placeholder-color;
+    }
+
+    ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: $search-placeholder-color;
+    }
+
+    :-ms-input-placeholder {
+        color: $search-placeholder-color;
+    }
+
+    .top-input {
+        border-radius: 7px 7px 0 0;
+    }
+
+    .bottom-input {
+        border-radius: 0 0 7px 7px;
+        border-bottom-width: 1px;
+    }
+
+    .sign-up-error {
+        border-color: $ended-series-color;
+        border-bottom-width: 1px;
+    }
+
+    .error-message {
+        color: $ended-series-color;
+        margin: 0;
+        text-align: right;
+        display: block;
+        font-size: .8rem;
     }
 
     button {
+        margin-top: 1rem;
         border-radius: 7px;
         float: right;
         padding: .8em 1.5em;
@@ -138,7 +192,7 @@ button {
     }
 
     .tabbable {
-        margin-top: 10px;
+        margin-top: 20px;
         float: right;
     }
 

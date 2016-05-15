@@ -6564,15 +6564,48 @@ button {
     margin: 0;
     padding: 0; }
   .about-longbox input {
-    border-radius: 7px; }
+    border-radius: 0;
+    margin: 0;
+    background-color: rgba(26, 31, 30, 0.8);
+    border-color: #121615;
+    box-shadow: none;
+    border-bottom-width: 0; }
+    .about-longbox input:focus {
+      background-color: rgba(32, 38, 37, 0.8);
+      border-color: #121615; }
+  .about-longbox ::-webkit-input-placeholder {
+    color: #67706f; }
+  .about-longbox :-moz-placeholder {
+    /* Firefox 18- */
+    color: #67706f; }
+  .about-longbox ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #67706f; }
+  .about-longbox :-ms-input-placeholder {
+    color: #67706f; }
+  .about-longbox .top-input {
+    border-radius: 7px 7px 0 0; }
+  .about-longbox .bottom-input {
+    border-radius: 0 0 7px 7px;
+    border-bottom-width: 1px; }
+  .about-longbox .sign-up-error {
+    border-color: #e21d38;
+    border-bottom-width: 1px; }
+  .about-longbox .error-message {
+    color: #e21d38;
+    margin: 0;
+    text-align: right;
+    display: block;
+    font-size: .8rem; }
   .about-longbox button {
+    margin-top: 1rem;
     border-radius: 7px;
     float: right;
     padding: .8em 1.5em; }
   .about-longbox .h2 {
     text-align: left; }
   .about-longbox .tabbable {
-    margin-top: 10px;
+    margin-top: 20px;
     float: right; }
   .about-longbox .tabs {
     text-align: center; }
