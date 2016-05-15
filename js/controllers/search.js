@@ -6,6 +6,7 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
         $scope.searchString = $routeParams.seriesSearch;
         $scope.isLoading = false;
         $scope.hasComics = true;
+        $scope.resultsMessage = "";
 
         var loadSeriesMatchingString = function(string) {
             $scope.hasComics = true;
@@ -17,17 +18,24 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
                 queryString = encodeURI(queryString);
                 Marvel.getSeriesDataForQuery(queryString).then(function(data) {
                     $scope.seriesData = data;
-                    for (var i = 0; i < data.length; i++) {
-                        var series = data[i];
-                        if (!series.description) {
-                            series.description = "No description available.";
+                    if (data !== "Too Many Requests") {
+                        for (var i = 0; i < data.length; i++) {
+                            var series = data[i];
+                            if (!series.description) {
+                                series.description = "No description available.";
+                            }
+                            $scope.getLatestComicCoverForSeries(series, i);
                         }
-                        $scope.getLatestComicCoverForSeries(series, i);
-                    }
-                    if ($scope.seriesData.length < 1) {
+                        if ($scope.seriesData.length < 1) {
+                            $scope.hasComics = false;
+                            $scope.resultsMessage = "The search '" + $scope.searchString + "' did not return any results.";
+                        }
+                        $scope.isLoading = false;
+                    } else {
+                        $scope.isLoading = false;
                         $scope.hasComics = false;
+                        $scope.resultsMessage = "Reached API Limit";
                     }
-                    $scope.isLoading = false;
                 });
             } else if (selectedService == 'comic-vine') {
                 // WARNING: Comic Vine is not set up to be used with the current Firebase data management
@@ -49,6 +57,7 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
                     }
                     if ($scope.seriesData.length < 1) {
                         $scope.hasComics = false;
+                        $scope.resultsMessage = "The search '" + $scope.searchString + "' did not return any results.";
                     }
                     $scope.isLoading = false;
                 });
@@ -147,14 +156,6 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
 
         $scope.isInPullList = function(series) {
             return PullListUtils.isInPullList(series.resourceURI, $scope.pullList);
-        };
-
-        $scope.hasComics = function() {
-            if ($scope.seriesData) {
-                return true;
-            } else {
-                return false;
-            }
         };
 
         $scope.isEnded = function(series) {
