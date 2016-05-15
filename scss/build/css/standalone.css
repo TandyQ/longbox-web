@@ -7003,7 +7003,7 @@ div.stretchy-wrapper {
   .profile .subscription-count {
     display: inline-block; }
   .profile .left-subscription-count {
-    margin-right: 1rem; }
+    margin-right: 1.7rem; }
   .profile .setting-container {
     margin: 1em 0 1em 0;
     display: block;
@@ -7079,6 +7079,14 @@ div.stretchy-wrapper {
     padding: 0 0.5rem; }
   .page-title h2 {
     font-size: 14px; }
+  .date-title {
+    text-align: center; }
+  .back-button {
+    margin: 6px 0 14px 0;
+    float: left; }
+  .forward-button {
+    margin: 6px 0 14px 0;
+    float: right; }
   .inline-button {
     width: 40px;
     height: 40px;
@@ -7087,13 +7095,15 @@ div.stretchy-wrapper {
       font-size: 30px; }
   .page-title-content,
   .comic-grid {
-    padding: 0 5px 0 5px; }
+    padding: 12px 5px 0 5px; }
   .comic-title {
     font-size: .9em; }
   .reveal-modal button {
     width: 100%; }
-  .search-title .search-button {
-    padding: 10px 1rem 10px 1rem; } }
+  .search-title {
+    margin-top: 5px !important; }
+    .search-title .search-button {
+      padding: 10px 1rem 10px 1rem; } }
 
 @media only screen and (min-width: 40.0625em) {
   .comic-grid,
