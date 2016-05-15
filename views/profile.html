@@ -1,15 +1,30 @@
 <div class="profile" ng-controller="ProfileController">
-    <p>{{ currentUser.firstname }} {{ currentUser.lastname }}</p>
-</div>
-<div class="service-selection">
-    <input id="marvel" type="radio" ng-model="selectedService" name="service-selection" value="Marvel">
-    <label for="marvel">Marvel</label>&nbsp;
-    <input id="comic-vine" type="radio" ng-model="selectedService" name="service-selection" value="Comic Vine">
-    <label for="comic-vine">Comic Vine</label>
-</div>
-<div class="view-mode">
-    <input id="standard" type="radio" ng-model="viewMode" name="view-mode" value="standard">
-    <label for="standard">Standard</label>&nbsp;
-    <input id="compact" type="radio" ng-model="viewMode" name="view-mode" value="compact">
-    <label for="compact">Compact on Phones</label>
+    <div class="profile-name">
+        <p>{{ currentUser.firstname }} {{ currentUser.lastname }}</p>
+    </div>
+    <div class="service-selection">
+        <div class="setting-title">
+            Data Source
+        </div>
+        <div class="setting-options">
+            <input id="marvel" type="radio" ng-model="selectedService" name="service-selection" value="Marvel">
+            <label for="marvel">Marvel</label>&nbsp;
+            <input id="comic-vine" type="radio" ng-model="selectedService" name="service-selection" value="Comic Vine">
+            <label for="comic-vine">Comic Vine</label>
+        </div>
+    </div>
+    <div class="view-mode">
+        <div class="setting-title">
+            View Mode
+        </div>
+        <div class="setting-options">
+            <input id="standard" type="radio" ng-model="viewMode" name="view-mode" value="standard">
+            <label for="standard">Standard</label>&nbsp;
+            <input id="compact" type="radio" ng-model="viewMode" name="view-mode" value="compact">
+            <label for="compact">Compact on Phones</label>
+        </div>
+    </div>
+    <div ng-controller="RegistrationController">
+        <button class="log-out-button" ng-click="logout()">Log Out</button>
+    </div>
 </div>

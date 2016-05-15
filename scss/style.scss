@@ -521,62 +521,70 @@ div.stretchy-wrapper {
 
 /* User Profile */
 
-input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    z-index: -1;
-}
+.profile {
+    input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+    }
 
-label {
-    position: relative;
-    display: inline-block;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    padding-left: 30px;
-    padding-right: 10px;
-    line-height: 36px;
-    cursor: pointer;
-    color: $font-color;
-}
+    label {
+        position: relative;
+        display: inline-block;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+        padding-right: 10px;
+        line-height: 36px;
+        cursor: pointer;
+        color: $font-color;
+    }
 
-label::before {
-    content: " ";
-    position: absolute;
-    top: 6px;
-    left: 0;
-    display: block;
-    width: 24px;
-    height: 24px;
-    border: 2px solid $interactive-color;
-    border-radius: 4px;
-    z-index: -1;
-}
+    label::before {
+        content: " ";
+        position: absolute;
+        top: 6px;
+        left: 0;
+        display: block;
+        width: 24px;
+        height: 24px;
+        border: 2px solid $interactive-color;
+        border-radius: 4px;
+        z-index: -1;
+    }
 
-input[type="radio"] + label::before {
-    border-radius: 7px;
-}
+    input[type="radio"] + label::before {
+        border-radius: 7px;
+    }
 
-/* Checked */
+    /* Checked */
 
-input[type="radio"]:checked + label {
-    padding-left: 10px;
-    color: $button-text-color;
-}
+    input[type="radio"]:checked + label {
+        padding-left: 10px;
+        color: $button-text-color;
+    }
 
-input[type="radio"]:checked + label::before {
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: $interactive-color;
-}
+    input[type="radio"]:checked + label::before {
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: $interactive-color;
+    }
 
-/* Transition */
+    /* Transition */
 
-label,
-label::before {
-    -webkit-transition: .25s all ease;
-    -o-transition: .25s all ease;
-    transition: .25s all ease;
+    label,
+    label::before {
+        -webkit-transition: .25s all ease;
+        -o-transition: .25s all ease;
+        transition: .25s all ease;
+    }
+
+    .log-out-button {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem 0.53125rem 1rem;
+        border-radius: 7px;
+    }
 }
 
 /* Search Results */
