@@ -260,6 +260,10 @@ button {
             margin-left: -5px;
         }
     }
+
+    .tabs-content {
+        margin-bottom: 0;
+    }
 }
 
 /* Comic Grid */
@@ -764,6 +768,10 @@ div.stretchy-wrapper {
     .reveal-modal {
         button {
             width: 100%;
+        }
+
+        .close-reveal-modal {
+            top: 1.45rem;
         }
     }
 

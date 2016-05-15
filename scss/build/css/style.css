@@ -6655,6 +6655,9 @@ button {
     border-bottom-right-radius: 7px;
     margin-left: -5px; }
 
+.my-longbox-content .tabs-content {
+  margin-bottom: 0; }
+
 /* Comic Grid */
 .comic-grid {
   padding: 0 10px 0 10px; }
@@ -7002,6 +7005,8 @@ div.stretchy-wrapper {
     font-size: .9em; }
   .reveal-modal button {
     width: 100%; }
+  .reveal-modal .close-reveal-modal {
+    top: 1.45rem; }
   .search-title {
     margin-top: 5px !important; }
     .search-title .search-button {
