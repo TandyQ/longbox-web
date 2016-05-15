@@ -581,6 +581,54 @@ label::before {
 
 /* Search Results */
 
+.search-title {
+    margin-top: 15px !important;
+
+    .search-box-column,
+    .search-button-column {
+        padding: 0;
+    }
+
+    input {
+        border-radius: 7px 7px 0 0;
+        background-color: $search-bg-color;
+        border-color: $search-border-color;
+        border-right-color: $search-bg-color;
+        box-shadow: none;
+        margin: 0;
+
+        &:focus {
+            background-color: $search-active-bg-color;
+            border-color: $search-border-color;
+            border-right-color: $search-active-bg-color;
+        }
+    }
+
+    ::-webkit-input-placeholder {
+        color: $search-placeholder-color;
+    }
+
+    :-moz-placeholder {
+        /* Firefox 18- */
+        color: $search-placeholder-color;
+    }
+
+    ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: $search-placeholder-color;
+    }
+
+    :-ms-input-placeholder {
+        color: $search-placeholder-color;
+    }
+
+    .search-button {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem 0.53125rem 1rem;
+        border-radius: 0 0 7px 7px;
+    }
+}
+
 .search-result {
     margin-bottom: 20px !important;
 
@@ -595,31 +643,14 @@ label::before {
 
 /* Media Queries */
 
-@media #{$tiny-only} {
-    .inline-button {
-        width: 40px;
-        height: 40px;
-        display: inline;
-
-        .fa {
-            font-size: 30px;
+@media #{$small-up} {
+    .search-title {
+        input {
+            border-radius: 7px 0 0 7px;
         }
-    }
 
-    .date-nav-button {
-        width: 20px;
-        height: 20px;
-    }
-
-    .page-title {
-        h2 {
-            font-size: 16px;
-        }
-    }
-
-    .reveal-modal {
-        button {
-            width: 100%;
+        .search-button {
+            border-radius: 0 7px 7px 0;
         }
     }
 }
@@ -664,6 +695,12 @@ label::before {
             width: 100%;
         }
     }
+
+    .search-title {
+        .search-button {
+            padding: 10px 1rem 10px 1rem;
+        }
+    }
 }
 
 @media #{$medium-up} {
@@ -677,10 +714,24 @@ label::before {
     }
 }
 
+@media #{$medium-only} {
+    .search-title {
+        .search-button {
+            padding: 10px 1rem 10px 1rem;
+        }
+    }
+}
+
 @media #{$large-up} {
     .logo {
         &:hover {
             fill: $interactive-color;
+        }
+    }
+
+    .search-title {
+        .search-button {
+            padding: 11px 1rem 12px 1rem;
         }
     }
 }

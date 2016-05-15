@@ -79,6 +79,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
                         $scope.isLoading = false;
                         $scope.hasComics = false;
                         $scope.resultsMessage = "Reached API Limit";
+                        $scope.pullListResultsMessage = "Reached API Limit";
                     }
                 });
             } else if (selectedService == 'comic-vine') {

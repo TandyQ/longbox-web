@@ -6898,6 +6898,37 @@ label::before {
   transition: .25s all ease; }
 
 /* Search Results */
+.search-title {
+  margin-top: 15px !important; }
+  .search-title .search-box-column,
+  .search-title .search-button-column {
+    padding: 0; }
+  .search-title input {
+    border-radius: 7px 7px 0 0;
+    background-color: #2a3130;
+    border-color: #343d3b;
+    border-right-color: #2a3130;
+    box-shadow: none;
+    margin: 0; }
+    .search-title input:focus {
+      background-color: #303837;
+      border-color: #343d3b;
+      border-right-color: #303837; }
+  .search-title ::-webkit-input-placeholder {
+    color: #67706f; }
+  .search-title :-moz-placeholder {
+    /* Firefox 18- */
+    color: #67706f; }
+  .search-title ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #67706f; }
+  .search-title :-ms-input-placeholder {
+    color: #67706f; }
+  .search-title .search-button {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem 0.53125rem 1rem;
+    border-radius: 0 0 7px 7px; }
+
 .search-result {
   margin-bottom: 20px !important; }
   .search-result p {
@@ -6906,20 +6937,11 @@ label::before {
     font-size: 1.2em; }
 
 /* Media Queries */
-@media only screen and (max-width: 25em) {
-  .inline-button {
-    width: 40px;
-    height: 40px;
-    display: inline; }
-    .inline-button .fa {
-      font-size: 30px; }
-  .date-nav-button {
-    width: 20px;
-    height: 20px; }
-  .page-title h2 {
-    font-size: 16px; }
-  .reveal-modal button {
-    width: 100%; } }
+@media only screen and (min-width: 25.0625em) {
+  .search-title input {
+    border-radius: 7px 0 0 7px; }
+  .search-title .search-button {
+    border-radius: 0 7px 7px 0; } }
 
 @media only screen and (min-width: 25.0625em) and (max-width: 40em) {
   .top-bar .name h1 a,
@@ -6943,7 +6965,9 @@ label::before {
   .comic-title {
     font-size: .9em; }
   .reveal-modal button {
-    width: 100%; } }
+    width: 100%; }
+  .search-title .search-button {
+    padding: 10px 1rem 10px 1rem; } }
 
 @media only screen and (min-width: 40.0625em) {
   .comic-grid,
@@ -6952,6 +6976,12 @@ label::before {
   .reveal-modal {
     padding: .8rem 1.875rem 1.875rem 1.875rem !important; } }
 
+@media only screen and (min-width: 40.0625em) and (max-width: 64em) {
+  .search-title .search-button {
+    padding: 10px 1rem 10px 1rem; } }
+
 @media only screen and (min-width: 64.0625em) {
   .logo:hover {
-    fill: #6CBDB5; } }
+    fill: #6CBDB5; }
+  .search-title .search-button {
+    padding: 11px 1rem 12px 1rem; } }

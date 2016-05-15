@@ -4,8 +4,9 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
         var auth = $firebaseAuth(ref);
         $scope.currentYear = new Date().getFullYear();
         $scope.searchString = $routeParams.seriesSearch;
+        $scope.viewMode = Settings.getViewMode();
         $scope.isLoading = false;
-        $scope.hasComics = true;
+        $scope.hasComics = false;
         $scope.resultsMessage = "";
 
         var loadSeriesMatchingString = function(string) {
