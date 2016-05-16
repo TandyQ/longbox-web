@@ -6650,16 +6650,91 @@ button {
   background-color: transparent; }
 
 .row {
-  max-width: 1280px; }
+  max-width: 100%; }
 
 /* New Releases About */
-.about-longbox fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0; }
-
-.about-longbox input {
-  border-radius: 7px; }
+.about-longbox {
+  background: #0E1111 url("../../../images/about-bg.jpg") no-repeat;
+  background-size: cover;
+  padding: 10px 10px 8px 10px; }
+  .about-longbox fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0; }
+  .about-longbox input {
+    border-radius: 0;
+    margin: 0;
+    background-color: rgba(26, 31, 30, 0.8);
+    border-color: #121615;
+    box-shadow: none;
+    border-bottom-width: 0; }
+    .about-longbox input:focus {
+      background-color: rgba(32, 38, 37, 0.8);
+      border-color: #121615; }
+  .about-longbox ::-webkit-input-placeholder {
+    color: #67706f; }
+  .about-longbox :-moz-placeholder {
+    /* Firefox 18- */
+    color: #67706f; }
+  .about-longbox ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #67706f; }
+  .about-longbox :-ms-input-placeholder {
+    color: #67706f; }
+  .about-longbox .top-input {
+    border-radius: 7px 7px 0 0; }
+  .about-longbox .bottom-input {
+    border-radius: 0 0 7px 7px;
+    border-bottom-width: 1px; }
+  .about-longbox .sign-up-error {
+    border-color: #e21d38;
+    border-bottom-width: 1px; }
+  .about-longbox .error-message {
+    color: #e21d38;
+    margin: 0;
+    text-align: right;
+    display: block;
+    font-size: .8rem; }
+  .about-longbox button {
+    margin-top: 1rem;
+    border-radius: 7px;
+    float: right;
+    padding: .8em 1.5em; }
+  .about-longbox h2 {
+    margin-bottom: 0; }
+  .about-longbox h4 {
+    font-size: 1.4em; }
+  .about-longbox p {
+    font-size: 1rem; }
+  .about-longbox .tabbable {
+    margin-top: 20px;
+    float: right; }
+  .about-longbox .tabs {
+    text-align: center; }
+    .about-longbox .tabs dd {
+      float: none !important;
+      display: inline-block;
+      padding: 0; }
+    .about-longbox .tabs dd > a,
+    .about-longbox .tabs .tab-title > a {
+      background-color: transparent;
+      color: #6CBDB5;
+      padding: 0 1rem;
+      width: 170px; }
+    .about-longbox .tabs dd.active > a {
+      background-color: #6CBDB5;
+      color: #0E1111; }
+    .about-longbox .tabs .first-tab > a {
+      border: 1px solid #6CBDB5;
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 7px; }
+    .about-longbox .tabs .last-tab > a {
+      border: 1px solid #6CBDB5;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+      margin-left: -5px; }
+  .about-longbox .tabs-content {
+    margin-bottom: 0; }
 
 /* Date Picker Styling */
 .date-picker {

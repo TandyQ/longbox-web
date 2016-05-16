@@ -6602,8 +6602,12 @@ button {
     border-radius: 7px;
     float: right;
     padding: .8em 1.5em; }
-  .about-longbox .h2 {
-    text-align: left; }
+  .about-longbox h2 {
+    margin-bottom: 0; }
+  .about-longbox h4 {
+    font-size: 1.4em; }
+  .about-longbox p {
+    font-size: 1rem; }
   .about-longbox .tabbable {
     margin-top: 20px;
     float: right; }

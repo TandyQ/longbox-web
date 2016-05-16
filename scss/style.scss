@@ -187,8 +187,16 @@ button {
         padding: .8em 1.5em;
     }
 
-    .h2 {
-        text-align: left;
+    h2 {
+        margin-bottom: 0;
+    }
+
+    h4 {
+        font-size: 1.4em;
+    }
+
+    p {
+        font-size: 1rem;
     }
 
     .tabbable {
