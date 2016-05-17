@@ -663,6 +663,10 @@ div.stretchy-wrapper {
     @include centererWithPosition(fixed, 5em, 5em);
 }
 
+.spinner-container-logged-out {
+    text-align: center;
+}
+
 /* Attribution */
 
 .attribution {

@@ -6936,6 +6936,9 @@ div.stretchy-wrapper {
   height: 5em;
   margin: -2.5em 0 0 -2.5em; }
 
+.spinner-container-logged-out {
+  text-align: center; }
+
 /* Attribution */
 .attribution {
   text-align: center; }

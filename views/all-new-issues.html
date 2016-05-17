@@ -6,7 +6,7 @@
                     <h2>Welcome to Longbox</h2>
                     <h4>Keeping track of comics is hard. We make things easier.</h4>
                     <p>Finding new releases at your local local comic shop has always been a mess. With hundreds of new issues coming out every week, it's easy for the series you care about to slip through the cracks. At Longbox, we help you do away with all that clutter by bringing you the latest release schedules from trusted sources like Marvel and Comic Vine. Maintaining a subscription list with us provides a way to cut through the noise, allowing you to focus on the series that you care about. Sign up for Longbox today and never miss another issue.</p>
-                    <p>Registration on this box is currently closed, but you can build your own Longbox by downloading the project on <a href="https://github.com/TandyQ/longbox-web" target="_blank">GitHub</a> and following the instructions.</p>
+                    <p>Longbox was developed by <a href="http://tandyq.me">Tyler Anderson</a> as part of his thesis for <a href="http://www.elon.edu/e-web/academics/communications/interactive_media/">Elon University's Interactive Media</a> graduate program. Registration on this box is currently closed, but you can build your own Longbox by following the project's installation instructions on <a href="https://github.com/TandyQ/longbox-web" target="_blank">GitHub</a>.</p>
                 </div>
                 <div class="small-12 medium-6 large-5 columns login">
                     <tabset>
@@ -177,7 +177,7 @@
                     </p>
                 </div>
             </div>
-            <div ng-show="isLoading" class="spinner-container">
+            <div ng-show="isLoading" class="spinner-container-logged-out">
                 <i class="fa fa-refresh fa-spin fa-fw fa-5x margin-bottom loading-spinner"></i>
             </div>
             <div ng-hide="hasComics" class="no-results">
@@ -197,6 +197,9 @@
                     </div>
                     <p class="comic-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
                 </div>
+            </div>
+            <div ng-show="isLoading" class="spinner-container-logged-out">
+                <i class="fa fa-refresh fa-spin fa-fw fa-5x margin-bottom loading-spinner"></i>
             </div>
             <div ng-hide="hasComics" class="no-results">
                 {{resultsMessage}}
