@@ -20,8 +20,6 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseAuth', '$firebaseObject
                     password: user.password
                 }).then(function(regUser) {
                     $rootScope.message = "";
-                    $rootScope.loginUser.email = "";
-                    $rootScope.loginUser.password = "";
                     $location.path('/all-new-issues');
                 }).catch(function(error) {
                     $rootScope.message = error.message;
@@ -38,7 +36,6 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseAuth', '$firebaseObject
                         email: user.email,
                         password: user.password
                     }).then(function(regUser) {
-
                         var regRef = new Firebase(FIREBASE_URL + 'users');
                         regRef.child(regUser.uid).set({
                             date: Firebase.ServerValue.TIMESTAMP,
@@ -47,11 +44,6 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseAuth', '$firebaseObject
                             lastname: user.lastname,
                             email: user.email
                         }); // user info
-
-                        $rootScope.registrationUser.firstname = "";
-                        $rootScope.registrationUser.lastname = "";
-                        $rootScope.registrationUser.email = "";
-                        $rootScope.registrationUser.password = "";
                         myObject.login(user); // log new user in
                     }).catch(function(error) {
                         $rootScope.message = error.message;

@@ -165,10 +165,16 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
 
         $scope.login = function() {
             Authentication.login($scope.loginUser);
+            $scope.loginUser.email = "";
+            $scope.loginUser.password = "";
         }; // login
 
         $scope.register = function() {
             Authentication.register($scope.registrationUser);
+            $scope.registrationUser.firstname = "";
+            $scope.registrationUser.lastname = "";
+            $scope.registrationUser.email = "";
+            $scope.registrationUser.password = "";
         }; // register
     }
 ]);
