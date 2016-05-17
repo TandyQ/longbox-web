@@ -140,6 +140,27 @@ button {
         }
     }
 
+    button {
+        margin-top: 1rem;
+        border-radius: 7px;
+        float: right;
+        padding: .8em 1.5rem;
+    }
+
+    h2 {
+        margin-bottom: 0;
+    }
+
+    h4 {
+        font-size: 1.4rem;
+        margin-bottom: 0.9rem;
+    }
+
+    p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
     ::-webkit-input-placeholder {
         color: $search-placeholder-color;
     }
@@ -180,25 +201,6 @@ button {
         font-size: .8rem;
     }
 
-    button {
-        margin-top: 1rem;
-        border-radius: 7px;
-        float: right;
-        padding: .8em 1.5em;
-    }
-
-    h2 {
-        margin-bottom: 0;
-    }
-
-    h4 {
-        font-size: 1.4em;
-    }
-
-    p {
-        font-size: 1rem;
-    }
-
     .tabbable {
         margin-top: 20px;
         float: right;
@@ -230,6 +232,12 @@ button {
             border: 1px solid $interactive-color;
             border-top-left-radius: 7px;
             border-bottom-left-radius: 7px;
+        }
+
+        .middle-tab > a {
+            border: 1px solid $interactive-color;
+            border-radius: 0;
+            margin-left: -5px;
         }
 
         .last-tab > a {
@@ -386,6 +394,12 @@ button {
             border: 1px solid $interactive-color;
             border-top-left-radius: 7px;
             border-bottom-left-radius: 7px;
+        }
+
+        .middle-tab > a {
+            border: 1px solid $interactive-color;
+            border-radius: 0;
+            margin-left: -5px;
         }
 
         .last-tab > a {
@@ -583,6 +597,12 @@ div.stretchy-wrapper {
     -webkit-box-shadow: inset 0px 0px 0px 2px $ended-series-color;
     -moz-box-shadow: inset 0px 0px 0px 2px $ended-series-color;
     box-shadow: inset 0px 0px 0px 2px $ended-series-color;
+}
+
+.pulled-series {
+    -webkit-box-shadow: inset 0px 0px 0px 2px $add-series-color;
+    -moz-box-shadow: inset 0px 0px 0px 2px $add-series-color;
+    box-shadow: inset 0px 0px 0px 2px $add-series-color;
 }
 
 /* Modal styling */
@@ -837,6 +857,33 @@ div.stretchy-wrapper {
 
 /* Media Queries */
 
+@media #{$tiny-only} {
+    .my-longbox-content .tabs dd > a,
+    .my-longbox-content .tabs .tab-title > a {
+        padding: 0rem 1rem;
+        width: 95px;
+        font-size: 1rem;
+    }
+
+    .page-title {
+        display: none;
+    }
+
+    .date-title {
+        text-align: center;
+    }
+
+    .back-button {
+        margin: 6px 0 14px 0;
+        float: left;
+    }
+
+    .forward-button {
+        margin: 6px 0 14px 0;
+        float: right;
+    }
+}
+
 @media #{$small-up} {
     .search-title {
         input {
@@ -924,6 +971,13 @@ div.stretchy-wrapper {
         .search-button {
             padding: 10px 1rem 10px 1rem;
         }
+    }
+
+    .my-longbox-content .tabs dd > a,
+    .my-longbox-content .tabs .tab-title > a {
+        padding: 0.2rem 0;
+        width: 125px;
+        font-size: 0.8rem;
     }
 }
 

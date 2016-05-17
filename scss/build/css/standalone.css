@@ -6671,6 +6671,19 @@ button {
     .about-longbox input:focus {
       background-color: rgba(32, 38, 37, 0.8);
       border-color: #121615; }
+  .about-longbox button {
+    margin-top: 1rem;
+    border-radius: 7px;
+    float: right;
+    padding: .8em 1.5rem; }
+  .about-longbox h2 {
+    margin-bottom: 0; }
+  .about-longbox h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.9rem; }
+  .about-longbox p {
+    font-size: 1rem;
+    margin-bottom: 1rem; }
   .about-longbox ::-webkit-input-placeholder {
     color: #67706f; }
   .about-longbox :-moz-placeholder {
@@ -6695,17 +6708,6 @@ button {
     text-align: right;
     display: block;
     font-size: .8rem; }
-  .about-longbox button {
-    margin-top: 1rem;
-    border-radius: 7px;
-    float: right;
-    padding: .8em 1.5em; }
-  .about-longbox h2 {
-    margin-bottom: 0; }
-  .about-longbox h4 {
-    font-size: 1.4em; }
-  .about-longbox p {
-    font-size: 1rem; }
   .about-longbox .tabbable {
     margin-top: 20px;
     float: right; }
@@ -6728,6 +6730,10 @@ button {
       border: 1px solid #6CBDB5;
       border-top-left-radius: 7px;
       border-bottom-left-radius: 7px; }
+    .about-longbox .tabs .middle-tab > a {
+      border: 1px solid #6CBDB5;
+      border-radius: 0;
+      margin-left: -5px; }
     .about-longbox .tabs .last-tab > a {
       border: 1px solid #6CBDB5;
       border-top-right-radius: 7px;
@@ -6831,6 +6837,10 @@ button {
     border: 1px solid #6CBDB5;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px; }
+  .my-longbox-content .tabs .middle-tab > a {
+    border: 1px solid #6CBDB5;
+    border-radius: 0;
+    margin-left: -5px; }
   .my-longbox-content .tabs .last-tab > a {
     border: 1px solid #6CBDB5;
     border-top-right-radius: 7px;
@@ -6981,6 +6991,11 @@ div.stretchy-wrapper {
   -webkit-box-shadow: inset 0px 0px 0px 2px #e21d38;
   -moz-box-shadow: inset 0px 0px 0px 2px #e21d38;
   box-shadow: inset 0px 0px 0px 2px #e21d38; }
+
+.pulled-series {
+  -webkit-box-shadow: inset 0px 0px 0px 2px #19823a;
+  -moz-box-shadow: inset 0px 0px 0px 2px #19823a;
+  box-shadow: inset 0px 0px 0px 2px #19823a; }
 
 /* Modal styling */
 .reveal-modal {
@@ -7150,6 +7165,23 @@ div.stretchy-wrapper {
     font-size: 1.2em; }
 
 /* Media Queries */
+@media only screen and (max-width: 25em) {
+  .my-longbox-content .tabs dd > a,
+  .my-longbox-content .tabs .tab-title > a {
+    padding: 0rem 1rem;
+    width: 95px;
+    font-size: 1rem; }
+  .page-title {
+    display: none; }
+  .date-title {
+    text-align: center; }
+  .back-button {
+    margin: 6px 0 14px 0;
+    float: left; }
+  .forward-button {
+    margin: 6px 0 14px 0;
+    float: right; } }
+
 @media only screen and (min-width: 25.0625em) {
   .search-title input {
     border-radius: 7px 0 0 7px; }
@@ -7196,7 +7228,12 @@ div.stretchy-wrapper {
   .search-title {
     margin-top: 5px !important; }
     .search-title .search-button {
-      padding: 10px 1rem 10px 1rem; } }
+      padding: 10px 1rem 10px 1rem; }
+  .my-longbox-content .tabs dd > a,
+  .my-longbox-content .tabs .tab-title > a {
+    padding: 0.2rem 0;
+    width: 125px;
+    font-size: 0.8rem; } }
 
 @media only screen and (min-width: 40.0625em) {
   .comic-grid,
