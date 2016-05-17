@@ -7,7 +7,7 @@ myApp.controller('RegistrationController', ['$scope', '$location', 'Authenticati
 
         $scope.logout = function() {
             Authentication.logout();
-            $location.path('/login');
+            $location.path('/all-new-issues');
         }; // logout
 
         $scope.register = function() {

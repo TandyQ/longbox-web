@@ -19,11 +19,13 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseAuth', '$firebaseObject
                     email: user.email,
                     password: user.password
                 }).then(function(regUser) {
+                    $rootScope.message = "";
+                    $rootScope.loginUser.email = "";
+                    $rootScope.loginUser.password = "";
                     $location.path('/all-new-issues');
                 }).catch(function(error) {
                     $rootScope.message = error.message;
                 });
-                $rootScope.message = "Welcome " + user.email;
             }, // login
             logout: function() {
                 return auth.$unauth();
@@ -46,6 +48,10 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseAuth', '$firebaseObject
                             email: user.email
                         }); // user info
 
+                        $rootScope.registrationUser.firstname = "";
+                        $rootScope.registrationUser.lastname = "";
+                        $rootScope.registrationUser.email = "";
+                        $rootScope.registrationUser.password = "";
                         myObject.login(user); // log new user in
                     }).catch(function(error) {
                         $rootScope.message = error.message;
