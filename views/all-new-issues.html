@@ -152,33 +152,61 @@
     </tabset>
 </div>
 <div ng-hide="currentUser" class="my-longbox-content">
-    <div ng-hide="isLoading" class="row comic-grid" data-equalizer>
-        <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData" data-equalizer-watch>
-            <!-- Fix for different cover sizes -->
-            <div ng-class="{'new-series': comic.issueNumber <= 1}" class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
-                <div class="cover-overlay" ng-style="tapOverlayCSS">
-                    <div class="buttons">
-                        <button class="info-button" ng-click="openModalForComic(comic)"><i class="fa fa-info fa-2x"></i></button>
+    <tabset>
+        <tab heading="All New Releases" class="first-tab">
+            <div ng-hide="isLoading" class="row comic-grid" data-equalizer>
+                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | orderBy:'series.name'" data-equalizer-watch>
+                    <!-- Fix for different cover sizes -->
+                    <div ng-class="{'new-series': comic.issueNumber <= 1}" class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
+                        <div class="cover-overlay" ng-style="tapOverlayCSS">
+                            <div class="buttons">
+                                <button class="info-button" ng-click="openModalForComic(comic)"><i class="fa fa-info fa-2x"></i></button>
+                            </div>
+                        </div>
+                        <div class="pull-list-badge" ng-show="isInPullList(comic)">
+                            <i class="fa fa-check fa-inverse"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="pull-list-badge" ng-show="isInPullList(comic)">
-                    <i class="fa fa-check fa-inverse"></i>
+                    <p class="comic-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
                 </div>
             </div>
-            <p class="comic-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
-        </div>
-    </div>
-    <div ng-hide="isLoading" class="row attribution">
-        <div ng-show="hasComics" class="large-12 columns">
-            <p>
-                <div ng-bind-html="sourceText()"></div>
-            </p>
-        </div>
-    </div>
-    <div ng-show="isLoading" class="spinner-container">
-        <i class="fa fa-refresh fa-spin fa-fw fa-5x margin-bottom loading-spinner"></i>
-    </div>
-    <div ng-hide="hasComics" class="no-results">
-        {{resultsMessage}}
-    </div>
+            <div ng-hide="isLoading" class="row attribution">
+                <div ng-show="hasComics" class="large-12 columns">
+                    <p>
+                        <div ng-bind-html="sourceText()"></div>
+                    </p>
+                </div>
+            </div>
+            <div ng-show="isLoading" class="spinner-container">
+                <i class="fa fa-refresh fa-spin fa-fw fa-5x margin-bottom loading-spinner"></i>
+            </div>
+            <div ng-hide="hasComics" class="no-results">
+                {{resultsMessage}}
+            </div>
+        </tab>
+        <tab heading="First Issues" class="last-tab">
+            <div ng-hide="isLoading" class="row comic-grid" data-equalizer>
+                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isFirstIssue | orderBy:'series.name'" data-equalizer-watch>
+                    <!-- Fix for different cover sizes -->
+                    <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
+                        <div class="cover-overlay" ng-style="tapOverlayCSS">
+                            <div class="buttons">
+                                <button class="info-button" ng-click="openModalForComic(comic)"><i class="fa fa-info fa-2x"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="comic-title">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</p>
+                </div>
+            </div>
+            <div ng-hide="hasComics" class="no-results">
+                {{resultsMessage}}
+            </div>
+            <div ng-hide="isLoading" class="row attribution">
+                <div ng-show="hasComics" class="large-12 columns">
+                    <p>
+                        <div ng-bind-html="sourceText()"></div>
+                    </p>
+                </div>
+            </div>
+        </tab>
 </div>
