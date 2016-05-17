@@ -68,7 +68,6 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
                     if (data !== "Too Many Requests") {
                         $scope.comicData = data;
                         $scope.isLoading = false;
-                        var hasComicsInPullList = false;
                         if ($scope.comicData.length < 1) {
                             $scope.hasComics = false;
                             $scope.resultsMessage = "No Comics This Week";
@@ -76,12 +75,6 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
                         for (var i = 0; i < $scope.comicData.length; i++) {
                             if (!$scope.comicData[i].description) {
                                 $scope.comicData[i].description = "No description available.";
-                            }
-                            if (isInPullList($scope.comicData[i])) {
-                                hasComicsInPullList = true;
-                            }
-                            if (!hasComicsInPullList) {
-                                $scope.pullListResultsMessage = "No Subscriptions This Week";
                             }
                         }
                     } else {
