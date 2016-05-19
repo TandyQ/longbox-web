@@ -1,10 +1,13 @@
 <div class="comic-detail">
     <div class="title">
-        <h2>{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</h2>
-        <p>{{comic.pageCount}} pages | ${{comic.prices[0].price}} | <a ng-href="{{comic.urls[0].url}}" target="_blank">View on Marvel.com <i class="fa fa-arrow-circle-o-right"></i></a>
+        <h2 ng-show="sourceIsMarvel">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</h2>
+        <h2 ng-hide="sourceIsMarvel">{{comic.series.name | limitFromToChar:0:" ("}}</h2>
+        <p ng-show="sourceIsMarvel">{{comic.pageCount}} pages | ${{comic.prices[0].price}} | <a ng-href="{{comic.urls[0].url}}" target="_blank">View on Marvel.com <i class="fa fa-arrow-circle-o-right"></i></a></p>
+        <p ng-hide="sourceIsMarvel">Issue #{{comic.issueNumber}} | <a ng-href="{{comic.site_detail_url}}" target="_blank">View on Comic Vine <i class="fa fa-arrow-circle-o-right"></i></a></p>
     </div>
     <div class="description">
-        <p>{{comic.description}}</p>
+        <p ng-show="sourceIsMarvel">{{description}}</p>
+        <p ng-hide="sourceIsMarvel" ng-bind-html="description"></p>
     </div>
     <div class="creative">
         <p>

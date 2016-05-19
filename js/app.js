@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngCookies', 'LocalStorageModule', 'firebase', 'mm.foundation', 'hmTouchEvents', 'angular.datepicker'])
-    .constant('FIREBASE_URL', 'https://longbox.firebaseio.com/' ); // change this URL to your Firebase URL
+    .constant('FIREBASE_URL', 'https://longbox.firebaseio.com/'); // change this URL to your Firebase URL
 
 myApp.controller('MainController', ['$scope', function($scope) {
     if (("standalone" in window.navigator) && window.navigator.standalone) {

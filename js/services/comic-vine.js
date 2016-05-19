@@ -59,16 +59,32 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
         var parseComics = function(comics) {
             for (var i = 0; i < comics.results.length; i++) {
                 var comic = comics.results[i];
-                comic.series = comic.volume;
-                comic.series.name = comic.series.name;
-                comic.series.resourceURI = comic.volume.api_detail_url;
-                comic.issueNumber = comic.issue_number;
-                var imageUrl = comic.image.super_url;
-                comic.thumbnail = {
-                    extension: imageUrl.substr(imageUrl.lastIndexOf('.') + 1),
-                    path: imageUrl.substr(0, imageUrl.lastIndexOf('.'))
-                };
-                parsedResults.push(comic);
+                if (comic.name) {
+                    if (comic.name.toLowerCase().indexOf("tpb") < 0 &&
+                        comic.name.toLowerCase().indexOf("vol") < 0) {
+                        comic.series = comic.volume;
+                        comic.series.name = comic.series.name;
+                        comic.series.resourceURI = comic.volume.api_detail_url;
+                        comic.issueNumber = comic.issue_number;
+                        var imageUrl = comic.image.super_url;
+                        comic.thumbnail = {
+                            extension: imageUrl.substr(imageUrl.lastIndexOf('.') + 1),
+                            path: imageUrl.substr(0, imageUrl.lastIndexOf('.'))
+                        };
+                        parsedResults.push(comic);
+                    }
+                } else {
+                    comic.series = comic.volume;
+                    comic.series.name = comic.series.name;
+                    comic.series.resourceURI = comic.volume.api_detail_url;
+                    comic.issueNumber = comic.issue_number;
+                    var imageUrl = comic.image.super_url;
+                    comic.thumbnail = {
+                        extension: imageUrl.substr(imageUrl.lastIndexOf('.') + 1),
+                        path: imageUrl.substr(0, imageUrl.lastIndexOf('.'))
+                    };
+                    parsedResults.push(comic);
+                }
             }
         };
 
