@@ -3,11 +3,13 @@
         <h2>{{ currentUser.firstname }} {{ currentUser.lastname }}</h2>
         <div class="subscription-count left-subscription-count">
             <h3>{{marvelPullListCount}}</h3>
-            <p>Marvel<br />Subscriptions</p>
+            <p>Marvel
+                <br />Subscriptions</p>
         </div>
         <div class="subscription-count">
             <h3>{{comicVinePullListCount}}</h3>
-            <p>Comic Vine<br />Subscriptions</p>
+            <p>Comic Vine
+                <br />Subscriptions</p>
         </div>
     </div>
     <div class="service-selection setting-container">
@@ -30,6 +32,30 @@
             <label for="standard">Standard</label>&nbsp;
             <input id="compact" type="radio" ng-model="viewMode" name="view-mode" value="compact">
             <label for="compact">Compact on Phones</label>
+        </div>
+    </div>
+    <div class="first-highlight-setting setting-container">
+        <div class="setting-title">
+            Highlight First Issues:
+        </div>
+        <div class="setting-options">
+            <input id="highlight-on" type="radio" ng-model="firstHighlightSetting" name="first-highlight-setting" value="true">
+            <label for="highlight-on">On</label>&nbsp;
+            <input id="highlight-off" type="radio" ng-model="firstHighlightSetting" name="first-highlight-setting" value="false">
+            <label for="highlight-off">Off</label>
+        </div>
+    </div>
+    <div class="cover-quality setting-container">
+        <div class="setting-title">
+            Cover Image Quality:
+        </div>
+        <div class="setting-options">
+            <input id="cover-small" type="radio" ng-model="coverQuality" name="cover-quality" value="small">
+            <label for="cover-small">Poor</label>&nbsp;
+            <input id="cover-medium" type="radio" ng-model="coverQuality" name="cover-quality" value="medium">
+            <label for="cover-medium">Medium</label>&nbsp;
+            <input id="cover-large" type="radio" ng-model="coverQuality" name="cover-quality" value="large">
+            <label for="cover-large">High</label>
         </div>
     </div>
     <div class="profile-log-out" ng-controller="RegistrationController">
