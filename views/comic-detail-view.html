@@ -3,7 +3,7 @@
         <h2 ng-show="sourceIsMarvel">{{comic.series.name | limitFromToChar:0:" ("}} #{{comic.issueNumber}}</h2>
         <h2 ng-hide="sourceIsMarvel">{{comic.series.name | limitFromToChar:0:" ("}}</h2>
         <p ng-show="sourceIsMarvel">{{comic.pageCount}} pages | ${{comic.prices[0].price}} | <a ng-href="{{comic.urls[0].url}}" target="_blank">View on Marvel.com <i class="fa fa-arrow-circle-o-right"></i></a></p>
-        <p ng-hide="sourceIsMarvel">Issue #{{comic.issueNumber}} | <a ng-href="{{comic.site_detail_url}}" target="_blank">View on Comic Vine <i class="fa fa-arrow-circle-o-right"></i></a></p>
+        <p ng-hide="sourceIsMarvel">Issue #{{comic.issueNumber}} |<a ng-href="{{comic.site_detail_url}}" target="_blank">View on Comic Vine <i class="fa fa-arrow-circle-o-right"></i></a></p>
     </div>
     <div class="description">
         <p ng-show="sourceIsMarvel">{{description}}</p>
@@ -12,10 +12,10 @@
     <div class="creative">
         <p>
             <ng-pluralize count="creators.writers.length" when="{'0': '', '1': 'Writer: ', 'other': 'Writers: '}"></ng-pluralize>
-            {{ creators.writers | orderBy:'toString()' | joinBy:", " }}</p>
+            {{ creators.writers | orderBy:'toString()' | joinBy:", "}}</p>
         <p>
             <ng-pluralize count="creators.pencillers.length" when="{'0': '', '1': 'Artist: ', 'other': 'Artists: '}"></ng-pluralize>
-            {{ creators.pencillers | orderBy:'toString()' | joinBy:", " }}</p>
+            {{ creators.pencillers | orderBy:'toString()' | joinBy:", "}}</p>
     </div>
     <button class="add-button" ng-click="addComic()" ng-hide="isInPullList()">Add to Subscriptions</button>
     <button class="remove-button" ng-click="removeFromPullList()" ng-show="isInPullList()">Remove from Subscriptions</button>

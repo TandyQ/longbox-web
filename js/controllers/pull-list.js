@@ -99,7 +99,14 @@ myApp.controller('PullListController', ['$scope', '$modal', '$sce', '$filter', '
                     ComicVine.getVolumeDataForId(series.id).then(function(data) {
                         if ($scope.seriesData.indexOf(data) == -1) {
                             $scope.seriesData.push(data);
-                            $scope.getLatestComicCoverForSeries(data, $scope.seriesData.indexOf(data));
+                            var index = $scope.seriesData.indexOf(data);
+                            if ($scope.seriesData[index]) {
+                                var imageUrl = data.image.super_url;
+                                $scope.seriesData[index].latestComicCoverPath = imageUrl.substr(0, imageUrl.lastIndexOf('.'));
+                                $scope.seriesData[index].latestComicCoverExtension = imageUrl.substr(imageUrl.lastIndexOf('.') + 1);
+                            }
+                            console.log(data);
+                            // $scope.getLatestComicCoverForSeries(data, $scope.seriesData.indexOf(data));
                         }
                     });
                 }

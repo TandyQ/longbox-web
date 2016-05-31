@@ -41,7 +41,6 @@ myApp.controller('ComicDetailController', ['$scope', '$sce', '$filter', 'Setting
             filteredDescription = replaceAll(filteredDescription, "</b>", "");
             filteredDescription = replaceAll(filteredDescription, "<strong>", "");
             filteredDescription = replaceAll(filteredDescription, "</strong>", "");
-            // $scope.description = filteredDescription;
             $scope.description = $sce.trustAsHtml(filteredDescription);
         }
 

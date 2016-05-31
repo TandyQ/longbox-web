@@ -64,6 +64,9 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                         comic.name.toLowerCase().indexOf("vol") < 0) {
                         comic.series = comic.volume;
                         comic.series.name = comic.series.name;
+                        if (!comic.description) {
+                            comic.description = "No description available.";
+                        }
                         comic.series.resourceURI = comic.volume.api_detail_url;
                         comic.issueNumber = comic.issue_number;
                         var imageUrl = comic.image.super_url;
@@ -76,6 +79,9 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                 } else {
                     comic.series = comic.volume;
                     comic.series.name = comic.series.name;
+                    if (!comic.description) {
+                        comic.description = "No description available.";
+                    }
                     comic.series.resourceURI = comic.volume.api_detail_url;
                     comic.issueNumber = comic.issue_number;
                     var imageUrl = comic.image.super_url;
@@ -94,6 +100,9 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                 volume.title = volume.name;
                 volume.resourceURI = volume.api_detail_url;
                 volume.endYear = 2099;
+                if (!volume.description) {
+                    volume.description = "No description available.";
+                }
                 parsedResults.push(volume);
             }
         };
