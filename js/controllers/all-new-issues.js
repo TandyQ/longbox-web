@@ -149,7 +149,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
         };
 
         $scope.isFirstIssue = function(comic) {
-            return comic.issueNumber < 2;
+            return comic.issueNumber <= 1;
         };
 
         $scope.sourceText = function() {
