@@ -47,7 +47,7 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
                 ComicVine.clearLoadedResults();
                 queryString = "&filter=name:" + string;
                 queryString = encodeURI(queryString);
-                ComicVine.getVolumeDataForQuery(queryString).then(function(data) {
+                ComicVine.getVolumeDataForQueryWithLimit(queryString, 48).then(function(data) {
                     $scope.seriesData = data;
                     for (var i = 0; i < data.length; i++) {
                         var series = data[i];

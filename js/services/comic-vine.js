@@ -21,6 +21,9 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
             if (options.offset) {
                 queryUrl += "&offset=" + options.offset;
             }
+            if (options.limit) {
+                queryUrl += "&limit=" + options.limit;
+            }
 
             if (options.dateRange) {
                 var dateRange = options.dateRange;
@@ -148,7 +151,7 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
         };
 
         var loadVolumeDataForQuery = function(queryString, offset) {
-            var promise = constructURL("volume", { "query": queryString }).then(queryComics).then(function(response) {
+            var promise = constructURL("volume", { "query": queryString, "offset": offset }).then(queryComics).then(function(response) {
                 offset += 100;
                 var numTotalResults = response.data.number_of_total_results;
                 parseVolumes(response.data);
@@ -159,6 +162,16 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                 } else {
                     return loadVolumeDataForQuery(queryString, offset);
                 }
+            });
+            return promise;
+        };
+
+        var loadVolumeDataForQueryWithLimit = function(queryString, limit) {
+            var promise = constructURL("volume", { "query": queryString, "limit": limit }).then(queryComics).then(function(response) {
+                parseVolumes(response.data);
+                var returnedVolumes = parsedResults;
+                parsedResults = [];
+                return returnedVolumes;
             });
             return promise;
         };
@@ -178,6 +191,9 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
             },
             getVolumeDataForQuery: function(queryString) {
                 return loadVolumeDataForQuery(queryString, 0);
+            },
+            getVolumeDataForQueryWithLimit: function(queryString, limit) {
+                return loadVolumeDataForQueryWithLimit(queryString, limit);
             }
         };
 
