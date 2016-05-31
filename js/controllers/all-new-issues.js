@@ -99,6 +99,12 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
                         if ($scope.pullList.length > 0) {
                             $scope.pullListResultsMessage = "No Comics This Week";
                         }
+                    } else {
+                        for (var i = 0; i < $scope.comicData.length; i++) {
+                            if (!$scope.comicData[i].description) {
+                                $scope.comicData[i].description = "No description available.";
+                            }
+                        }
                     }
                     $scope.isLoading = false;
                 });
@@ -150,6 +156,10 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
 
         $scope.isFirstIssue = function(comic) {
             return comic.issueNumber <= 1;
+        };
+
+        $scope.shouldHaveFirstIssueHighlight = function(comic) {
+            return ((comic.issueNumber <= 1) && (Settings.getFirstIssueHighlight() === "true"));
         };
 
         $scope.sourceText = function() {

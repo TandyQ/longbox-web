@@ -1,6 +1,5 @@
-myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
-    function($rootScope, $http, $q, DateUtils, $filter) {
-
+myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', 'Settings', '$filter',
+    function($rootScope, $http, $q, DateUtils, Settings, $filter) {
         var resultsPerPage = 100;
         var parsedResults = [];
 
@@ -72,7 +71,16 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                         }
                         comic.series.resourceURI = comic.volume.api_detail_url;
                         comic.issueNumber = comic.issue_number;
-                        var imageUrl = comic.image.super_url;
+
+                        var imageUrl = "";
+                        var coverQuality = Settings.getCoverQuality();
+                        if (coverQuality === "medium") {
+                            imageUrl = comic.image.medium_url;
+                        } else if (coverQuality === "small") {
+                            imageUrl = comic.image.small_url;
+                        } else if (coverQuality === "large") {
+                            imageUrl = comic.image.super_url;
+                        }
                         comic.thumbnail = {
                             extension: imageUrl.substr(imageUrl.lastIndexOf('.') + 1),
                             path: imageUrl.substr(0, imageUrl.lastIndexOf('.'))
@@ -87,7 +95,16 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                     }
                     comic.series.resourceURI = comic.volume.api_detail_url;
                     comic.issueNumber = comic.issue_number;
-                    var imageUrl = comic.image.super_url;
+
+                    var imageUrl = "";
+                    var coverQuality = Settings.getCoverQuality();
+                    if (coverQuality === "medium") {
+                        imageUrl = comic.image.medium_url;
+                    } else if (coverQuality === "small") {
+                        imageUrl = comic.image.small_url;
+                    } else if (coverQuality === "large") {
+                        imageUrl = comic.image.super_url;
+                    }
                     comic.thumbnail = {
                         extension: imageUrl.substr(imageUrl.lastIndexOf('.') + 1),
                         path: imageUrl.substr(0, imageUrl.lastIndexOf('.'))
@@ -140,7 +157,15 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
 
         var loadLatestCoverForIssueId = function(issueId) {
             var promise = constructURL("comic", { "id": issueId }).then(queryComics).then(function(response) {
-                var imageUrl = response.data.results[0].image.super_url;
+                var imageUrl = "";
+                var coverQuality = Settings.getCoverQuality();
+                if (coverQuality === "medium") {
+                    imageUrl = response.data.results[0].image.medium_url;
+                } else if (coverQuality === "small") {
+                    imageUrl = response.data.results[0].image.small_url;
+                } else if (coverQuality === "large") {
+                    imageUrl = response.data.results[0].image.super_url;
+                }
                 var thumbnail = {
                     extension: imageUrl.substr(imageUrl.lastIndexOf('.') + 1),
                     path: imageUrl.substr(0, imageUrl.lastIndexOf('.'))

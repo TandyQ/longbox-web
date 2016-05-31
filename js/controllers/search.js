@@ -54,7 +54,17 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
                         if (!series.description) {
                             series.description = "No description available.";
                         }
-                        $scope.getLatestComicCoverForSeries(series, i);
+                        var imageUrl = "";
+                        var coverQuality = Settings.getCoverQuality();
+                        if (coverQuality === "medium") {
+                            imageUrl = series.image.medium_url;
+                        } else if (coverQuality === "small") {
+                            imageUrl = series.image.small_url;
+                        } else if (coverQuality === "large") {
+                            imageUrl = series.image.super_url;
+                        }
+                        series.latestComicCoverPath = imageUrl.substr(0, imageUrl.lastIndexOf('.'));
+                        series.latestComicCoverExtension = imageUrl.substr(imageUrl.lastIndexOf('.') + 1);
                     }
                     if ($scope.seriesData.length < 1) {
                         $scope.hasComics = false;

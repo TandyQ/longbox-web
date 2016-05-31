@@ -1,5 +1,5 @@
-myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
-    function($rootScope, $http, $q, DateUtils, $filter) {
+myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', 'Settings', '$filter',
+    function($rootScope, $http, $q, DateUtils, Settings, $filter) {
 
         var IMAGE_NOT_AVAILABLE = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
         var baseMarvelUrl = "http://gateway.marvel.com/v1/public/";
@@ -55,7 +55,17 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                     if (response !== "Too Many Requests") {
                         for (var i = 0; i < response.data.results.length; i++) {
                             var comic = response.data.results[i];
-
+                            var pathSuffix = "";
+                            var coverQuality = Settings.getCoverQuality();
+                            if (coverQuality === "medium") {
+                                pathSuffix = "/portrait_uncanny";
+                            } else if (coverQuality === "small") {
+                                pathSuffix = "/portrait_fantastic";
+                            }
+                            comic.thumbnail = {
+                                extension: comic.thumbnail.extension,
+                                path: comic.thumbnail.path + pathSuffix,
+                            };
                             if (comic.variantDescription === "") {
                                 relevantComics.push(comic);
                             }
@@ -73,7 +83,17 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                     if (response !== "Too Many Requests") {
                         for (var i = 0; i < response.data.results.length; i++) {
                             var comic = response.data.results[i];
-
+                            var pathSuffix = "";
+                            var coverQuality = Settings.getCoverQuality();
+                            if (coverQuality === "medium") {
+                                pathSuffix = "/portrait_uncanny";
+                            } else if (coverQuality === "small") {
+                                pathSuffix = "/portrait_fantastic";
+                            }
+                            comic.thumbnail = {
+                                extension: comic.thumbnail.extension,
+                                path: comic.thumbnail.path + pathSuffix,
+                            };
                             if (comic.variantDescription === "") {
                                 relevantComics.push(comic);
                             }
@@ -89,7 +109,19 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
             getSeriesDataForResourceURI: function(resourceURI) {
                 var promise = constructURL("series", { "resourceURI": resourceURI }).then(queryComics).then(function(response) {
                     if (response !== "Too Many Requests") {
-                        return response.data.results[0];
+                        var series = response.data.results[0];
+                        var pathSuffix = "";
+                        var coverQuality = Settings.getCoverQuality();
+                        if (coverQuality === "medium") {
+                            pathSuffix = "/portrait_uncanny";
+                        } else if (coverQuality === "small") {
+                            pathSuffix = "/portrait_fantastic";
+                        }
+                        series.thumbnail = {
+                            extension: series.thumbnail.extension,
+                            path: series.thumbnail.path + pathSuffix,
+                        };
+                        return series;
                     } else {
                         return response;
                     }
@@ -100,13 +132,20 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                 var promise = constructURL("", { "query": "series/" + seriesId + "/comics?format=comic&formatType=comic&noVariants=true&orderBy=-onsaleDate" }).
                 then(queryComics).then(function(response) {
                     if (response !== "Too Many Requests") {
+                        var pathSuffix = "";
+                        var coverQuality = Settings.getCoverQuality();
+                        if (coverQuality === "medium") {
+                            pathSuffix = "/portrait_uncanny";
+                        } else if (coverQuality === "small") {
+                            pathSuffix = "/portrait_fantastic";
+                        }
                         var thumbnail;
                         if (response.data.results.length > 0) {
                             if (response.data.results[response.data.results.length - 1].thumbnail.extension &&
                                 response.data.results[response.data.results.length - 1].thumbnail.path) {
                                 thumbnail = {
                                     extension: response.data.results[response.data.results.length - 1].thumbnail.extension,
-                                    path: response.data.results[response.data.results.length - 1].thumbnail.path,
+                                    path: response.data.results[response.data.results.length - 1].thumbnail.path + pathSuffix,
                                 };
                             }
                         }
@@ -121,19 +160,36 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
 
                                 var wedDate = DateUtils.getWednesdayDate(new Date());
                                 if ((formattedReleaseDate <= wedDate) && (comic.thumbnail.path !== IMAGE_NOT_AVAILABLE)) {
-                                    if (comic.thumbnail.extension && comic.thumbnail.path) {}
-                                    thumbnail = {
-                                        extension: comic.thumbnail.extension,
-                                        path: comic.thumbnail.path
-                                    };
+                                    if (comic.thumbnail.extension && comic.thumbnail.path) {
+                                        var pathSuffix = "";
+                                        var coverQuality = Settings.getCoverQuality();
+                                        if (coverQuality === "medium") {
+                                            pathSuffix = "/portrait_uncanny";
+                                        } else if (coverQuality === "small") {
+                                            pathSuffix = "/portrait_fantastic";
+                                        }
+                                        thumbnail = {
+                                            extension: comic.thumbnail.extension,
+                                            path: comic.thumbnail.path + pathSuffix
+                                        };
+
+                                    }
+
                                     break;
                                 }
                             }
                         }
                         if (!thumbnail) {
+                            var pathSuffix = "";
+                            var coverQuality = Settings.getCoverQuality();
+                            if (coverQuality === "medium") {
+                                pathSuffix = "/portrait_uncanny";
+                            } else if (coverQuality === "small") {
+                                pathSuffix = "/portrait_fantastic";
+                            }
                             thumbnail = {
                                 extension: "jpg",
-                                path: IMAGE_NOT_AVAILABLE
+                                path: IMAGE_NOT_AVAILABLE + pathSuffix
                             };
                         }
                         return thumbnail;
@@ -147,7 +203,19 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
             getComicDataForResourceURI: function(resourceURI) {
                 var promise = constructURL("comic", { "resourceURI": resourceURI }).then(queryComics).then(function(response) {
                     if (response !== "Too Many Requests") {
-                        return response.data.results[0];
+                        var comic = response.data.results[0];
+                        var pathSuffix = "";
+                        var coverQuality = Settings.getCoverQuality();
+                        if (coverQuality === "medium") {
+                            pathSuffix = "/portrait_uncanny";
+                        } else if (coverQuality === "small") {
+                            pathSuffix = "/portrait_fantastic";
+                        }
+                        comic.thumbnail = {
+                            extension: comic.thumbnail.extension,
+                            path: comic.thumbnail.path + pathSuffix,
+                        };
+                        return comic;
                     } else {
                         return response;
                     }
@@ -160,6 +228,17 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', '$filter',
                     if (response !== "Too Many Requests") {
                         for (var i = 0; i < response.data.results.length; i++) {
                             var series = response.data.results[i];
+                            var pathSuffix = "";
+                            var coverQuality = Settings.getCoverQuality();
+                            if (coverQuality === "medium") {
+                                pathSuffix = "/portrait_uncanny";
+                            } else if (coverQuality === "small") {
+                                pathSuffix = "/portrait_fantastic";
+                            }
+                            series.thumbnail = {
+                                extension: series.thumbnail.extension,
+                                path: series.thumbnail.path + pathSuffix,
+                            };
                             if (series.comics.items.length > 0) {
                                 relevantSeries.push(series);
                             }
