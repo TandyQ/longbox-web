@@ -2,7 +2,7 @@
     <div class="title">
         <h2>{{series.title | limitFromToChar:0:" ("}}</h2>
         <p ng-show="sourceIsMarvel">Status: <span ng-class="{'ongoing-status': series.endYear === 2099, 'ended-status': series.endYear !== 2099}"><ng-pluralize count="series.endYear" when="{'2099': 'Ongoing', 'other': 'Ended ({{series.endYear}})'}"></ng-pluralize></span> | <a ng-href="{{series.urls[0].url}}" target="_blank">View on Marvel.com <i class="fa fa-arrow-circle-o-right"></i></a></p>
-        <p ng-hide="sourceIsMarvel">Publisher: {{series.publisher.name}} | Start Year: {{series.start_year}} | <a ng-href="{{series.site_detail_url}}" target="_blank">View on Comic Vine <i class="fa fa-arrow-circle-o-right"></i></a></p>
+        <p ng-hide="sourceIsMarvel">{{series.publisher.name}} | {{series.start_year}} | <a ng-href="{{series.site_detail_url}}" target="_blank">View on Comic Vine <i class="fa fa-arrow-circle-o-right"></i></a></p>
     </div>
     <div class="description">
         <p ng-show="sourceIsMarvel">{{description}}</p>

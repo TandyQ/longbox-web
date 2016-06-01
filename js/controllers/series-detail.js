@@ -41,6 +41,8 @@ myApp.controller('SeriesDetailController', ['$scope', '$sce', '$filter', 'Settin
             var filteredDescription = series.description;
             filteredDescription = $filter('limitFromToChar')(filteredDescription, 0, "<h4>Collected");
             filteredDescription = $filter('limitFromToChar')(filteredDescription, 0, "<h4>Trade Paperback");
+            filteredDescription = $filter('limitFromToChar')(filteredDescription, 0, "<h2>Publication History");
+            filteredDescription = $filter('limitFromToChar')(filteredDescription, 0, "<h2>Plot Summary");
             filteredDescription = $filter('limitFromToChar')(filteredDescription, 0, "<h4>Publishers");
             filteredDescription = $filter('limitFromToChar')(filteredDescription, 0, "Main Feature:");
 
