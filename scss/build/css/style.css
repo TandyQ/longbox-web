@@ -7012,14 +7012,20 @@ div.stretchy-wrapper {
   .profile .left-subscription-count {
     margin-right: 1.7rem; }
   .profile .setting-container {
-    margin: 1em 0 1em 0;
+    margin: 1em 0 1.25em 0;
     display: block;
     text-align: center; }
   .profile .setting-title {
     clear: both;
-    font-size: 1.2rem; }
+    font-size: 1.2rem;
+    padding-bottom: .2em; }
   .profile .setting-options {
     clear: both; }
+  .profile .setting-message p {
+    color: #e21d38;
+    font-size: .8em;
+    margin-top: .5em;
+    margin-bottom: 0; }
   .profile .profile-log-out {
     text-align: center; }
   .profile .log-out-button {

@@ -4,10 +4,20 @@ myApp.controller('ProfileController', ['$scope', 'Settings', "FirebaseUtils", '$
         $scope.viewMode = Settings.getViewMode();
         $scope.coverQuality = Settings.getCoverQuality();
         $scope.firstHighlightSetting = Settings.getFirstIssueHighlight();
+
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
         $scope.marvelPullListCount = 0;
         $scope.comicVinePullListCount = 0;
+
+        var setAPIMessage = function() {
+            if ($scope.selectedService == "Marvel") {
+                $scope.apiMessage = 'Marvel only shows Marvel data, but you can view releases for upcoming weeks.';
+            } else if ($scope.selectedService == "Comic Vine") {
+                $scope.apiMessage = 'Comic Vine shows data for all publishers, but you can only see up to the current date.';
+            }
+        };
+        setAPIMessage();
 
         auth.$onAuth(function(authUser) {
             if (authUser) {
@@ -31,6 +41,7 @@ myApp.controller('ProfileController', ['$scope', 'Settings', "FirebaseUtils", '$
 
         $scope.$watch('selectedService', function(newSelectedService) {
             Settings.setSelectedService(newSelectedService);
+            setAPIMessage();
         });
 
         $scope.$watch('viewMode', function(newViewMode) {

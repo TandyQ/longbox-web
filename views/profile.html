@@ -14,7 +14,7 @@
     </div>
     <div class="service-selection setting-container">
         <div class="setting-title">
-            Data Source:
+            Data Source
         </div>
         <div class="setting-options">
             <input id="marvel" type="radio" ng-model="selectedService" name="service-selection" value="Marvel">
@@ -22,10 +22,13 @@
             <input id="comic-vine" type="radio" ng-model="selectedService" name="service-selection" value="Comic Vine">
             <label for="comic-vine">Comic Vine</label>
         </div>
+        <div class="setting-message">
+        <p>{{apiMessage}}</p>
+        </div>
     </div>
     <div class="view-mode setting-container">
         <div class="setting-title">
-            View Mode:
+            View Mode
         </div>
         <div class="setting-options">
             <input id="standard" type="radio" ng-model="viewMode" name="view-mode" value="standard">
@@ -36,7 +39,7 @@
     </div>
     <div class="first-highlight-setting setting-container">
         <div class="setting-title">
-            Highlight First Issues:
+            Highlight First Issues
         </div>
         <div class="setting-options">
             <input id="highlight-on" type="radio" ng-model="firstHighlightSetting" name="first-highlight-setting" value="true">
@@ -47,7 +50,7 @@
     </div>
     <div class="cover-quality setting-container">
         <div class="setting-title">
-            Cover Image Quality:
+            Cover Image Quality
         </div>
         <div class="setting-options">
             <input id="cover-small" type="radio" ng-model="coverQuality" name="cover-quality" value="small">
