@@ -77,6 +77,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
                                 $scope.comicData[i].description = "No description available.";
                             }
                         }
+                        console.log($scope.comicData);
                     } else {
                         $scope.isLoading = false;
                         $scope.hasComics = false;
@@ -85,11 +86,6 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
                     }
                 });
             } else if (selectedService == 'comic-vine') {
-                // WARNING: Comic Vine is not set up to be used with the current Firebase data management
-                // scheme. This is only part of an experimental, in-development support for a resource other
-                // than Marvel's api. It currently only has the controller layer. No view or model layers
-                // are present.
-
                 ComicVine.clearLoadedResults();
                 ComicVine.getComicDataForWeek(dateRange).then(function(data) {
                     $scope.comicData = data;
@@ -105,6 +101,7 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
                                 $scope.comicData[i].description = "No description available.";
                             }
                         }
+                        // console.log($scope.comicData);
                     }
                     $scope.isLoading = false;
                 });

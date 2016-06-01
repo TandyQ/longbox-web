@@ -58,38 +58,25 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', 'Settings'
             return deferred.promise;
         };
 
+        var createSortName = function(name) {
+            name = name.toLowerCase();
+            cutIndex = name.indexOf("the ");
+            if (cutIndex === 0) {
+                name = name.replace("the ", "");
+            }
+            return name;
+        };
+
         var parseComics = function(comics) {
             for (var i = 0; i < comics.results.length; i++) {
                 var comic = comics.results[i];
-                if (comic.name) {
-                    if (comic.name.toLowerCase().indexOf("tpb") < 0 &&
-                        comic.name.toLowerCase().indexOf("vol") < 0) {
-                        comic.series = comic.volume;
-                        comic.series.name = comic.series.name;
-                        if (!comic.description) {
-                            comic.description = "No description available.";
-                        }
-                        comic.series.resourceURI = comic.volume.api_detail_url;
-                        comic.issueNumber = comic.issue_number;
-
-                        var imageUrl = "";
-                        var coverQuality = Settings.getCoverQuality();
-                        if (coverQuality === "medium") {
-                            imageUrl = comic.image.medium_url;
-                        } else if (coverQuality === "small") {
-                            imageUrl = comic.image.small_url;
-                        } else if (coverQuality === "large") {
-                            imageUrl = comic.image.super_url;
-                        }
-                        comic.thumbnail = {
-                            extension: imageUrl.substr(imageUrl.lastIndexOf('.') + 1),
-                            path: imageUrl.substr(0, imageUrl.lastIndexOf('.'))
-                        };
-                        parsedResults.push(comic);
-                    }
-                } else {
+                if (!comic.name) {
+                    comic.name = '';
+                }
+                if (comic.name.toLowerCase().indexOf("tpb") < 0 &&
+                    comic.name.toLowerCase().indexOf("vol") < 0) {
                     comic.series = comic.volume;
-                    comic.series.name = comic.series.name;
+                    comic.sortName = createSortName(comic.series.name);
                     if (!comic.description) {
                         comic.description = "No description available.";
                     }
@@ -109,6 +96,7 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', 'Settings'
                         extension: imageUrl.substr(imageUrl.lastIndexOf('.') + 1),
                         path: imageUrl.substr(0, imageUrl.lastIndexOf('.'))
                     };
+                    console.log(comic);
                     parsedResults.push(comic);
                 }
             }
@@ -118,6 +106,7 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', 'Settings'
             for (var i = 0; i < volumes.results.length; i++) {
                 var volume = volumes.results[i];
                 volume.title = volume.name;
+                volume.sortName = createSortName(volume.name);
                 volume.resourceURI = volume.api_detail_url;
                 volume.endYear = 2099;
                 if (!volume.description) {

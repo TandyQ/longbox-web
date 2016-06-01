@@ -55,6 +55,7 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', 'Settings', '
                     if (response !== "Too Many Requests") {
                         for (var i = 0; i < response.data.results.length; i++) {
                             var comic = response.data.results[i];
+                            comic.sortName = comic.series.name;
                             var pathSuffix = "";
                             var coverQuality = Settings.getCoverQuality();
                             if (coverQuality === "medium") {
@@ -83,6 +84,7 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', 'Settings', '
                     if (response !== "Too Many Requests") {
                         for (var i = 0; i < response.data.results.length; i++) {
                             var comic = response.data.results[i];
+                            comic.sortName = comic.series.name;
                             var pathSuffix = "";
                             var coverQuality = Settings.getCoverQuality();
                             if (coverQuality === "medium") {
@@ -110,6 +112,7 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', 'Settings', '
                 var promise = constructURL("series", { "resourceURI": resourceURI }).then(queryComics).then(function(response) {
                     if (response !== "Too Many Requests") {
                         var series = response.data.results[0];
+                        series.sortName = series.title;
                         var pathSuffix = "";
                         var coverQuality = Settings.getCoverQuality();
                         if (coverQuality === "medium") {
@@ -204,6 +207,7 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', 'Settings', '
                 var promise = constructURL("comic", { "resourceURI": resourceURI }).then(queryComics).then(function(response) {
                     if (response !== "Too Many Requests") {
                         var comic = response.data.results[0];
+                        comic.sortName = comic.series.name;
                         var pathSuffix = "";
                         var coverQuality = Settings.getCoverQuality();
                         if (coverQuality === "medium") {
@@ -228,6 +232,7 @@ myApp.factory('Marvel', ['$rootScope', '$http', '$q', 'DateUtils', 'Settings', '
                     if (response !== "Too Many Requests") {
                         for (var i = 0; i < response.data.results.length; i++) {
                             var series = response.data.results[i];
+                            series.sortName = series.title;
                             var pathSuffix = "";
                             var coverQuality = Settings.getCoverQuality();
                             if (coverQuality === "medium") {

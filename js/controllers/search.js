@@ -26,6 +26,7 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
                                 series.description = "No description available.";
                             }
                             $scope.getLatestComicCoverForSeries(series, i);
+                            console.log($scope.series);
                         }
                         if ($scope.seriesData.length < 1) {
                             $scope.hasComics = false;
@@ -39,11 +40,6 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
                     }
                 });
             } else if (selectedService == 'comic-vine') {
-                // WARNING: Comic Vine is not set up to be used with the current Firebase data management
-                // scheme. This is only part of an experimental, in-development support for a resource other
-                // than Marvel's api. It currently only has the controller layer. No view or model layers
-                // are present.
-
                 ComicVine.clearLoadedResults();
                 queryString = "&filter=name:" + string;
                 queryString = encodeURI(queryString);
@@ -65,6 +61,7 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
                         }
                         series.latestComicCoverPath = imageUrl.substr(0, imageUrl.lastIndexOf('.'));
                         series.latestComicCoverExtension = imageUrl.substr(imageUrl.lastIndexOf('.') + 1);
+                        console.log(series);
                     }
                     if ($scope.seriesData.length < 1) {
                         $scope.hasComics = false;

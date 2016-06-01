@@ -58,7 +58,7 @@
     <tabset>
         <tab heading="My Releases" class="first-tab">
             <div ng-hide="isLoading || !hasPullList" class="row comic-grid" data-equalizer>
-                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList | orderBy:'series.name'" data-equalizer-watch>
+                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isInPullList | orderBy:'sortName'" data-equalizer-watch>
                     <!-- Fix for different cover sizes -->
                     <div ng-class="{'new-series': shouldHaveFirstIssueHighlight(comic)}" class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
                         <div class="cover-overlay" ng-style="tapOverlayCSS">
@@ -84,7 +84,7 @@
         </tab>
         <tab heading="All New Releases" class="middle-tab">
             <div ng-hide="isLoading" class="row comic-grid" data-equalizer>
-                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | orderBy:'series.name'" data-equalizer-watch>
+                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | orderBy:'sortName'" data-equalizer-watch>
                     <!-- Fix for different cover sizes -->
                     <div ng-class="{'new-series': shouldHaveFirstIssueHighlight(comic), 'pulled-series': isInPullList(comic)}" class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
                         <div class="cover-overlay" ng-style="tapOverlayCSS">
@@ -116,7 +116,7 @@
         </tab>
         <tab heading="First Issues" class="last-tab">
             <div ng-hide="isLoading" class="row comic-grid" data-equalizer>
-                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isFirstIssue | orderBy:'series.name'" data-equalizer-watch>
+                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isFirstIssue | orderBy:'sortName'" data-equalizer-watch>
                     <!-- Fix for different cover sizes -->
                     <div ng-class="{'pulled-series': isInPullList(comic)}" class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
                         <div class="cover-overlay" ng-style="tapOverlayCSS">
@@ -155,7 +155,7 @@
     <tabset>
         <tab heading="All New Releases" class="first-tab">
             <div ng-hide="isLoading" class="row comic-grid" data-equalizer>
-                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | orderBy:'series.name'" data-equalizer-watch>
+                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | orderBy:'sortName'" data-equalizer-watch>
                     <!-- Fix for different cover sizes -->
                     <div ng-class="{'new-series': shouldHaveFirstIssueHighlight(comic)}" class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
                         <div class="cover-overlay" ng-style="tapOverlayCSS">
@@ -186,7 +186,7 @@
         </tab>
         <tab heading="First Issues" class="last-tab">
             <div ng-hide="isLoading" class="row comic-grid" data-equalizer>
-                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isFirstIssue | orderBy:'series.name'" data-equalizer-watch>
+                <div ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="comic in comicData | filter:isFirstIssue | orderBy:'sortName'" data-equalizer-watch>
                     <!-- Fix for different cover sizes -->
                     <div class="stretchy-wrapper" ng-style="{'background-image': 'url(' + comic.thumbnail.path + '.' + comic.thumbnail.extension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
                         <div class="cover-overlay" ng-style="tapOverlayCSS">

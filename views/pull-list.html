@@ -4,7 +4,7 @@
     </div>
 </div>
 <div ng-show="hasComics" class="row comic-grid">
-    <div ng-hide="isLoading" ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="series in seriesData | orderBy:[isEnded, 'title']">
+    <div ng-hide="isLoading" ng-class="{'small-6': viewMode === 'standard', 'small-4': viewMode === 'compact'}" class="tiny-6 medium-3 large-2 columns tight end" ng-repeat="series in seriesData | orderBy:[isEnded, 'sortName']">
         <!-- Fix for different cover sizes -->
         <div ng-class="{'ended-series': isEnded(series)}" class="stretchy-wrapper" ng-style="{'background-image': 'url(' + series.latestComicCoverPath + '.' + series.latestComicCoverExtension + ')', 'background-size':'cover'}" hm-tap="toggleOverlay" ng-controller="CoverController">
             <div class="cover-overlay" ng-style="tapOverlayCSS">

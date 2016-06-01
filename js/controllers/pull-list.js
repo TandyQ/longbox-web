@@ -83,6 +83,7 @@ myApp.controller('PullListController', ['$scope', '$modal', '$sce', '$filter', '
                                 }
                                 $scope.seriesData.push(comicData);
                                 $scope.getLatestComicCoverForSeries(comicData, $scope.seriesData.indexOf(comicData));
+                                console.log(comicData);
                             }
                         } else {
                             $scope.isLoading = false;
@@ -91,11 +92,6 @@ myApp.controller('PullListController', ['$scope', '$modal', '$sce', '$filter', '
                         }
                     });
                 } else if (selectedService == 'comic-vine') {
-                    // WARNING: Comic Vine is not set up to be used with the current Firebase data management
-                    // scheme. This is only part of an experimental, in-development support for a resource other
-                    // than Marvel's api. It currently only has the controller layer. No view or model layers
-                    // are present.
-
                     ComicVine.getVolumeDataForId(series.id).then(function(data) {
                         if ($scope.seriesData.indexOf(data) == -1) {
                             $scope.seriesData.push(data);
@@ -112,8 +108,8 @@ myApp.controller('PullListController', ['$scope', '$modal', '$sce', '$filter', '
                                 }
                                 $scope.seriesData[index].latestComicCoverPath = imageUrl.substr(0, imageUrl.lastIndexOf('.'));
                                 $scope.seriesData[index].latestComicCoverExtension = imageUrl.substr(imageUrl.lastIndexOf('.') + 1);
+                                console.log($scope.seriesData[index]);
                             }
-                            // $scope.getLatestComicCoverForSeries(data, $scope.seriesData.indexOf(data));
                         }
                     });
                 }
