@@ -10,7 +10,7 @@ myApp.factory('Settings', ['$rootScope', '$cookies', 'localStorageService', func
             localStorageService.get('selectedService') === "Comic Vine") {
             selectedService = localStorageService.get('selectedService');
         } else {
-            selectedService = 'Marvel';
+            selectedService = 'Comic Vine';
             localStorageService.set('selectedService', selectedService);
         }
 
@@ -44,7 +44,7 @@ myApp.factory('Settings', ['$rootScope', '$cookies', 'localStorageService', func
             $cookies.get('selectedService') === "Comic Vine") {
             selectedService = $cookies.get('selectedService');
         } else {
-            selectedService = 'Marvel';
+            selectedService = 'Comic Vine';
             $cookies.put('selectedService', selectedService);
         }
 
