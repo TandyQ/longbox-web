@@ -96,7 +96,6 @@ myApp.factory('ComicVine', ['$rootScope', '$http', '$q', 'DateUtils', 'Settings'
                         extension: imageUrl.substr(imageUrl.lastIndexOf('.') + 1),
                         path: imageUrl.substr(0, imageUrl.lastIndexOf('.'))
                     };
-                    console.log(comic);
                     parsedResults.push(comic);
                 }
             }

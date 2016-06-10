@@ -18,6 +18,7 @@ myApp.controller('SeriesDetailController', ['$scope', '$sce', '$filter', 'Settin
         };
 
         if (selectedService == 'marvel') {
+            $scope.sourceIsMarvel = true;
             var pencillers = [];
             var writers = [];
             for (var i = 0; i < series.creators.items.length; i++) {
@@ -36,7 +37,8 @@ myApp.controller('SeriesDetailController', ['$scope', '$sce', '$filter', 'Settin
                 pencillers: pencillers,
                 writers: writers
             };
-            $scope.description = series.description;
+            $scope.description = "<p></p>";
+            $scope.marvelDescription = series.description;
         } else {
             var filteredDescription = series.description;
             filteredDescription = $filter('limitFromToChar')(filteredDescription, 0, "<h4>Collected");

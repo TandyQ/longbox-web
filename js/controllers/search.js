@@ -26,7 +26,6 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
                                 series.description = "No description available.";
                             }
                             $scope.getLatestComicCoverForSeries(series, i);
-                            console.log($scope.series);
                         }
                         if ($scope.seriesData.length < 1) {
                             $scope.hasComics = false;
@@ -61,7 +60,6 @@ myApp.controller('SearchController', ['$scope', '$modal', '$sce', '$routeParams'
                         }
                         series.latestComicCoverPath = imageUrl.substr(0, imageUrl.lastIndexOf('.'));
                         series.latestComicCoverExtension = imageUrl.substr(imageUrl.lastIndexOf('.') + 1);
-                        console.log(series);
                     }
                     if ($scope.seriesData.length < 1) {
                         $scope.hasComics = false;

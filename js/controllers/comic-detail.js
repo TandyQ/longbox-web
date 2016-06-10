@@ -10,7 +10,7 @@ myApp.controller('ComicDetailController', ['$scope', '$sce', '$filter', 'Setting
         };
 
         if (selectedService == 'marvel') {
-            sourceIsMarvel = true;
+            $scope.sourceIsMarvel = true;
             var pencillers = [];
             var writers = [];
             for (var i = 0; i < comic.creators.items.length; i++) {
@@ -29,7 +29,8 @@ myApp.controller('ComicDetailController', ['$scope', '$sce', '$filter', 'Setting
                 pencillers: pencillers,
                 writers: writers
             };
-            $scope.description = comic.description;
+            $scope.description = "<p></p>";
+            $scope.marvelDescription = comic.description;
         } else {
             var filteredDescription = $filter('limitFromToChar')(comic.description, 0, "<h4>List of covers");
             filteredDescription = filteredDescription.replace("<p>", "");

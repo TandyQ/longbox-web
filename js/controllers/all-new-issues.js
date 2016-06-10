@@ -77,7 +77,6 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
                                 $scope.comicData[i].description = "No description available.";
                             }
                         }
-                        console.log($scope.comicData);
                     } else {
                         $scope.isLoading = false;
                         $scope.hasComics = false;
@@ -101,7 +100,6 @@ myApp.controller('AllNewIssuesController', ['$scope', '$modal', '$sce', 'Setting
                                 $scope.comicData[i].description = "No description available.";
                             }
                         }
-                        // console.log($scope.comicData);
                     }
                     $scope.isLoading = false;
                 });

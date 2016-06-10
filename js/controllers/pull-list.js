@@ -83,7 +83,6 @@ myApp.controller('PullListController', ['$scope', '$modal', '$sce', '$filter', '
                                 }
                                 $scope.seriesData.push(comicData);
                                 $scope.getLatestComicCoverForSeries(comicData, $scope.seriesData.indexOf(comicData));
-                                console.log(comicData);
                             }
                         } else {
                             $scope.isLoading = false;
@@ -108,7 +107,6 @@ myApp.controller('PullListController', ['$scope', '$modal', '$sce', '$filter', '
                                 }
                                 $scope.seriesData[index].latestComicCoverPath = imageUrl.substr(0, imageUrl.lastIndexOf('.'));
                                 $scope.seriesData[index].latestComicCoverExtension = imageUrl.substr(imageUrl.lastIndexOf('.') + 1);
-                                console.log($scope.seriesData[index]);
                             }
                         }
                     });
