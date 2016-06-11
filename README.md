@@ -2,7 +2,7 @@
 
 ![Longbox Title Image](http://tandyq.me/do-not-move/title-image.png)
 
-Longbox is a web application for tracking weekly comic book releases. It's not a tool for tracking what's in your collection, nor is it a comic book reader or a comic book marketplace. Using data from Marvel and Comic Vine, it shows which issues are hitting store shelves in a given week. By loading up Longbox and maintaining a list of the series you care about, you can easily filter this long list of weekly releases down to just the ones you want to read.
+Longbox is a web application for tracking weekly comic book releases. It's not a tool for tracking what's in your collection, nor is it a comic book reader or a comic book marketplace. Using data from Marvel and Comic Vine, it shows which issues are hitting store shelves in a given week. By loading up Longbox and maintaining a list of the series you care about, you can easily filter this long list of weekly releases down to just the ones you want to read. You can view a demo of Longbox running at [extendedcontainer.com](http://extendedcontainer.com).
 
 ## Getting Started
 
@@ -47,7 +47,7 @@ What you'll need to get Longbox up and running:
       "COMIC_VINE_API_KEY": "YOUR COMIC VINE API KEY HERE"
     }
     ```
-	
+
 15. Open accounts with [Marvel](http://developer.marvel.com/) and [Comic Vine](http://comicvine.gamespot.com/api/). Go through this process until you have API keys for both services.
 16. Replace YOUR MARVEL API KEY HERE and YOUR COMIC VINE API KEY HERE with the API keys you retrieved from each service. Be sure to keep the double quotes around the keys.
 17. At this point, your Longbox should be set up and ready to go! The application won't run locally on your computer, so upload it to whatever web host you keep your domain with and navigate to that URL. Create an account for yourself and enjoy. See the next section if you're worried about making sure your Longbox is secure from outside tampering.
@@ -68,7 +68,7 @@ Due to the nature of Firebase, anyone who has your Firebase URL can make edits t
         }
     }
     ```
-	
+
 4. These lines mean that anyone can access your Firebase at any time. So we're going to replace them with some lines that are a little more restrictive. Replace all of the lines on this page with the following:
 
     ```
@@ -80,7 +80,7 @@ Due to the nature of Firebase, anyone who has your Firebase URL can make edits t
        }
     }
     ```
-	
+
 5. Your Longbox is secure! Go forth and track comic releases with your mind at ease.
 
 ## Built With
