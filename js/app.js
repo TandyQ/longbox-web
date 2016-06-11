@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngCookies', 'LocalStorageModule', 'firebase', 'mm.foundation', 'hmTouchEvents', 'angular.datepicker'])
-    .constant('FIREBASE_URL', '<YOUR FIREBASE URL HERE>');
+    .constant('FIREBASE_URL', 'https://<YOUR FIREBASE URL HERE>/');
 
 myApp.controller('MainController', ['$scope', function($scope) {
     if (("standalone" in window.navigator) && window.navigator.standalone) {
